@@ -49,23 +49,26 @@
         </div>
 
         <!-- Thumbnails Row -->
-        <div style="display: flex; gap: 12px; margin-top: 16px; overflow-x: auto; padding-bottom: 6px;">
+        <div class="pdp-thumbnails-row">
           {% if product.media.size > 1 %}
             {% for media in product.media %}
-              <div style="width: 80px; height: 90px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; flex-shrink: 0;" class="pdp-thumb">
-                <img src="{{ media.preview_image | image_url: width: 180 }}" alt="{{ product.title }}" width="80" height="90" style="width: 100%; height: 100%; object-fit: cover;">
+              <div 
+                class="pdp-thumb {% if forloop.first %}active{% endif %}" 
+                data-index="{{ forloop.index0 }}"
+                data-full-src="{{ media.preview_image | image_url: width: 1000 }}"
+              >
+                <img src="{{ media.preview_image | image_url: width: 180 }}" alt="{{ product.title }} view {{ forloop.index }}" width="80" height="90" loading="lazy">
               </div>
             {% endfor %}
           {% else %}
-            <div style="width: 80px; height: 90px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; flex-shrink: 0;" class="pdp-thumb">
-              <img src="{{ 'Il_CH_005_01_White_Background.jpg' | asset_url }}" alt="Crystal Loop Drop Chandelier Studio" width="80" height="90" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="pdp-thumb active" data-index="0" data-full-src="{{ main_off_src }}">
+              <img src="{{ main_off_src }}" alt="{{ product.title }} Studio" width="80" height="90" loading="lazy">
             </div>
-            <div style="width: 80px; height: 90px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; flex-shrink: 0;" class="pdp-thumb">
-              <img src="{{ 'Il_CH_005_02_Use_Case.jpg' | asset_url }}" alt="Crystal Loop Drop Chandelier Illuminated" width="80" height="90" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div style="width: 80px; height: 90px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; flex-shrink: 0;" class="pdp-thumb">
-              <img src="{{ 'Il_CH_005_03_Wide_Use_Case.jpg' | asset_url }}" alt="Crystal Loop Drop Chandelier Wide Room" width="80" height="90" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+            {% if main_on_src != main_off_src %}
+              <div class="pdp-thumb" data-index="1" data-full-src="{{ main_on_src }}">
+                <img src="{{ main_on_src }}" alt="{{ product.title }} Illuminated" width="80" height="90" loading="lazy">
+              </div>
+            {% endif %}
           {% endif %}
         </div>
       </div>
@@ -73,7 +76,7 @@
       <!-- RIGHT COLUMN: PRODUCT INFO & PURCHASE CONTROLS -->
       <div>
         <span class="eyebrow">{{ product.type | default: 'Decorative Chandelier' }}</span>
-        <h1 style="font-size: 38px; margin-bottom: 12px;">{{ product.title | default: 'Faceted Crystal Halo Chandelier' }}</h1>
+        <h1 style="font-size: 38px; margin-bottom: 12px; color: var(--color-ink);">{{ product.title | default: 'Faceted Crystal Halo Chandelier' }}</h1>
 
         <!-- Price -->
         <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px;">
@@ -90,36 +93,83 @@
           {% endif %}
         </div>
 
-        <p style="color: var(--color-muted); font-size: 14px; line-height: 1.7; margin-bottom: 24px;">
-          {{ product.description | default: 'A balanced halo chandelier featuring precision-cut faceted K9 crystals suspended within a warm brushed brass architectural ring. Casts a dazzling spectrum of light with zero glare, designed as a breathtaking centerpiece for luxury living rooms, dining spaces, and double-height foyers.' }}
-        </p>
+        {%- comment -%}
+          Separate editorial prose description from embedded specs table
+        {%- endcomment -%}
+        {%- assign pdp_editorial = '' -%}
+        {%- assign pdp_specs_block = '' -%}
+        {%- if product.description contains '<div class="product-specs-wrapper"' -%}
+          {%- assign desc_splits = product.description | split: '<div class="product-specs-wrapper"' -%}
+          {%- assign pdp_editorial = desc_splits[0] -%}
+          {%- assign pdp_specs_block = '<div class="product-specs-wrapper"' | append: desc_splits[1] -%}
+        {%- else -%}
+          {%- assign pdp_editorial = product.description -%}
+        {%- endif -%}
+
+        <div style="color: #4A443D; font-size: 14.5px; line-height: 1.75; margin-bottom: 24px;" class="pdp-narrative-desc">
+          {%- if pdp_editorial != blank -%}
+            {{ pdp_editorial }}
+          {%- else -%}
+            <p>A statement artisanal luminaire crafted with meticulous metalwork and hand-cut crystalline details. Engineered for warm architectural ambiance with glare-free diffusion across luxury living, dining, and reception interiors.</p>
+          {%- endif -%}
+        </div>
 
         <!-- Product Form -->
         <form method="post" action="/cart/add" id="pdp-form">
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           
-          <!-- CCT Light Temperature Selector -->
-          <div class="cct-selector">
-            <div class="cct-label">
-              <span>Light Temperature (CCT)</span>
-              <span class="text-gold" data-selected-cct>3000K Warm White</span>
+          {%- comment -%}
+            Color Temperature (CCT) Display Logic:
+            - Only show 3-Card Interactive Selector if product actually supports switchable CCT (from Excel)
+            - Show single badge if fixed Warm White or Neutral White
+            - Hide completely if no CCT specified
+          {%- endcomment -%}
+          {%- assign cct_mode = 'none' -%}
+          {%- for tag in product.tags -%}
+            {%- assign down_tag = tag | downcase -%}
+            {%- if down_tag contains '3 in 1' or down_tag contains '3iin 1' or down_tag contains '3-in-1' or down_tag contains 'tri-color' -%}
+              {%- assign cct_mode = '3in1' -%}
+            {%- elsif down_tag contains 'warm white' -%}
+              {%- if cct_mode == 'none' -%}{%- assign cct_mode = 'warm' -%}{%- endif -%}
+            {%- elsif down_tag contains 'neutral white' or down_tag contains 'natural white' -%}
+              {%- if cct_mode == 'none' -%}{%- assign cct_mode = 'neutral' -%}{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if cct_mode == '3in1' -%}
+            <!-- CCT Light Temperature Selector (3-in-1 Switchable) -->
+            <div class="cct-selector">
+              <div class="cct-label">
+                <span>Light Temperature (CCT)</span>
+                <span class="text-gold" data-selected-cct>3000K Warm White</span>
+              </div>
+              <div class="cct-options-grid">
+                <div class="cct-option-card selected" data-kelvin="3000K Warm White">
+                  <span class="cct-temp-kelvin">3000K</span>
+                  <span class="cct-temp-name">Warm Amber</span>
+                </div>
+                <div class="cct-option-card" data-kelvin="4000K Neutral White">
+                  <span class="cct-temp-kelvin">4000K</span>
+                  <span class="cct-temp-name">Daylight Neutral</span>
+                </div>
+                <div class="cct-option-card" data-kelvin="6000K Cool White">
+                  <span class="cct-temp-kelvin">6000K</span>
+                  <span class="cct-temp-name">Crisp Architectural</span>
+                </div>
+              </div>
+              <input type="hidden" name="properties[Light Temperature]" value="3000K Warm White">
             </div>
-            <div class="cct-options-grid">
-              <div class="cct-option-card selected" data-kelvin="3000K Warm White">
-                <span class="cct-temp-kelvin">3000K</span>
-                <span class="cct-temp-name">Warm Amber</span>
-              </div>
-              <div class="cct-option-card" data-kelvin="4000K Neutral White">
-                <span class="cct-temp-kelvin">4000K</span>
-                <span class="cct-temp-name">Daylight Neutral</span>
-              </div>
-              <div class="cct-option-card" data-kelvin="6000K Cool White">
-                <span class="cct-temp-kelvin">6000K</span>
-                <span class="cct-temp-name">Crisp Architectural</span>
-              </div>
+          {%- elsif cct_mode == 'warm' -%}
+            <div style="margin: 20px 0; padding: 12px 18px; background: #FAF7F2; border: 1px solid var(--color-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted);">Light Temperature</span>
+              <span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">3000K Warm White (Fixed Ambient)</span>
             </div>
-            <input type="hidden" name="properties[Light Temperature]" value="3000K Warm White">
-          </div>
+          {%- elsif cct_mode == 'neutral' -%}
+            <div style="margin: 20px 0; padding: 12px 18px; background: #FAF7F2; border: 1px solid var(--color-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted);">Light Temperature</span>
+              <span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">4000K Neutral White (Fixed Daylight)</span>
+            </div>
+          {%- endif -%}
 
           <!-- Action Buttons -->
           <div style="display: flex; gap: 14px; margin-top: 28px;">
@@ -165,12 +215,16 @@
         <div style="margin-top: 28px;">
           <!-- Accordion 1: Technical Specs -->
           <div style="border-bottom: 1px solid var(--color-border);">
-            <button type="button" class="accordion-trigger active" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; cursor: pointer;">
+            <button type="button" class="accordion-trigger active" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; cursor: pointer; color: var(--color-ink);">
               <span>Technical Lighting Specifications</span>
               <span>&plus;</span>
             </button>
             <div class="accordion-panel" style="padding-bottom: 20px; display: block;">
-              {% render 'specs-table' %}
+              {% if pdp_specs_block != blank %}
+                {{ pdp_specs_block }}
+              {% else %}
+                {% render 'specs-table' %}
+              {% endif %}
             </div>
           </div>
 

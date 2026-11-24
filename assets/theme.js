@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
-  initLightToggle();
+  initProductGallery();
   initCCTSelector();
   initPincodeChecker();
   initCartDrawer();
@@ -28,30 +28,80 @@ function initStickyHeader() {
   }, { passive: true });
 }
 
-/* 2. INTERACTIVE LIGHT SWITCH (ON / OFF) */
-function initLightToggle() {
+/* 2. PRODUCT GALLERY & THUMBNAIL SWITCHER + LIGHT SWITCH */
+function initProductGallery() {
+  const thumbs = document.querySelectorAll('.pdp-thumb');
+  const mainImage = document.querySelector('.pdp-main-image');
   const switchBtns = document.querySelectorAll('[data-light-toggle]');
   const gallery = document.querySelector('.product-hero-gallery');
-  const mainImage = document.querySelector('.pdp-main-image');
 
-  if (!switchBtns.length || !gallery) return;
+  if (!mainImage) return;
 
+  // Thumbnail Click Handler
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const targetSrc = thumb.dataset.fullSrc || thumb.querySelector('img')?.src;
+      if (!targetSrc) return;
+
+      // Smooth image switch with subtle fade
+      mainImage.style.opacity = '0.35';
+      setTimeout(() => {
+        mainImage.src = targetSrc;
+        mainImage.style.opacity = '1';
+      }, 100);
+
+      // Update active thumbnail border
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+
+      // Sync light switch button if index 0 or 1
+      const idx = parseInt(thumb.dataset.index, 10);
+      if (idx === 0) {
+        switchBtns.forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-light-toggle="off"]')?.classList.add('active');
+        gallery?.classList.remove('light-on-state');
+      } else if (idx === 1) {
+        switchBtns.forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-light-toggle="on"]')?.classList.add('active');
+        gallery?.classList.add('light-on-state');
+      }
+    });
+  });
+
+  // Light Switch ON/OFF Controls
   switchBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const mode = btn.getAttribute('data-light-toggle'); // 'on' or 'off'
-
       switchBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       if (mode === 'on') {
-        gallery.classList.add('light-on-state');
-        if (mainImage && mainImage.dataset.lightOnSrc) {
-          mainImage.src = mainImage.dataset.lightOnSrc;
+        gallery?.classList.add('light-on-state');
+        if (mainImage.dataset.lightOnSrc) {
+          mainImage.style.opacity = '0.35';
+          setTimeout(() => {
+            mainImage.src = mainImage.dataset.lightOnSrc;
+            mainImage.style.opacity = '1';
+          }, 100);
+        }
+        // Activate 2nd thumbnail if present
+        if (thumbs.length > 1) {
+          thumbs.forEach(t => t.classList.remove('active'));
+          thumbs[1]?.classList.add('active');
         }
       } else {
-        gallery.classList.remove('light-on-state');
-        if (mainImage && mainImage.dataset.lightOffSrc) {
-          mainImage.src = mainImage.dataset.lightOffSrc;
+        gallery?.classList.remove('light-on-state');
+        if (mainImage.dataset.lightOffSrc) {
+          mainImage.style.opacity = '0.35';
+          setTimeout(() => {
+            mainImage.src = mainImage.dataset.lightOffSrc;
+            mainImage.style.opacity = '1';
+          }, 100);
+        }
+        // Activate 1st thumbnail
+        if (thumbs.length > 0) {
+          thumbs.forEach(t => t.classList.remove('active'));
+          thumbs[0]?.classList.add('active');
         }
       }
     });
