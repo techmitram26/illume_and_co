@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main_404": {
+      "type": "main-404",
+      "settings": {}
+    },
+    "featured": {
+      "type": "bestsellers-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main_404",
+    "featured"
+  ]
+}

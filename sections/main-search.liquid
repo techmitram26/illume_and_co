@@ -1,0 +1,68 @@
+<section class="section" style="padding: 60px 0 90px; min-height: 60vh;">
+  <div class="container">
+    <div style="max-width: 680px; margin: 0 auto 48px; text-align: center;">
+      <span class="eyebrow" style="color: var(--color-primary-hover, #B69A70); letter-spacing: 0.15em; font-size: 11px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 8px;">Catalogue Search</span>
+      <h1 class="section-title" style="font-family: var(--font-serif); font-size: 38px; color: #292929; margin: 0 0 20px;">Search Our Lighting Collection</h1>
+      
+      <form action="{{ routes.search_url }}" method="get" role="search" style="display: flex; gap: 10px; max-width: 540px; margin: 0 auto;">
+        <input 
+          type="search" 
+          name="q" 
+          value="{{ search.terms | escape }}" 
+          placeholder="Search chandeliers, pendants, wall sconces, SKUs..." 
+          style="flex-grow: 1; padding: 14px 18px; border: 1px solid var(--color-border, #DFD8CC); border-radius: 4px; font-size: 14px; font-family: inherit; background: #FFF;"
+          aria-label="Search fixtures"
+        >
+        <button type="submit" class="btn btn-primary" style="padding: 14px 24px; font-size: 12px; letter-spacing: 0.08em;">
+          Search
+        </button>
+      </form>
+    </div>
+
+    {% if search.performed %}
+      <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border, #DFD8CC); padding-bottom: 14px;">
+        <h2 style="font-size: 18px; font-family: var(--font-serif); margin: 0; color: #292929;">
+          {% if search.results_count == 0 %}
+            No matches found for &ldquo;{{ search.terms }}&rdquo;
+          {% else %}
+            Found {{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for &ldquo;{{ search.terms }}&rdquo;
+          {% endif %}
+        </h2>
+        <a href="/collections/all" style="font-size: 12.5px; color: var(--color-primary-hover, #B69A70); text-decoration: none; font-weight: 600;">View All Fixtures &rarr;</a>
+      </div>
+
+      {% if search.results_count > 0 %}
+        {% paginate search.results by 24 %}
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="category-grid">
+            {% for item in search.results %}
+              {% if item.object_type == 'product' %}
+                {% render 'product-card', product: item %}
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% if paginate.pages > 1 %}
+            <div class="text-center" style="margin-top: 50px;">
+              {{ paginate | default_pagination }}
+            </div>
+          {% endif %}
+        {% endpaginate %}
+      {% else %}
+        <div style="text-align: center; padding: 60px 20px;">
+          <p style="font-size: 15px; color: var(--color-muted, #8A8175); margin-bottom: 24px;">Try searching by fixture type (e.g. "Crystal", "Chandelier", "Pendant", "Gold") or explore our complete catalog.</p>
+          <a href="/collections/all" class="btn btn-primary" style="padding: 12px 28px; font-size: 12px;">Browse Full Catalogue</a>
+        </div>
+      {% endif %}
+    {% else %}
+      <div style="text-align: center; padding: 40px 20px;">
+        <p style="font-size: 14.5px; color: var(--color-muted, #8A8175); margin-bottom: 24px;">Popular Searches: <a href="/search?q=Crystal" style="color: var(--color-primary-hover); text-decoration: underline;">Crystal</a>, <a href="/search?q=Chandelier" style="color: var(--color-primary-hover); text-decoration: underline;">Chandelier</a>, <a href="/search?q=Gold" style="color: var(--color-primary-hover); text-decoration: underline;">Gold</a>, <a href="/search?q=Pendant" style="color: var(--color-primary-hover); text-decoration: underline;">Pendant</a></p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Search",
+  "settings": []
+}
+{% endschema %}

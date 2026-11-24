@@ -1,0 +1,67 @@
+<section class="section" id="bestsellers" style="padding: 95px 0; background-color: var(--color-white);">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span class="eyebrow">{{ section.settings.eyebrow | default: 'Signature Masterpieces' }}</span>
+        <h2 class="section-title" style="margin-bottom: 8px;">{{ section.settings.title | default: 'Bestselling Lights' }}</h2>
+        <p class="section-subtitle" style="margin-bottom: 0;">Coveted fixtures from the Illume &amp; Co catalogue, engineered for flawless optical refraction and architectural presence.</p>
+      </div>
+      <a href="/collections/all" class="btn btn-outline-gold" style="padding: 10px 22px; font-size: 11px;">
+        View Entire 2026 Catalogue
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <!-- Product Grid -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="category-grid">
+      {%- assign featured_collection = collections[section.settings.collection] -%}
+      {%- if featured_collection == blank or featured_collection.products.size == 0 -%}
+        {%- assign featured_collection = collections['all'] -%}
+      {%- endif -%}
+      
+      {% if featured_collection and featured_collection.products.size > 0 %}
+        {% for product in featured_collection.products limit: 8 %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {%- assign flagship_handles = "scroll-arm-crystal-chandelier-il_ch_001,gold-petal-chandelier-il_ch_002,crystal-loop-drop-chandelier-il_ch_005,tiered-scroll-crystal-chandelier-il_ch_006,black-gold-five-light-chandelier-il_ch_012,two-tier-gold-ring-chandelier-il_ch_015,amber-bowl-pendant-il_pl_001,twin-crystal-disc-wall-light-il_wl_006" | split: "," -%}
+        {% for handle in flagship_handles %}
+          {%- assign product = all_products[handle] -%}
+          {% if product and product.title != blank %}
+            {% render 'product-card', product: product %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestsellers Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Signature Masterpieces"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "Bestselling Lights"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Featured Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+{% comment %}
+  Illume & Co Luxury Product Card
+  Usage: {% render 'product-card', product: product, show_secondary_image: true %}
+{% endcomment %}
+
+{%- assign primary_image = product.featured_media.preview_image | default: product.featured_image -%}
+{%- assign secondary_image = product.media[1].preview_image -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<div class="product-card" data-product-id="{{ product.id }}">
+  <div class="product-card-media">
+    {% if product.tags contains 'Bestseller' %}
+      <span class="product-badge gold">Bestseller</span>
+    {% elsif product.compare_at_price > product.price %}
+      <span class="product-badge">Special Value</span>
+    {% elsif product.tags contains 'New' %}
+      <span class="product-badge gold">New Arrival</span>
+    {% endif %}
+
+    <a href="{{ product.url }}" class="product-card-link-wrapper" aria-label="{{ product.title }}">
+      {% if primary_image %}
+        <img 
+          src="{{ primary_image | image_url: width: 600 }}" 
+          alt="{{ primary_image.alt | default: product.title | escape }}"
+          class="product-card-img primary-img"
+          loading="lazy"
+          width="600"
+          height="690"
+        >
+        {% if secondary_image and show_secondary_image != false %}
+          <img 
+            src="{{ secondary_image | image_url: width: 600 }}" 
+            alt="{{ secondary_image.alt | default: product.title | escape }}"
+            class="product-card-img secondary-img"
+            loading="lazy"
+            width="600"
+            height="690"
+          >
+        {% endif %}
+      {% else %}
+        {%- assign sku_code = current_variant.sku -%}
+        {%- assign fallback_img_name = sku_code | append: '_01_White_Background.jpg' -%}
+        <img 
+          src="{{ fallback_img_name | asset_url }}" 
+          alt="{{ product.title | escape }}"
+          class="product-card-img primary-img"
+          loading="lazy"
+          width="600"
+          height="690"
+          onerror="this.style.display='none'"
+        >
+      {% endif %}
+    </a>
+  </div>
+
+  <div class="product-card-content">
+    <div class="product-card-category">
+      {% if current_variant.sku != blank %}
+        SKU: {{ current_variant.sku }} &bull; 
+      {% endif %}
+      {{ product.type | default: 'Decorative Lighting' }}
+    </div>
+    <h3 class="product-card-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    {% if product.metafields.custom.short_specs != blank %}
+      <div class="product-card-specs">{{ product.metafields.custom.short_specs }}</div>
+    {% else %}
+      <div class="product-card-specs">3-in-1 CCT &bull; Insured Crate Transit &bull; 2-Yr Warranty</div>
+    {% endif %}
+
+    <div class="product-card-price-row">
+      <span class="product-price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+
+    <form method="post" action="{{ routes.cart_add_url }}" class="product-card-quick-add">
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      <button type="submit" class="btn btn-outline-gold" style="width: 100%; padding: 10px 14px; font-size: 11px;">
+        Add to Bag
+      </button>
+    </form>
+  </div>
+</div>

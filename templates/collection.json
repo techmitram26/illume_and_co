@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "showroom": {
+      "type": "showroom-booking",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "showroom"
+  ]
+}

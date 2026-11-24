@@ -1,0 +1,144 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Illume & Co Luxury",
+    "theme_author": "Illume & Co",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://psdz04-in.myshopify.com",
+    "theme_support_url": "https://psdz04-in.myshopify.com/pages/contact"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Muted Gold (Accent)",
+        "default": "#B69A70"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_hover",
+        "label": "Muted Gold Hover",
+        "default": "#9E835B"
+      },
+      {
+        "type": "color",
+        "id": "color_text_dark",
+        "label": "Charcoal (Primary Text)",
+        "default": "#292929"
+      },
+      {
+        "type": "color",
+        "id": "color_text_muted",
+        "label": "Taupe (Secondary Text)",
+        "default": "#8A8175"
+      },
+      {
+        "type": "color",
+        "id": "color_bg_cream",
+        "label": "Ivory (Background / Cream)",
+        "default": "#F3EFE6"
+      },
+      {
+        "type": "color",
+        "id": "color_bg_sand",
+        "label": "Warm Sand Accent",
+        "default": "#E8E2D5"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Borders & Dividers",
+        "default": "#DFD8CC"
+      },
+      {
+        "type": "color",
+        "id": "color_dark_bg",
+        "label": "Charcoal Surface Background",
+        "default": "#292929"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading Font",
+        "default": "playfair_display_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font",
+        "default": "inter_n4"
+      }
+    ]
+  },
+  {
+    "name": "Store & Contact Info",
+    "settings": [
+      {
+        "type": "text",
+        "id": "store_phone",
+        "label": "Primary Phone Number",
+        "default": "+91 89834 04458"
+      },
+      {
+        "type": "text",
+        "id": "store_phone_secondary",
+        "label": "Secondary Phone Number",
+        "default": "+91 90824 88085"
+      },
+      {
+        "type": "text",
+        "id": "store_whatsapp",
+        "label": "WhatsApp Number (without + or spaces)",
+        "default": "918983404458"
+      },
+      {
+        "type": "text",
+        "id": "store_email",
+        "label": "Email ID",
+        "default": "enlighteningworld01@gmail.com"
+      },
+      {
+        "type": "textarea",
+        "id": "store_address",
+        "label": "Pune Showroom Address",
+        "default": "354, Budhwar Peth, Near Pasodya Vithoba Temple, Pune, Maharashtra - 411 002"
+      },
+      {
+        "type": "text",
+        "id": "instagram_handle",
+        "label": "Instagram Handle",
+        "default": "@illumeandcopune"
+      }
+    ]
+  },
+  {
+    "name": "Indian Commerce Features",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_pincode_checker",
+        "label": "Enable Indian Pincode Delivery Checker on PDP",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Minimum Amount (INR)",
+        "default": "5000"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_whatsapp_floating",
+        "label": "Enable Floating WhatsApp Concierge Button",
+        "default": true
+      }
+    ]
+  }
+]

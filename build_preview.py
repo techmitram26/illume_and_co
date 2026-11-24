@@ -1,0 +1,1951 @@
+import os
+
+with open('assets/theme.css', 'r', encoding='utf-8') as f:
+    css = f.read()
+
+html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Illume &amp; Co — Luxury Lighting Pune | 2026 Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+{css}
+
+  /* Preview Navigation Bar */
+  .preview-top-bar {{
+    background: #292929;
+    color: #B69A70;
+    padding: 10px 24px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3E3A35;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+  }}
+  .preview-pills {{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }}
+  .preview-btn {{
+    background: #242220;
+    color: #F3EFE6;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid #3E3A35;
+    transition: all 0.2s ease;
+  }}
+  .preview-btn:hover, .preview-btn.active {{
+    background: #B69A70;
+    border-color: #B69A70;
+    color: #FFF;
+  }}
+  
+  /* Additional polish for local preview */
+  .pdp-main-image {{
+    transition: all 0.4s ease;
+  }}
+  .product-hero-gallery.light-on-state {{
+    background: radial-gradient(circle at center, #2C261E 0%, #151311 100%) !important;
+  }}
+  .product-hero-gallery.light-on-state .pdp-main-image {{
+    filter: drop-shadow(0 0 35px rgba(255, 215, 130, 0.75)) brightness(1.1);
+  }}
+  </style>
+</head>
+<body>
+
+  <!-- Top Preview Navigation Bar -->
+  <aside class="preview-top-bar">
+    <div>
+      <strong style="color: #FFF; font-size: 13px;">Illume &amp; Co</strong> &bull; Bespoke Luxury Shopify OS 2.0 Theme
+    </div>
+    <div class="preview-pills">
+      <span style="color: #888;">Direct Views:</span>
+      <a href="#hero-showcase" class="preview-btn active">Asymmetric Hero</a>
+      <a href="#bento-categories" class="preview-btn">Bento Grid</a>
+      <a href="#spatial-lookbook" class="preview-btn">Spatial Lookbook</a>
+      <a href="#bestsellers" class="preview-btn">Bestsellers (Real SKUs)</a>
+      <a href="#interactive-pdp" class="preview-btn" style="background: #B69A70; color: #FFF; border-color: #B69A70;">★ PDP Light Switch</a>
+      <a href="#commercial" class="preview-btn">Commercial Solutions</a>
+      <a href="#showroom" class="preview-btn">Pune Showroom</a>
+    </div>
+  </aside>
+
+  <!-- 1. Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-left">
+        <span class="announcement-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          <span>100% Insured Fragile Crate Transit Across India &bull; Free Shipping Above ₹5,000</span>
+        </span>
+      </div>
+      <div class="announcement-right">
+        <span class="announcement-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Visit our Pune showroom: 354, Budhwar Peth</span>
+        </span>
+        <span class="announcement-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <a href="tel:+918983404458">+91 89834 04458</a> &bull; <a href="tel:+919082488085">+91 90824 88085</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Header & Luxury Mega-Menu -->
+  <header class="site-header">
+    <div class="container header-container">
+      <!-- Mobile Hamburger Toggle -->
+      <button type="button" class="mobile-menu-btn" data-mobile-menu-toggle aria-label="Toggle Navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="#" class="logo-wrapper">
+        <span class="brand-logo-text">Illume &amp; Co</span>
+        <span class="brand-logo-sub">The Art of Illumination &bull; Pune</span>
+      </a>
+
+      <nav class="main-nav">
+        <!-- Decorative Lights with Dropdown -->
+        <div class="nav-item">
+          <a href="#bento-categories" class="nav-link">Decorative Lights</a>
+          <div class="mega-menu">
+            <div class="mega-menu-grid">
+              <div>
+                <div class="mega-col-title">Chandeliers</div>
+                <ul class="mega-links-list">
+                  <li><a href="#bestsellers">Scroll-Arm Crystal (Il_CH_001)</a></li>
+                  <li><a href="#bestsellers">Gold Petal Statement (Il_CH_002)</a></li>
+                  <li><a href="#bestsellers">Two-Tier Gold Ring (Il_CH_015)</a></li>
+                  <li><a href="#bestsellers">Crystal Loop Drop (Il_CH_005)</a></li>
+                  <li><a href="#bestsellers">Black & Gold Five-Light (Il_CH_012)</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">Pendants & Ceilings</div>
+                <ul class="mega-links-list">
+                  <li><a href="#bestsellers">Amber Bowl Suspension (Il_PL_001)</a></li>
+                  <li><a href="#bento-categories">Hand-Blown Glass Drops</a></li>
+                  <li><a href="#bento-categories">Flush Crystal Ambience (Il_CL_001)</a></li>
+                  <li><a href="#bestsellers">Designer Chandelier Fans (Il_FF_001)</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">Wall Sconces</div>
+                <ul class="mega-links-list">
+                  <li><a href="#bestsellers">Twin Crystal Disc Sconce (Il_WL_006)</a></li>
+                  <li><a href="#bestsellers">Crystal Bar Wall Light (Il_WL_002)</a></li>
+                  <li><a href="#bento-categories">Fluted Branch Sconce (Il_WL_026)</a></li>
+                  <li><a href="#bento-categories">Slim Gold Wall Bar (Il_WL_004)</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">By Luxury Finish</div>
+                <ul class="mega-links-list">
+                  <li><a href="#bento-categories">French Electroplated Gold</a></li>
+                  <li><a href="#bento-categories">Optical K9 Prismatic Crystal</a></li>
+                  <li><a href="#bento-categories">Architectural Matte Black</a></li>
+                  <li><a href="#bento-categories">Mouth-Blown Fluted Glass</a></li>
+                </ul>
+              </div>
+              <div class="mega-promo-card">
+                <img src="assets/Il_CH_002_02_Use_Case.jpg" alt="Gold Petal Chandelier" width="280" height="140" class="mega-promo-img">
+                <div style="font-family: var(--font-serif); font-size: 16px; margin-bottom: 6px;">2026 Master Catalogue</div>
+                <a href="#bestsellers" class="btn btn-outline-gold" style="padding: 6px 12px; font-size: 10px;">Explore Curations</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item"><a href="#bento-categories" class="nav-link">Categories</a></div>
+        <div class="nav-item"><a href="#spatial-lookbook" class="nav-link">Shop by Space</a></div>
+        <div class="nav-item"><a href="#bestsellers" class="nav-link">Bestselling Lights</a></div>
+        <div class="nav-item"><a href="#interactive-pdp" class="nav-link" style="color: #B69A70; font-weight: 700;">★ PDP Light Switch</a></div>
+        <div class="nav-item"><a href="#commercial" class="nav-link">Commercial / B2B</a></div>
+        <div class="nav-item"><a href="#showroom" class="nav-link">Pune Showroom</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <button class="header-action-btn" id="demo-search-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <button class="header-action-btn" id="demo-cart-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="cart-count-badge" id="cart-badge">1</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Overlay & Drawer -->
+    <div class="mobile-nav-overlay" data-mobile-menu-close></div>
+    <aside class="mobile-nav-drawer" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <div class="logo-wrapper">
+          <span class="brand-logo-text" style="font-size: 20px;">Illume &amp; Co</span>
+          <span class="brand-logo-sub" style="font-size: 7.5px;">The Art of Illumination &bull; Pune</span>
+        </div>
+        <button type="button" class="mobile-nav-close" data-mobile-menu-close aria-label="Close Navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-accordion">
+          <button type="button" class="mobile-accordion-toggle">
+            <span>Decorative Lights</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="mobile-accordion-panel">
+            <ul class="mobile-sublinks">
+              <li><a href="#bestsellers">Scroll-Arm Crystal (Il_CH_001)</a></li>
+              <li><a href="#bestsellers">Gold Petal Statement (Il_CH_002)</a></li>
+              <li><a href="#bestsellers">Two-Tier Gold Ring (Il_CH_015)</a></li>
+              <li><a href="#bestsellers">Crystal Loop Drop (Il_CH_005)</a></li>
+              <li><a href="#bestsellers">Modern Pendant Sets (Il_PL_001)</a></li>
+              <li><a href="#bestsellers">Twin Crystal Wall Sconce (Il_WL_006)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mobile-nav-accordion">
+          <button type="button" class="mobile-accordion-toggle">
+            <span>Commercial Lights</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="mobile-accordion-panel">
+            <ul class="mobile-sublinks">
+              <li><a href="#commercial">48V Magnetic Track Systems</a></li>
+              <li><a href="#commercial">Anti-Glare COB Downlights</a></li>
+              <li><a href="#commercial">Architectural Profiles &amp; Strips</a></li>
+              <li><a href="#trade">Commercial BoQ Submission</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mobile-direct-link">
+          <a href="#spatial-lookbook">Shop by Space</a>
+        </div>
+        <div class="mobile-direct-link">
+          <a href="#bestsellers">Bestselling Lights</a>
+        </div>
+        <div class="mobile-direct-link">
+          <a href="#trade">Trade &amp; Architects (BoQ)</a>
+        </div>
+        <div class="mobile-direct-link">
+          <a href="#showroom">Visit Pune Showroom</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav-footer">
+        <div style="font-size: 12px; color: var(--color-muted); margin-bottom: 8px;">Concierge &amp; Inquiries:</div>
+        <a href="tel:+918983404458" style="font-weight: 600; display: block; margin-bottom: 4px; color: var(--color-ink);">+91 89834 04458</a>
+        <a href="https://wa.me/918983404458" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-size: 13px; font-weight: 500;">Chat on WhatsApp &rarr;</a>
+      </div>
+    </aside>
+  </header>
+
+  <!-- 3. Cinematic Luxury Architectural Hero Slider -->
+  <section class="cinematic-hero-section" id="hero-slider">
+    <!-- Slide Track with Real Architectural Lifestyle Rooms -->
+    <div class="cinematic-slide-track">
+      <!-- Slide 1: Grand Living Salon -->
+      <div class="cinematic-slide active" id="hero-slide-1" data-sku="Il_CH_001" data-name="Scroll-Arm Crystal Chandelier" data-price="₹6,000" data-img="assets/Il_CH_001_01_White_Background.jpg">
+        <img 
+          src="assets/Il_CH_001_03_Wide_Use_Case.jpg" 
+          alt="Illume &amp; Co Grand Living Salon" 
+          class="cinematic-bg-img"
+          width="1200"
+          height="1200"
+          loading="eager"
+        >
+      </div>
+
+      <!-- Slide 2: Dining Gallery -->
+      <div class="cinematic-slide" id="hero-slide-2" data-sku="Il_CH_002" data-name="Gold Petal Statement Chandelier" data-price="₹7,500" data-img="assets/Il_CH_002_01_White_Background.jpg">
+        <img 
+          src="assets/Il_CH_002_03_Wide_Use_Case.jpg" 
+          alt="Illume &amp; Co Dining Gallery" 
+          class="cinematic-bg-img"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+      </div>
+
+      <!-- Slide 3: Double-Height Foyer -->
+      <div class="cinematic-slide" id="hero-slide-3" data-sku="Il_CH_015" data-name="Two-Tier Gold Ring Chandelier" data-price="₹16,700" data-img="assets/Il_CH_015_01_White_Background.jpg">
+        <img 
+          src="assets/Il_CH_015_03_Wide_Use_Case.jpg" 
+          alt="Illume &amp; Co Double-Height Foyer" 
+          class="cinematic-bg-img"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+    <!-- Ambient Luxury Overlay & Gold Warm Glow -->
+    <div class="cinematic-hero-overlay"></div>
+    <div class="cinematic-hero-glow"></div>
+
+    <!-- Content Layer -->
+    <div class="container cinematic-hero-container">
+      <div class="cinematic-hero-content">
+        <div class="cinematic-eyebrow-badge">
+          <span class="cinematic-eyebrow-dot"></span>
+          <span>The Art of Illumination &bull; 2026 Collection</span>
+        </div>
+
+        <h1 class="cinematic-hero-title">
+          Light Up Your World With <em>Timeless Elegance</em>
+        </h1>
+
+        <p class="cinematic-hero-subtitle">
+          Curated chandeliers, architectural lighting, and bespoke statement pieces for exceptional homes, villas, and commercial spaces.
+        </p>
+
+        <div class="cinematic-hero-buttons">
+          <a href="#bestsellers" class="btn btn-primary" style="padding: 16px 32px; font-size: 12px; letter-spacing: 0.12em;">
+            Explore 2026 Collection
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="#showroom" class="btn btn-outline-white" style="padding: 16px 28px; font-size: 12px; letter-spacing: 0.12em;">
+            Visit Pune Showroom
+          </a>
+        </div>
+
+        <!-- Trust Metrics -->
+        <div class="cinematic-metrics-row">
+          <div class="cinematic-metric-item">
+            <span class="cinematic-metric-val">Bespoke</span>
+            <span class="cinematic-metric-lbl">Artisanal Curation</span>
+          </div>
+          <div class="cinematic-metric-item">
+            <span class="cinematic-metric-val">3-in-1</span>
+            <span class="cinematic-metric-lbl">Bespoke CCT Temps</span>
+          </div>
+          <div class="cinematic-metric-item">
+            <span class="cinematic-metric-val">100%</span>
+            <span class="cinematic-metric-lbl">Insured Crate Transit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Glassmorphism Featured Fixture Badge -->
+    <div class="cinematic-floating-badge" id="hero-floating-badge">
+      <img src="assets/Il_CH_001_01_White_Background.jpg" alt="Featured Chandelier" class="cinematic-badge-thumb" id="hero-badge-img" width="64" height="64">
+      <div class="cinematic-badge-info">
+        <div class="badge-sku" id="hero-badge-sku">Featured: SKU Il_CH_001</div>
+        <h4 id="hero-badge-title">Scroll-Arm Crystal Chandelier</h4>
+        <div class="badge-price" id="hero-badge-price">₹6,000</div>
+      </div>
+    </div>
+
+    <!-- Interactive Slide Navigation Dots -->
+    <div class="cinematic-slide-nav" role="tablist">
+      <button type="button" class="cinematic-nav-dot active" aria-label="Slide 1 - Living Room Salon" data-slide="0"></button>
+      <button type="button" class="cinematic-nav-dot" aria-label="Slide 2 - Dining Gallery" data-slide="1"></button>
+      <button type="button" class="cinematic-nav-dot" aria-label="Slide 3 - Double Height Foyer" data-slide="2"></button>
+    </div>
+  </section>
+
+  <!-- Luxury 4-Item Assurance Strip -->
+  <div class="luxury-assurance-strip">
+    <div class="container">
+      <div class="assurance-grid">
+        <div class="assurance-item">
+          <div class="assurance-icon">✦</div>
+          <div class="assurance-text">
+            <h4>Artisanal Curations</h4>
+            <p>K9 crystal, cast brass &amp; blown glass</p>
+          </div>
+        </div>
+        <div class="assurance-item">
+          <div class="assurance-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </div>
+          <div class="assurance-text">
+            <h4>3-in-1 CCT Illumination</h4>
+            <p>3000K warm to 6000K architectural</p>
+          </div>
+        </div>
+        <div class="assurance-item">
+          <div class="assurance-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="assurance-text">
+            <h4>100% Insured Transit</h4>
+            <p>Custom wooden crate zero-breakage</p>
+          </div>
+        </div>
+        <div class="assurance-item">
+          <div class="assurance-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div class="assurance-text">
+            <h4>Pune Flagship Showroom</h4>
+            <p>354, Budhwar Peth &bull; Expert demo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Bento Category Grid (Curated Spectrum) -->
+  <section class="section bento-section" id="bento-categories" style="padding: 95px 0; background-color: var(--color-bg);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="eyebrow">Artisanal Typologies</span>
+          <h2 class="section-title" style="margin-bottom: 8px;">Curated Spectrum</h2>
+          <p class="section-subtitle" style="margin-bottom: 0;">Architecturally engineered luminaires crafted from K9 prismatic crystal, hand-cast brass, and fluted mouth-blown glass.</p>
+        </div>
+        <a href="#bestsellers" class="btn btn-outline-gold" style="padding: 10px 22px; font-size: 11px;">
+          View All Fixtures
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="bento-grid">
+        <!-- 1. Chandeliers (Featured Large Card) -->
+        <a href="#bestsellers" class="bento-card bento-item-featured">
+          <img 
+            src="assets/Il_CH_002_02_Use_Case.jpg" 
+            alt="Chandeliers & Double-Height Statements" 
+            class="bento-card-bg"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <span class="bento-tag">Grand Statements</span>
+            <h3 class="bento-title">Chandeliers &amp; Atrium Fixtures</h3>
+            <p style="color: rgba(255,255,255,0.8); font-size: 13px; max-width: 480px; margin-bottom: 16px;">
+              Cascading crystals, organic starbursts, and baroque multi-tier centerpieces tailored for double-height foyers and living salons.
+            </p>
+            <span class="bento-link">
+              Explore 48 Chandelier Designs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 2. Sculptural Wall Sconces -->
+        <a href="#bestsellers" class="bento-card">
+          <img 
+            src="assets/Il_WL_006_02_Use_Case.jpg" 
+            alt="Sculptural Wall Sconces" 
+            class="bento-card-bg"
+            width="800"
+            height="800"
+            loading="lazy"
+          >
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <span class="bento-tag">Perimeter &amp; Mood</span>
+            <h3 class="bento-title">Wall Lights &amp; Sconces</h3>
+            <span class="bento-link">
+              Explore 54 Designs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 3. Suspended Pendant Sets -->
+        <a href="#bestsellers" class="bento-card">
+          <img 
+            src="assets/Il_PL_001_02_Use_Case.jpg" 
+            alt="Suspended Pendant Sets" 
+            class="bento-card-bg"
+            width="800"
+            height="800"
+            loading="lazy"
+          >
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <span class="bento-tag">Islands &amp; Dining</span>
+            <h3 class="bento-title">Suspended Pendants</h3>
+            <span class="bento-link">
+              Explore 44 Designs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 4. Ceiling Lights & Designer Fans -->
+        <a href="#bestsellers" class="bento-card">
+          <img 
+            src="assets/Il_FF_001_02_Use_Case.jpg" 
+            alt="Ceiling Fixtures & Designer Fans" 
+            class="bento-card-bg"
+            width="800"
+            height="800"
+            loading="lazy"
+          >
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <span class="bento-tag">Climate &amp; Flush</span>
+            <h3 class="bento-title">Ceiling Fixtures &amp; Luxury Fans</h3>
+            <span class="bento-link">
+              Explore 25 Designs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Spatial Room Lookbook -->
+  <section class="section spatial-lookbook-section" id="spatial-lookbook" style="padding: 95px 0; background-color: var(--color-surface-tint);">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 40px;">
+        <span class="eyebrow">Spatial Architecture</span>
+        <h2 class="section-title">Shop by Space &amp; Room</h2>
+        <p class="section-subtitle">Every space commands a distinct scale, lumen density, and color temperature. Explore our curated architectural installations.</p>
+      </div>
+
+      <!-- Spatial Room Selector Pills -->
+      <div class="spatial-pills-nav" role="tablist">
+        <button type="button" class="spatial-pill active" data-room-target="living-room">Grand Living Room</button>
+        <button type="button" class="spatial-pill" data-room-target="dining-room">Dining Gallery</button>
+        <button type="button" class="spatial-pill" data-room-target="foyer">Double-Height Foyer</button>
+        <button type="button" class="spatial-pill" data-room-target="kitchen">Kitchen Island</button>
+        <button type="button" class="spatial-pill" data-room-target="bedroom">Master Suite</button>
+      </div>
+
+      <!-- Showcase Stage: 1. Grand Living Room -->
+      <div class="spatial-showcase-stage" id="room-living-room">
+        <div class="spatial-visual-frame">
+          <img 
+            src="assets/Il_CH_001_03_Wide_Use_Case.jpg" 
+            alt="Grand Living Room Architectural Setting" 
+            class="spatial-visual-img"
+            width="1200"
+            height="800"
+            loading="lazy"
+          >
+        </div>
+        <div class="spatial-info-panel">
+          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 01</span>
+          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Grand Living Salon</h3>
+          <p class="spatial-description">
+            The living room requires a multi-layered lighting plan combining a central heroic chandelier with perimeter wall sconces for dramatic evening warmth and zero glare.
+          </p>
+
+          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 2700K–3000K Warm</span>
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Target: 250–350 Lux</span>
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">High Ceiling 11ft+</span>
+          </div>
+
+          <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
+            Curated Fixtures for this Room:
+          </div>
+
+          <div class="spatial-recommendations-list">
+            <div class="spatial-rec-item">
+              <img src="assets/Il_CH_001_01_White_Background.jpg" alt="Scroll-Arm Chandelier" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Scroll-Arm Crystal Chandelier</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹6,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_001</span></div>
+              </div>
+            </div>
+            <div class="spatial-rec-item">
+              <img src="assets/Il_WL_026_01_White_Background.jpg" alt="Fluted Globe Sconce" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Fluted Globe & Branch Wall Sconce</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_006</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+              Explore Complete Living Room Curation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase Stage: 2. Dining Gallery -->
+      <div class="spatial-showcase-stage" id="room-dining-room" style="display: none;">
+        <div class="spatial-visual-frame">
+          <img 
+            src="assets/Il_CH_002_03_Wide_Use_Case.jpg" 
+            alt="Dining Gallery Architectural Setting" 
+            class="spatial-visual-img"
+            width="1200"
+            height="800"
+            loading="lazy"
+          >
+        </div>
+        <div class="spatial-info-panel">
+          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 02</span>
+          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Dining Gallery</h3>
+          <p class="spatial-description">
+            Dining illumination should suspend 30–36 inches above the table surface, casting an inviting warm glow across dinnerware while preserving face-to-face sightlines.
+          </p>
+
+          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 3000K Warm White</span>
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CRI: 95+ True Food Hue</span>
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Dimmable Driver</span>
+          </div>
+
+          <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
+            Curated Fixtures for this Room:
+          </div>
+
+          <div class="spatial-recommendations-list">
+            <div class="spatial-rec-item">
+              <img src="assets/Il_CH_002_01_White_Background.jpg" alt="Gold Petal Chandelier" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Gold Petal Statement Chandelier</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹7,500 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_002</span></div>
+              </div>
+            </div>
+            <div class="spatial-rec-item">
+              <img src="assets/Il_WL_006_01_White_Background.jpg" alt="Twin Crystal Disc Sconce" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Twin Crystal Disc Wall Sconce</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">Model A6616-2</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+              Explore Complete Dining Room Curation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase Stage: 3. Double-Height Foyer -->
+      <div class="spatial-showcase-stage" id="room-foyer" style="display: none;">
+        <div class="spatial-visual-frame">
+          <img 
+            src="assets/Il_CH_015_03_Wide_Use_Case.jpg" 
+            alt="Double-Height Foyer Setting" 
+            class="spatial-visual-img"
+            width="1200"
+            height="800"
+            loading="lazy"
+          >
+        </div>
+        <div class="spatial-info-panel">
+          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 03</span>
+          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Double-Height Foyer</h3>
+          <p class="spatial-description">
+            The entryway establishes your residence’s first impression. Double-height spaces command vertical scale and multi-tiered illumination that commands attention from both floor levels.
+          </p>
+
+          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Drop: 2.5m–4.5m Adjustable</span>
+            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Atrium Scale</span>
+          </div>
+
+          <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
+            Curated Fixtures for this Room:
+          </div>
+
+          <div class="spatial-recommendations-list">
+            <div class="spatial-rec-item">
+              <img src="assets/Il_CH_015_01_White_Background.jpg" alt="Two-Tier Gold Ring Chandelier" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Two-Tier Gold Ring Chandelier</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹16,700 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_015</span></div>
+              </div>
+            </div>
+            <div class="spatial-rec-item">
+              <img src="assets/Il_WL_010_01_White_Background.jpg" alt="Crystal Halo Wall Light" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Crystal Halo Wall Sconce</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,700 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_010</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+              Explore Foyer & Atrium Chandeliers
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase Stage: 4. Kitchen Island -->
+      <div class="spatial-showcase-stage" id="room-kitchen" style="display: none;">
+        <div class="spatial-visual-frame">
+          <img 
+            src="assets/Il_PL_001_03_Wide_Use_Case.jpg" 
+            alt="Kitchen Island Architectural Setting" 
+            class="spatial-visual-img"
+            width="1200"
+            height="800"
+            loading="lazy"
+          >
+        </div>
+        <div class="spatial-info-panel">
+          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 04</span>
+          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Kitchen Island &amp; Bar</h3>
+          <p class="spatial-description">
+            Combine downward focused task lighting on the countertop with warm translucent glass refraction to maintain an inviting social kitchen island ambiance.
+          </p>
+
+          <div class="spatial-recommendations-list">
+            <div class="spatial-rec-item">
+              <img src="assets/Il_PL_001_01_White_Background.jpg" alt="Amber Bowl Pendant" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Amber Bowl Suspension Pendant</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹4,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_PL_001</span></div>
+              </div>
+            </div>
+            <div class="spatial-rec-item">
+              <img src="assets/Il_WL_004_01_White_Background.jpg" alt="Slim Gold Wall Bar" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Slim Gold Wall Bar Sconce</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_004</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+              Explore Island Pendants
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase Stage: 5. Master Suite -->
+      <div class="spatial-showcase-stage" id="room-bedroom" style="display: none;">
+        <div class="spatial-visual-frame">
+          <img 
+            src="assets/Il_CL_001_03_Wide_Use_Case.jpg" 
+            alt="Master Suite Architectural Setting" 
+            class="spatial-visual-img"
+            width="1200"
+            height="800"
+            loading="lazy"
+          >
+        </div>
+        <div class="spatial-info-panel">
+          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 05</span>
+          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Master Bedroom Suite</h3>
+          <p class="spatial-description">
+            A calm sanctuary where lighting must be soothing, indirect, and fully dimmable. Flush crystal ceiling luminaires paired with dual bedside wall sconces create hotel-suite serenity.
+          </p>
+
+          <div class="spatial-recommendations-list">
+            <div class="spatial-rec-item">
+              <img src="assets/Il_CL_001_01_White_Background.jpg" alt="Flush Crystal Fixture" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Flush Crystal Ambient Luminaire</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹1,700 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CL_001</span></div>
+              </div>
+            </div>
+            <div class="spatial-rec-item">
+              <img src="assets/Il_WL_012_01_White_Background.jpg" alt="Smoked Cup Sconce" class="spatial-rec-thumb" width="60" height="60">
+              <div>
+                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Smoked Glass Bedside Sconce</div>
+                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹1,800 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_001</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+              Explore Master Suite Curation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5b. Signature Curations (Featured Design Collections) -->
+  <section class="section curations-section" id="curations" style="padding: 95px 0; background-color: var(--color-white);">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 48px;">
+        <span class="eyebrow">Signature Curations</span>
+        <h2 class="section-title">Featured Design Collections</h2>
+        <p class="section-subtitle">Exquisite design aesthetics translated across unified lighting suites for coherent architectural styling.</p>
+      </div>
+
+      <div class="curations-grid">
+        <!-- 1. Statement Chandeliers -->
+        <a href="#bestsellers" class="category-card">
+          <img 
+            src="assets/Il_CH_002_02_Use_Case.jpg" 
+            alt="Statement Chandeliers Collection" 
+            class="category-card-img"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="category-card-overlay"></div>
+          <div class="category-card-info">
+            <span class="category-card-badge">2026 Haute Collection</span>
+            <h3 class="category-card-title">Statement Chandeliers</h3>
+            <p class="category-card-desc">Sculptural gold starbursts, floral brass, and organic fluted glass centerpieces.</p>
+            <span class="category-card-btn">
+              Explore Collection
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 2. Crystal Chandeliers -->
+        <a href="#bestsellers" class="category-card">
+          <img 
+            src="assets/Il_CH_005_02_Use_Case.jpg" 
+            alt="Crystal Chandeliers Collection" 
+            class="category-card-img"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="category-card-overlay"></div>
+          <div class="category-card-info">
+            <span class="category-card-badge">K9 Prismatic Refraction</span>
+            <h3 class="category-card-title">Crystal Masterpieces</h3>
+            <p class="category-card-desc">Halo rings, interlocking crystal loops, and multi-tier double-height foyer luminaires.</p>
+            <span class="category-card-btn">
+              Explore Collection
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 3. Modern Pendant Sets -->
+        <a href="#bestsellers" class="category-card">
+          <img 
+            src="assets/Il_PL_001_02_Use_Case.jpg" 
+            alt="Modern Pendant Sets Collection" 
+            class="category-card-img"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="category-card-overlay"></div>
+          <div class="category-card-info">
+            <span class="category-card-badge">Minimal &amp; Suspended</span>
+            <h3 class="category-card-title">Modern Pendant Sets</h3>
+            <p class="category-card-desc">Linear dining fixtures, mouth-blown amber glass drops, and kitchen island pendants.</p>
+            <span class="category-card-btn">
+              Explore Collection
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Bestselling Signature Lights (8 Real Products) -->
+  <section class="section" id="bestsellers" style="padding: 95px 0; background-color: #FFF;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="eyebrow">Customer Favourites</span>
+          <h2 class="section-title" style="margin-bottom: 8px;">Bestselling Lights</h2>
+          <p class="section-subtitle" style="margin-bottom: 0;">Signature fixtures from the 2026 Illume &amp; Co catalogue, featuring hover illumination preview.</p>
+        </div>
+        <span style="font-size: 12px; color: var(--color-muted);">Hover cards to view illuminated in room</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="category-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge gold">Bestseller</span>
+            <img src="assets/Il_CH_001_01_White_Background.jpg" alt="Scroll-Arm Crystal Chandelier" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_CH_001_02_Use_Case.jpg" alt="Scroll-Arm Crystal Chandelier Illuminated" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_CH_001 &bull; Model 2631-6</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Scroll-Arm Crystal Chandelier</a></h3>
+            <div class="product-card-specs">K9 Crystal &bull; 6-Arm Baroque &bull; 3-in-1 CCT</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹6,000</span>
+              <span class="product-compare-price">₹7,500</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Scroll-Arm Crystal Chandelier" data-price="₹6,000" data-img="assets/Il_CH_001_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge gold">Signature</span>
+            <img src="assets/Il_CH_002_01_White_Background.jpg" alt="Gold Petal Statement Chandelier" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_CH_002_02_Use_Case.jpg" alt="Gold Petal Statement Chandelier Illuminated" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_CH_002 &bull; Model K1130</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Gold Petal Statement Chandelier</a></h3>
+            <div class="product-card-specs">French Electroplated Gold &bull; 54W LED</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹7,500</span>
+              <span class="product-compare-price">₹9,400</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Gold Petal Statement Chandelier" data-price="₹7,500" data-img="assets/Il_CH_002_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge">Pendant Set</span>
+            <img src="assets/Il_PL_001_01_White_Background.jpg" alt="Amber Bowl Suspension Pendant" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_PL_001_02_Use_Case.jpg" alt="Amber Bowl Suspension Pendant In Room" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_PL_001 &bull; Model 3001-1</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Amber Bowl Suspension Pendant</a></h3>
+            <div class="product-card-specs">Mouth-Blown Fluted Glass &bull; Warm Amber</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹4,000</span>
+              <span class="product-compare-price">₹5,000</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Amber Bowl Suspension Pendant" data-price="₹4,000" data-img="assets/Il_PL_001_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge">Wall Accent</span>
+            <img src="assets/Il_WL_006_01_White_Background.jpg" alt="Twin Crystal Disc Wall Sconce" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_WL_006_02_Use_Case.jpg" alt="Twin Crystal Disc Wall Sconce Illuminated" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_WL_006 &bull; Model A6616-2</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Twin Crystal Disc Wall Sconce</a></h3>
+            <div class="product-card-specs">Optical Prismatic Disc &bull; 16W Warm LED</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹3,000</span>
+              <span class="product-compare-price">₹3,800</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Twin Crystal Disc Wall Sconce" data-price="₹3,000" data-img="assets/Il_WL_006_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge">Vanity / Living</span>
+            <img src="assets/Il_WL_002_01_White_Background.jpg" alt="Crystal Bar Wall Light" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_WL_002_02_Use_Case.jpg" alt="Crystal Bar Wall Light Illuminated" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_WL_002 &bull; Model A2008A</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Crystal Bar Wall Light</a></h3>
+            <div class="product-card-specs">Solid K9 Crystal Bar &bull; IP44 Moisture Proof</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹3,000</span>
+              <span class="product-compare-price">₹3,600</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Crystal Bar Wall Light" data-price="₹3,000" data-img="assets/Il_WL_002_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge gold">Foyer Scale</span>
+            <img src="assets/Il_CH_015_01_White_Background.jpg" alt="Two-Tier Gold Ring Chandelier" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_CH_015_02_Use_Case.jpg" alt="Two-Tier Gold Ring Chandelier In Room" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_CH_015 &bull; Model 3125/40+60</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Two-Tier Gold Ring Chandelier</a></h3>
+            <div class="product-card-specs">Brushed Champagne Brass &bull; 65W LED</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹16,700</span>
+              <span class="product-compare-price">₹20,900</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Two-Tier Gold Ring Chandelier" data-price="₹16,700" data-img="assets/Il_CH_015_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge">Contemporary</span>
+            <img src="assets/Il_CH_012_01_White_Background.jpg" alt="Black & Gold Five-Light Chandelier" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_CH_012_02_Use_Case.jpg" alt="Black & Gold Five-Light Chandelier Illuminated" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_CH_012 &bull; Model 8357_5BK_GAB</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Black &amp; Gold Five-Light Chandelier</a></h3>
+            <div class="product-card-specs">Architectural Matte Black &bull; Brass Accents</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹12,500</span>
+              <span class="product-compare-price">₹15,600</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Black & Gold Five-Light Chandelier" data-price="₹12,500" data-img="assets/Il_CH_012_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+          <div class="product-card-media">
+            <span class="product-badge">Climate & Light</span>
+            <img src="assets/Il_FF_001_01_White_Background.jpg" alt="Sculpted-Blade Designer Fan" width="600" height="600" class="product-card-img primary-img" loading="lazy">
+            <img src="assets/Il_FF_001_02_Use_Case.jpg" alt="Sculpted-Blade Designer Fan Illuminated" width="600" height="600" class="product-card-img secondary-img" loading="lazy">
+          </div>
+          <div class="product-card-content">
+            <div class="product-card-category">SKU: Il_FF_001 &bull; Model FF001</div>
+            <h3 class="product-card-title"><a href="#interactive-pdp">Sculpted-Blade Designer Fan</a></h3>
+            <div class="product-card-specs">Aerodynamic Natural Wood &bull; Integrated LED</div>
+            <div class="product-card-price-row">
+              <span class="product-price">₹16,500</span>
+              <span class="product-compare-price">₹19,500</span>
+            </div>
+            <button class="btn btn-outline-gold demo-add-btn" data-name="Sculpted-Blade Designer Fan" data-price="₹16,500" data-img="assets/Il_FF_001_01_White_Background.jpg" style="width: 100%; margin-top: 14px; padding: 10px; font-size: 11px;">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SIGNATURE INTERACTIVE PDP (Crystal Loop Drop Chandelier) -->
+  <section class="section" id="interactive-pdp" style="padding: 95px 0; background-color: var(--color-surface-tint); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 45px;">
+        <span class="eyebrow">Signature Product Detail Experience</span>
+        <h2 class="section-title">Interactive Fixture Illumination Studio</h2>
+        <p class="section-subtitle">Switch the fixture ON/OFF to view crystal refraction under warm illumination and test CCT modes.</p>
+      </div>
+
+      <div style="background: #FFF; border: 1px solid var(--color-border); border-radius: 4px; padding: 45px; box-shadow: var(--shadow-sm);">
+        <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 50px;" class="commercial-grid">
+          
+          <!-- Left: Gallery & Light Switch -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <!-- Interactive Light Switch Control -->
+              <div class="light-switch-control" id="demo-light-switch-group">
+                <button type="button" class="light-switch-btn active" id="btn-light-off">
+                  <span class="light-bulb-indicator"></span>
+                  <span>Light OFF (Studio)</span>
+                </button>
+                <button type="button" class="light-switch-btn" id="btn-light-on">
+                  <span class="light-bulb-indicator"></span>
+                  <span>Light ON (Illuminated ✦)</span>
+                </button>
+              </div>
+              <span style="font-size: 12px; color: #B69A70; font-weight: 600;">&larr; Click to test illumination</span>
+            </div>
+
+            <!-- Illumination Stage Box -->
+            <div class="product-hero-gallery" id="demo-gallery-box" style="min-height: 480px; display: flex; align-items: center; justify-content: center;">
+              <img 
+                src="assets/Il_CH_005_01_White_Background.jpg" 
+                id="demo-main-lamp-img"
+                data-off-src="assets/Il_CH_005_01_White_Background.jpg"
+                data-on-src="assets/Il_CH_005_02_Use_Case.jpg"
+                alt="Crystal Loop Drop Chandelier" 
+                width="1000"
+                height="1000"
+                class="pdp-main-image"
+                style="width: 100%; max-height: 460px; object-fit: contain; margin: 0 auto;"
+              >
+            </div>
+            
+            <!-- Thumbnails Row -->
+            <div style="display: flex; gap: 12px; margin-top: 16px; overflow-x: auto; padding-bottom: 6px;">
+              <div style="width: 80px; height: 80px; border: 1px solid var(--color-border); border-radius: 3px; overflow: hidden; cursor: pointer; flex-shrink: 0;" onclick="document.getElementById('demo-main-lamp-img').src='assets/Il_CH_005_01_White_Background.jpg'; document.getElementById('btn-light-off').click();">
+                <img src="assets/Il_CH_005_01_White_Background.jpg" alt="Studio View" width="80" height="80" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <div style="width: 80px; height: 80px; border: 1px solid var(--color-border); border-radius: 3px; overflow: hidden; cursor: pointer; flex-shrink: 0;" onclick="document.getElementById('demo-main-lamp-img').src='assets/Il_CH_005_02_Use_Case.jpg'; document.getElementById('btn-light-on').click();">
+                <img src="assets/Il_CH_005_02_Use_Case.jpg" alt="Illuminated Close" width="80" height="80" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <div style="width: 80px; height: 80px; border: 1px solid var(--color-border); border-radius: 3px; overflow: hidden; cursor: pointer; flex-shrink: 0;" onclick="document.getElementById('demo-main-lamp-img').src='assets/Il_CH_005_03_Wide_Use_Case.jpg';">
+                <img src="assets/Il_CH_005_03_Wide_Use_Case.jpg" alt="Architectural Room" width="80" height="80" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Product Purchasing & Specs -->
+          <div>
+            <span class="eyebrow">SKU: Il_CH_005 &bull; Model 5990-450</span>
+            <h2 style="font-size: 34px; margin-bottom: 12px;">Crystal Loop Drop Chandelier</h2>
+
+            <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px;">
+              <span style="font-size: 28px; font-weight: 600; color: var(--color-ink);">₹34,500</span>
+              <span style="font-size: 17px; text-decoration: line-through; color: var(--color-muted);">₹39,500</span>
+              <span style="background: var(--color-primary-light); color: var(--color-primary-hover); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px;">Save ₹5,000</span>
+            </div>
+
+            <p style="color: var(--color-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+              Interlocking crystal loop droplets suspended on a precision French gold frame. Delivers anti-glare omnidirectional luminescence with multi-faceted diamond refraction.
+            </p>
+
+            <!-- CCT Temperature Selector -->
+            <div class="cct-selector">
+              <div class="cct-label">
+                <span>Select Color Temperature (CCT)</span>
+                <span class="text-gold" id="cct-display">3000K Warm White</span>
+              </div>
+              <div class="cct-options-grid">
+                <div class="cct-option-card selected" data-cct="3000K Warm White">
+                  <span class="cct-temp-kelvin">3000K</span>
+                  <span class="cct-temp-name">Warm Amber</span>
+                </div>
+                <div class="cct-option-card" data-cct="4000K Neutral White">
+                  <span class="cct-temp-kelvin">4000K</span>
+                  <span class="cct-temp-name">Daylight Neutral</span>
+                </div>
+                <div class="cct-option-card" data-cct="6000K Cool White">
+                  <span class="cct-temp-kelvin">6000K</span>
+                  <span class="cct-temp-name">Architectural</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 14px; margin: 26px 0;">
+              <button type="button" class="btn btn-primary demo-add-btn" data-name="Crystal Loop Drop Chandelier" data-price="₹34,500" data-img="assets/Il_CH_005_01_White_Background.jpg" style="flex: 1.3; padding: 16px 20px;">
+                Add to Bag &bull; ₹34,500
+              </button>
+              <a href="https://wa.me/918983404458?text=Hello%20Illume%20%26%20Co,%20I%20am%20interested%20in%20the%20Crystal%20Loop%20Drop%20Chandelier%20(SKU%20Il_CH_005)." target="_blank" class="btn btn-dark" style="flex: 1; padding: 16px 14px;">
+                WhatsApp Concierge
+              </a>
+            </div>
+
+            <!-- Indian Pincode Delivery Checker -->
+            <div class="pincode-service-box">
+              <div class="pincode-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Check Delivery &amp; Pune Showroom Installation</span>
+              </div>
+              <div class="pincode-input-group">
+                <input type="text" id="demo-pincode-input" class="pincode-input" placeholder="Try 411002 (Pune) or 400001 (Mumbai)" maxlength="6">
+                <button type="button" id="demo-pincode-btn" class="btn btn-dark" style="padding: 10px 18px; font-size: 11px;">Check</button>
+              </div>
+              <div id="demo-pincode-result" class="pincode-result"></div>
+            </div>
+
+            <!-- Technical Lighting Specs Table -->
+            <div style="margin-top: 24px;">
+              <h4 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-ink); margin-bottom: 12px; font-weight: 700;">Technical Lighting Specifications</h4>
+              <table class="specs-table">
+                <tbody>
+                  <tr><td>Fixture Diameter &amp; Height</td><td>Dia 450mm &times; H 380mm (Adjustable wire to 1500mm)</td></tr>
+                  <tr><td>Primary Material &amp; Finish</td><td>French Brushed Brass &amp; K9 Optical Crystal Drops</td></tr>
+                  <tr><td>Power Consumption</td><td>48W Integrated High-Efficiency Architectural LED</td></tr>
+                  <tr><td>Color Temperature (CCT)</td><td>3000K / 4000K / 6000K Tri-Color Switchable</td></tr>
+                  <tr><td>Color Rendering Index (CRI)</td><td>Ra &ge; 92 (True Interior Color Rendition)</td></tr>
+                  <tr><td>Operating Voltage</td><td>220V &ndash; 240V AC, 50Hz (Surge Protected Driver)</td></tr>
+                  <tr><td>Recommended Placement</td><td>Dining Salons, Master Bed Suites, Double-Height Entries</td></tr>
+                  <tr><td>Warranty Protection</td><td>2-Year Complete Fixture + 5-Year LED Driver Coverage</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Commercial & B2B Solutions Section -->
+  <section class="commercial-banner-section" id="commercial">
+    <div class="container">
+      <div class="commercial-grid">
+        <!-- Left Column: Narrative & Technical Specifications -->
+        <div>
+          <div class="cinematic-eyebrow-badge" style="background: rgba(197, 160, 89, 0.12); border-color: rgba(197, 160, 89, 0.35); color: #DFC394;">
+            <span class="cinematic-eyebrow-dot"></span>
+            <span>Architectural &amp; Commercial Solutions</span>
+          </div>
+
+          <h2 class="commercial-heading">
+            Precision Illumination Engineered for <em>Modern Architecture</em>
+          </h2>
+
+          <p class="commercial-intro">
+            From high-end retail boutiques and upscale dining establishments to corporate headquarters and luxury private villas &mdash; Illume &amp; Co supplies precision architectural lighting engineered for high performance, thermal reliability, and zero-glare comfort.
+          </p>
+
+          <ul class="commercial-features-list">
+            <li class="commercial-feature-item">
+              <div class="commercial-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+              <div>
+                <strong>48V Magnetic Track Systems &amp; Modular Drivers</strong>
+                <span>Ultra-versatile low-voltage tracks with plug-and-play floodlights, precision accent spots, and pendant modules.</span>
+              </div>
+            </li>
+            
+            <li class="commercial-feature-item">
+              <div class="commercial-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg>
+              </div>
+              <div>
+                <strong>Anti-Glare COB Downlights (UGR &lt; 19 &bull; Ra &ge; 95)</strong>
+                <span>Deep recessed architectural optics providing glare-free visual comfort and museum-grade color rendition.</span>
+              </div>
+            </li>
+
+            <li class="commercial-feature-item">
+              <div class="commercial-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <div>
+                <strong>Seamless Architectural Profiles &amp; Dot-Free LED Strips</strong>
+                <span>Trimless plaster-in cove profiles, drywall channels, and flexible silicone extrusions for crisp linear light.</span>
+              </div>
+            </li>
+          </ul>
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#trade" class="btn btn-primary" style="padding: 15px 28px; font-size: 11.5px; letter-spacing: 0.1em;">
+              Submit Project BoQ / Floor Plan
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#spatial-lookbook" class="btn btn-outline-white" style="padding: 15px 24px; font-size: 11.5px; letter-spacing: 0.1em;">
+              Explore Commercial Systems
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Architectural Typologies Bento Cards -->
+        <div>
+          <div class="commercial-typologies-grid">
+            <div class="commercial-typology-card">
+              <span class="commercial-typology-num">01 / Retail</span>
+              <h4>Boutique Retail</h4>
+              <p>Highlight merchandise with focused beam angles (15&deg;&ndash;36&deg;) and high CRI 97+ for true color accuracy.</p>
+            </div>
+
+            <div class="commercial-typology-card">
+              <span class="commercial-typology-num">02 / Hospitality</span>
+              <h4>Hotels &amp; Dining</h4>
+              <p>Warm dimmable 2400K&ndash;3000K mood lighting, architectural wall-grazing, and heroic foyer centerpieces.</p>
+            </div>
+
+            <div class="commercial-typology-card">
+              <span class="commercial-typology-num">03 / Corporate</span>
+              <h4>Offices &amp; Co-Work</h4>
+              <p>Circadian rhythm glare-free task illumination (UGR &lt; 19) supporting focus and productivity.</p>
+            </div>
+
+            <div class="commercial-typology-card">
+              <span class="commercial-typology-num">04 / Residential</span>
+              <h4>Villas &amp; Penthouses</h4>
+              <p>Seamless integration of hidden cove profiles, 48V magnetic tracks, and bespoke custom chandeliers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8b. End-to-End Architectural Lighting Services -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 48px;">
+        <span class="eyebrow">The Illume &amp; Co Advantage</span>
+        <h2 class="section-title">End-to-End Architectural Lighting Services</h2>
+        <p class="section-subtitle">More than a lighting supplier &mdash; we partner with homeowners, architects, and designers from blueprint concept to final fixture switch-on.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          </div>
+          <h3 class="service-title">Lighting Design &amp; Lux Simulation</h3>
+          <p class="service-desc">Personalized lighting design guidance, Dialux photometric calculations, and fixture mapping matched directly to your architectural blueprints.</p>
+          <div class="service-card-meta">
+            <span>Complimentary for Villas &amp; Commercial</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <h3 class="service-title">Bespoke Custom Chandelier Craft</h3>
+          <p class="service-desc">Custom size, ring diameter, K9 / Egyptian crystal grade, and electroplated finish customization engineered for double-height foyers and atriums.</p>
+          <div class="service-card-meta">
+            <span>Bespoke Engineering</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          </div>
+          <h3 class="service-title">Architect &amp; Trade Program</h3>
+          <p class="service-desc">Dedicated account managers, volume-tiered trade pricing, batch deliveries, and 3D CAD/Revit library assets for interior architects and developers.</p>
+          <div class="service-card-meta">
+            <span>Trade Tier Discounts</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          </div>
+          <h3 class="service-title">White-Glove Installation &amp; Support</h3>
+          <p class="service-desc">Certified technician mounting for grand chandeliers (up to 200kg), seismic ceiling suspension anchors, driver calibration, and smart dimming integration.</p>
+          <div class="service-card-meta">
+            <span>Pune &amp; Maharashtra Coverage</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </div>
+          <h3 class="service-title">100% Insured Fragile Crate Transit</h3>
+          <p class="service-desc">Multi-density foam cushioning encased in reinforced timber crates. Zero-breakage guarantee with instant replacement warranty across India.</p>
+          <div class="service-card-meta">
+            <span>Pan-India Doorstep Dispatch</span> &rarr;
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <h3 class="service-title">Tactile Pune Flagship Experience</h3>
+          <p class="service-desc">Walk through fully illuminated fixtures, feel crystal cuts and hand-brushed brass textures, and consult with our lighting specialists in person.</p>
+          <div class="service-card-meta">
+            <span>354, Budhwar Peth, Pune</span> &rarr;
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8c. Architectural Installation Lookbook (Real SKU Showcase) -->
+  <section class="section curations-section" id="projects" style="padding: 95px 0; background-color: var(--color-surface-tint, #F3EFE6); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 48px;">
+        <span class="eyebrow">Realized Architectural Visions</span>
+        <h2 class="section-title">Architectural Installation Lookbook</h2>
+        <p class="section-subtitle">A curated visual lookbook exploring how Illume &amp; Co artisanal chandeliers and precision commercial systems define luxury residential villas, dining venues, and double-height foyers.</p>
+      </div>
+
+      <div class="curations-grid">
+        <!-- Showcase 1 -->
+        <div class="category-card">
+          <img 
+            src="assets/Il_CH_001_03_Wide_Use_Case.jpg" 
+            alt="Grand Living Salon Illumination" 
+            class="category-card-img"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="category-card-overlay"></div>
+          <div class="category-card-info">
+            <span class="category-card-badge">Residential Villa &bull; Living Salon</span>
+            <h3 class="category-card-title">Grand Living Salon</h3>
+            <p class="category-card-desc">Bespoke Scroll-Arm Crystal Chandelier (SKU Il_CH_001) radiating 3000K ambient illumination with perimeter architectural coves.</p>
+            <a href="#bestsellers" class="category-card-btn">
+              Explore Fixtures
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Showcase 2 -->
+        <div class="category-card">
+          <img 
+            src="assets/Il_CH_002_03_Wide_Use_Case.jpg" 
+            alt="Fine Dining & Hospitality Ambience" 
+            class="category-card-img"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="category-card-overlay"></div>
+          <div class="category-card-info">
+            <span class="category-card-badge">Hospitality &bull; Dining Spaces</span>
+            <h3 class="category-card-title">Fine Dining &amp; Hospitality</h3>
+            <p class="category-card-desc">Sculptural Gold Petal Chandelier (SKU Il_CH_002) paired with high CRI 95+ anti-glare architectural spots for intimate table mood.</p>
+            <a href="#bestsellers" class="category-card-btn">
+              Explore Fixtures
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Showcase 3 -->
+        <div class="category-card">
+          <img 
+            src="assets/Il_CH_015_03_Wide_Use_Case.jpg" 
+            alt="Double-Height Foyer & Penthouse" 
+            class="category-card-img"
+            width="1200"
+            height="1200"
+            loading="lazy"
+          >
+          <div class="category-card-overlay"></div>
+          <div class="category-card-info">
+            <span class="category-card-badge">Double-Height Penthouse &bull; Atrium</span>
+            <h3 class="category-card-title">Double-Height Atrium</h3>
+            <p class="category-card-desc">Two-Tier Halo Ring Chandelier (SKU Il_CH_015) suspended with 3.5m custom wire kit, anchoring the vertical architecture.</p>
+            <a href="#bestsellers" class="category-card-btn">
+              Explore Fixtures
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Architect & Trade BoQ Submission Form -->
+  <section class="section" id="trade" style="padding: 85px 0; background-color: #FFF;">
+    <div class="container" style="max-width: 820px;">
+      <div class="text-center">
+        <span class="eyebrow">Trade Partner Portal</span>
+        <h2 class="section-title">Architect &amp; Interior Designer Program</h2>
+        <p class="section-subtitle">Submit your floor plan drawings or Bill of Quantities (BoQ) for customized project pricing within 24 hours.</p>
+      </div>
+
+      <div style="background: var(--color-cream); border: 1px solid var(--color-border); padding: 36px; border-radius: 4px;">
+        <form id="demo-trade-form" onsubmit="event.preventDefault(); document.getElementById('trade-success').style.display='block'; this.reset();">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <label style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Full Name *</label>
+              <input type="text" required placeholder="Architect / Designer Name" style="width: 100%; padding: 12px; border: 1px solid var(--color-border); background: #FFF;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Architecture / Interior Firm *</label>
+              <input type="text" required placeholder="Studio Name" style="width: 100%; padding: 12px; border: 1px solid var(--color-border); background: #FFF;">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <label style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Contact Phone / WhatsApp *</label>
+              <input type="tel" required placeholder="+91 89834 04458" style="width: 100%; padding: 12px; border: 1px solid var(--color-border); background: #FFF;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Project Typology</label>
+              <select style="width: 100%; padding: 12px; border: 1px solid var(--color-border); background: #FFF;">
+                <option>Luxury Residential Villa / Penthouse</option>
+                <option>High-End Retail Showroom</option>
+                <option>Restaurant / Hospitality</option>
+                <option>Corporate Office</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Project Scope / Fixture Quantities</label>
+            <textarea rows="3" placeholder="Specify quantities, chandelier diameters, magnetic track run lengths, or timeline..." style="width: 100%; padding: 12px; border: 1px solid var(--color-border); background: #FFF;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">Submit Project for Commercial Quotation</button>
+          <div id="trade-success" style="display: none; background: #E8F5E9; color: #2E7D32; padding: 14px; margin-top: 16px; text-align: center; border-radius: 3px;">
+            &check; Project received! Our Pune commercial engineering team will send you a detailed BoQ quote within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Pune Flagship Showroom Booking -->
+  <section class="section showroom-section" id="showroom" style="padding: 100px 0; background-color: #F3EFE6 !important; border-top: 1px solid #DFD8CC; border-bottom: 1px solid #DFD8CC; position: relative;">
+    <div class="container">
+      <!-- Header -->
+      <div class="text-center" style="max-width: 740px; margin: 0 auto 50px;">
+        <span class="eyebrow" style="color: var(--color-primary-hover, #B69A70); letter-spacing: 0.18em; font-size: 11.5px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 10px;">Tactile Experience</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 40px; color: #292929; margin: 0 0 14px; letter-spacing: -0.01em;">Visit Our Pune Flagship Showroom</h2>
+        <p class="section-subtitle" style="color: #8A8175; font-size: 15.5px; line-height: 1.7; margin: 0;">
+          Lighting is best experienced in person. Walk through our curated gallery of fully illuminated chandeliers, crystal fixtures, and architectural lighting systems.
+        </p>
+      </div>
+
+      <!-- Asymmetric Luxury Showcase Grid -->
+      <div class="showroom-layout-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch;">
+        
+        <!-- Left Column: Immersive Visual Gallery Showcase -->
+        <div class="showroom-visual-card" style="position: relative; border-radius: 10px; overflow: hidden; border: 1px solid #DFD8CC; min-height: 540px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+          <!-- Background Image -->
+          <img 
+            src="assets/Il_CH_001_03_Wide_Use_Case.jpg" 
+            alt="Illume &amp; Co Pune Flagship Gallery" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;"
+            loading="lazy"
+            width="1200"
+            height="800"
+          >
+
+          <!-- Ambient Luxury Gradient Overlay -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(41,41,41,0.2) 0%, rgba(41,41,41,0.4) 40%, rgba(41,41,41,0.92) 100%); z-index: 2;"></div>
+
+          <!-- Top Status Pill -->
+          <div style="position: relative; z-index: 3; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="background: rgba(41,41,41,0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(182,154,112,0.4); padding: 8px 16px; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px; color: #F3EFE6; font-size: 11.5px; font-weight: 500;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 8px #22C55E; display: inline-block;"></span>
+              <span>Open Today &bull; 10:30 AM &ndash; 8:30 PM</span>
+            </div>
+            <div style="background: rgba(41,41,41,0.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 20px; color: #F3EFE6; font-size: 11px;">
+              Pune Flagship
+            </div>
+          </div>
+
+          <!-- Bottom Narrative & Experience Points -->
+          <div style="position: relative; z-index: 3; padding: 36px 30px; color: #FFF;">
+            <span style="color: #B69A70; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; display: block; margin-bottom: 6px;">Sensory Lighting Studio</span>
+            <h3 style="font-family: var(--font-serif); font-size: 26px; color: #FFFFFF; margin: 0 0 10px; line-height: 1.3;">Experience Light at True Human Scale</h3>
+            <p style="font-size: 13.5px; color: rgba(243,239,230,0.85); line-height: 1.6; margin: 0 0 20px; max-width: 480px;">
+              Inspect facet clarity on K9 Egyptian crystals, feel genuine hand-brushed French brass textures, and test seamless 3000K&ndash;6000K architectural dimming curves live.
+            </p>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 4px; font-size: 11px; color: #F3EFE6;">✦ Live Illuminated Displays</span>
+              <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 4px; font-size: 11px; color: #F3EFE6;">✦ Dialux Photometric Lab</span>
+              <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 4px; font-size: 11px; color: #F3EFE6;">✦ Architect BoQ Lounge</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: 3 Architectural Information Cards + Booking Action -->
+        <div class="showroom-details-col" style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <!-- Card 1: Prime Location & Address -->
+          <div class="showroom-info-card" style="background: #FFFFFF; border: 1px solid #DFD8CC; border-radius: 8px; padding: 24px 26px; box-shadow: 0 4px 18px rgba(0,0,0,0.025); transition: all 0.3s ease;">
+            <div style="display: flex; gap: 18px; align-items: flex-start;">
+              <div style="width: 46px; height: 46px; border-radius: 50%; background: rgba(182,154,112,0.14); display: flex; align-items: center; justify-content: center; color: #B69A70; flex-shrink: 0; margin-top: 2px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div style="flex-grow: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+                  <h4 style="font-family: var(--font-serif); font-size: 18.5px; color: #292929; margin: 0;">Showroom Location</h4>
+                  <a href="https://maps.google.com/?q=354+Budhwar+Peth+Pune+411002" target="_blank" rel="noopener noreferrer" style="font-size: 11.5px; color: #B69A70; font-weight: 600; text-decoration: none;">View on Map &rarr;</a>
+                </div>
+                <p style="font-size: 13.5px; color: #8A8175; line-height: 1.6; margin: 0 0 8px;">
+                  354, Budhwar Peth, Near Pasodya Vithoba Temple, Pune, Maharashtra &ndash; 411 002
+                </p>
+                <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #B69A70; background: rgba(182,154,112,0.1); padding: 4px 10px; border-radius: 4px; font-weight: 500;">
+                  <span>★ Heart of Pune Heritage District</span>
+                  <span>&bull;</span>
+                  <span>Valet &amp; Parking Assistance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Hours & Walk-In Policy -->
+          <div class="showroom-info-card" style="background: #FFFFFF; border: 1px solid #DFD8CC; border-radius: 8px; padding: 24px 26px; box-shadow: 0 4px 18px rgba(0,0,0,0.025); transition: all 0.3s ease;">
+            <div style="display: flex; gap: 18px; align-items: flex-start;">
+              <div style="width: 46px; height: 46px; border-radius: 50%; background: rgba(182,154,112,0.14); display: flex; align-items: center; justify-content: center; color: #B69A70; flex-shrink: 0; margin-top: 2px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div style="flex-grow: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+                  <h4 style="font-family: var(--font-serif); font-size: 18.5px; color: #292929; margin: 0;">Showroom Hours</h4>
+                  <span style="font-size: 11.5px; color: #22C55E; font-weight: 600;">Open 7 Days</span>
+                </div>
+                <div style="font-size: 13.5px; color: #8A8175; line-height: 1.7; margin: 0 0 8px;">
+                  <div style="display: flex; justify-content: space-between; max-width: 380px;">
+                    <span>Monday &ndash; Saturday:</span>
+                    <strong style="color: #292929;">10:30 AM &ndash; 8:30 PM</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; max-width: 380px;">
+                    <span>Sunday:</span>
+                    <strong style="color: #292929;">11:00 AM &ndash; 6:30 PM</strong>
+                  </div>
+                </div>
+                <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #B69A70; background: rgba(182,154,112,0.1); padding: 4px 10px; border-radius: 4px; font-weight: 500;">
+                  <span>Walk-ins warmly welcome &bull; Dedicated specialist on duty</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Dedicated Consultations & Direct Contact -->
+          <div class="showroom-info-card" style="background: #FFFFFF; border: 1px solid #DFD8CC; border-radius: 8px; padding: 24px 26px; box-shadow: 0 4px 18px rgba(0,0,0,0.025); transition: all 0.3s ease;">
+            <div style="display: flex; gap: 18px; align-items: flex-start;">
+              <div style="width: 46px; height: 46px; border-radius: 50%; background: rgba(182,154,112,0.14); display: flex; align-items: center; justify-content: center; color: #B69A70; flex-shrink: 0; margin-top: 2px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div style="flex-grow: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+                  <h4 style="font-family: var(--font-serif); font-size: 18.5px; color: #292929; margin: 0;">Direct Concierge &amp; Inquiries</h4>
+                  <span style="font-size: 11.5px; color: #B69A70; font-weight: 600;">Instant Reply</span>
+                </div>
+                <p style="font-size: 13.5px; color: #8A8175; line-height: 1.6; margin: 0 0 10px;">
+                  Speak directly with senior lighting consultants for BoQ estimates, villa lighting layouts, and custom fabrication inquiries.
+                </p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;">
+                  <a href="tel:+918983404458" style="color: #292929; font-weight: 600; text-decoration: none;">+91 89834 04458</a>
+                  <span style="color: #DFD8CC;">|</span>
+                  <a href="tel:+919082488085" style="color: #292929; font-weight: 600; text-decoration: none;">+91 90824 88085</a>
+                  <span style="color: #DFD8CC;">|</span>
+                  <a href="mailto:enlighteningworld01@gmail.com" style="color: #8A8175; text-decoration: none;">enlighteningworld01@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Integrated Action Bar -->
+          <div style="display: flex; gap: 14px; margin-top: 6px; flex-wrap: wrap;">
+            <a 
+              href="https://wa.me/918983404458?text=Hello%20Illume%20%26%20Co,%20I%20would%20like%20to%20schedule%20a%20private%20lighting%20consultation%20at%20your%20Pune%20Flagship%20Showroom." 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-primary"
+              style="flex: 1 1 240px; padding: 15px 22px; font-size: 11.5px; letter-spacing: 0.08em; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 8px;"
+            >
+              <span>Book Private Consultation</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a 
+              href="https://maps.google.com/?q=354+Budhwar+Peth+Pune+411002" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-dark"
+              style="flex: 1 1 200px; padding: 15px 22px; font-size: 11.5px; letter-spacing: 0.08em; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 8px;"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Get Directions on Maps</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-family: var(--font-serif); font-size: 26px; color: #FFF; margin-bottom: 6px; letter-spacing: 0.04em;">Illume &amp; Co</div>
+          <div style="font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 16px;">The Art of Illumination</div>
+          <p style="font-size: 13px; color: #AAA; max-width: 300px;">Decorative and architectural lighting for exceptional homes, villas, and commercial spaces across India.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Decorative Lights</h4>
+          <ul class="footer-links">
+            <li><a href="#bestsellers">Scroll-Arm Crystal (Il_CH_001)</a></li>
+            <li><a href="#bestsellers">Gold Petal Statement (Il_CH_002)</a></li>
+            <li><a href="#bestsellers">Amber Bowl Suspension (Il_PL_001)</a></li>
+            <li><a href="#bestsellers">Designer Chandelier Fans (Il_FF_001)</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Commercial &amp; Trade</h4>
+          <ul class="footer-links">
+            <li><a href="#commercial">Magnetic Track Systems</a></li>
+            <li><a href="#commercial">COB Anti-Glare Downlights</a></li>
+            <li><a href="#commercial">Architectural Profiles</a></li>
+            <li><a href="#trade">Submit Project BoQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Pune Showroom</h4>
+          <p style="font-size: 13px; color: #AAA; line-height: 1.6; margin-bottom: 8px;">
+            354, Budhwar Peth, Near Pasodya Vithoba Temple, Pune, Maharashtra - 411 002
+          </p>
+          <p style="font-size: 13px; color: #AAA; line-height: 1.6; margin-bottom: 8px;">
+            Phone: <a href="tel:+918983404458" style="color: #FFF;">+91 89834 04458</a> &bull; <a href="tel:+919082488085" style="color: #FFF;">+91 90824 88085</a><br>
+            Email: <a href="mailto:enlighteningworld01@gmail.com" style="color: #FFF;">enlighteningworld01@gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Illume &amp; Co, Pune. All Rights Reserved.</div>
+        <div style="color: #777;">100% Insured Fragile Crate Transit Across India</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-out Cart Drawer Simulation -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title">Shopping Bag (<span id="cart-drawer-count">1</span>)</h2>
+      <button type="button" class="header-action-btn" id="close-cart-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="cart-drawer-items" id="cart-items-container">
+      <div style="display: flex; gap: 16px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border);">
+        <img src="assets/Il_CH_005_01_White_Background.jpg" alt="Chandelier" width="75" height="90" style="width: 75px; height: 90px; object-fit: cover; border-radius: 3px;">
+        <div style="flex-grow: 1;">
+          <h4 style="font-size: 15px; margin-bottom: 4px;">Crystal Loop Drop Chandelier</h4>
+          <div style="font-size: 12px; color: var(--color-muted); margin-bottom: 6px;">3000K Warm White &bull; SKU: Il_CH_005</div>
+          <div style="font-weight: 600; font-size: 14px;">₹34,500</div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 600; margin-bottom: 16px;">
+        <span>Subtotal</span>
+        <span id="cart-drawer-subtotal">₹34,500</span>
+      </div>
+      <p style="font-size: 11.5px; color: var(--color-muted); margin-bottom: 16px;">100% Insured wooden crate packaging included across India.</p>
+      <button class="btn btn-primary" style="width: 100%;" onclick="alert('Shopify Checkout: Ready for seamless live store checkout!');">Proceed to Secure Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Floating WhatsApp Concierge -->
+  <a href="https://wa.me/918983404458?text=Hello%20Illume%20%26%20Co,%20I%20am%20exploring%20your%20luxury%20lighting%20catalogue." target="_blank" rel="noopener noreferrer" class="whatsapp-floating">
+    <span class="whatsapp-pulse-dot"></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 2c-5.523 0-10 4.477-10 10 0 1.768.46 3.487 1.334 5.008l-1.365 4.992 5.11-1.34c1.468.802 3.125 1.226 4.921 1.226 5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.828 14.183c-.244.685-1.42 1.309-1.954 1.38-.508.067-1.163.095-3.344-.805-2.618-1.08-4.298-3.738-4.43-3.911-.13-.173-1.065-1.417-1.065-2.703 0-1.286.674-1.919.914-2.179.24-.26.524-.325.699-.325.174 0 .348.002.501.01.162.008.38-.061.593.452.221.533.754 1.84.821 1.975.067.135.111.294.022.47-.09.175-.133.284-.265.437-.132.153-.277.34-.396.457-.132.13-.27.272-.116.536.154.264.685 1.13 1.47 1.829 1.01 1.01 1.862 1.323 2.127 1.455.264.131.42.11.576-.068.156-.178.666-.777.844-1.043.178-.266.356-.222.593-.133.238.089 1.508.71 1.769.84.261.13.435.195.499.305.064.11.064.64-.18 1.325z"/></svg>
+    <span>Lighting Concierge</span>
+  </a>
+
+  <!-- Self-Contained Interactive JavaScript -->
+  <script>
+    // 1. Cinematic Hero Slider Logic
+    const heroSlides = document.querySelectorAll('.cinematic-slide');
+    const heroDots = document.querySelectorAll('.cinematic-nav-dot');
+    const heroBadgeImg = document.getElementById('hero-badge-img');
+    const heroBadgeSku = document.getElementById('hero-badge-sku');
+    const heroBadgeTitle = document.getElementById('hero-badge-title');
+    const heroBadgePrice = document.getElementById('hero-badge-price');
+    let currentHeroSlide = 0;
+    let heroInterval = null;
+
+    function goToHeroSlide(index) {{
+      heroSlides.forEach(s => s.classList.remove('active'));
+      heroDots.forEach(d => d.classList.remove('active'));
+
+      currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+      const activeSlide = heroSlides[currentHeroSlide];
+      activeSlide.classList.add('active');
+      heroDots[currentHeroSlide].classList.add('active');
+
+      if (heroBadgeImg && heroBadgeSku && heroBadgeTitle && heroBadgePrice) {{
+        heroBadgeImg.src = activeSlide.getAttribute('data-img');
+        heroBadgeSku.textContent = 'Featured: SKU ' + activeSlide.getAttribute('data-sku');
+        heroBadgeTitle.textContent = activeSlide.getAttribute('data-name');
+        heroBadgePrice.textContent = activeSlide.getAttribute('data-price');
+      }}
+    }}
+
+    heroDots.forEach((dot, idx) => {{
+      dot.addEventListener('click', () => {{
+        goToHeroSlide(idx);
+        resetHeroAutoSlide();
+      }});
+    }});
+
+    function startHeroAutoSlide() {{
+      heroInterval = setInterval(() => {{
+        goToHeroSlide(currentHeroSlide + 1);
+      }}, 5500);
+    }}
+
+    function resetHeroAutoSlide() {{
+      clearInterval(heroInterval);
+      startHeroAutoSlide();
+    }}
+
+    startHeroAutoSlide();
+
+    // 2. Spatial Room Lookbook Tabs
+    const pills = document.querySelectorAll('.spatial-pill');
+    const stages = document.querySelectorAll('.spatial-showcase-stage');
+
+    pills.forEach(pill => {{
+      pill.addEventListener('click', () => {{
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const targetId = 'room-' + pill.dataset.roomTarget;
+        stages.forEach(stage => {{
+          if (stage.id === targetId) {{
+            stage.style.display = 'grid';
+          }} else {{
+            stage.style.display = 'none';
+          }}
+        }});
+      }});
+    }});
+
+    // 3. PDP Interactive Light Switch (ON / OFF)
+    const btnLightOff = document.getElementById('btn-light-off');
+    const btnLightOn = document.getElementById('btn-light-on');
+    const galleryBox = document.getElementById('demo-gallery-box');
+    const lampImg = document.getElementById('demo-main-lamp-img');
+
+    btnLightOn.addEventListener('click', () => {{
+      btnLightOff.classList.remove('active');
+      btnLightOn.classList.add('active');
+      galleryBox.classList.add('light-on-state');
+      lampImg.src = lampImg.getAttribute('data-on-src');
+    }});
+
+    btnLightOff.addEventListener('click', () => {{
+      btnLightOn.classList.remove('active');
+      btnLightOff.classList.add('active');
+      galleryBox.classList.remove('light-on-state');
+      lampImg.src = lampImg.getAttribute('data-off-src');
+    }});
+
+    // 4. CCT Color Temperature Selector
+    const cctCards = document.querySelectorAll('.cct-option-card');
+    const cctDisplay = document.getElementById('cct-display');
+    cctCards.forEach(card => {{
+      card.addEventListener('click', () => {{
+        cctCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        cctDisplay.textContent = card.dataset.cct;
+      }});
+    }});
+
+    // 5. Indian Pincode Delivery Checker
+    const pincodeBtn = document.getElementById('demo-pincode-btn');
+    const pincodeInput = document.getElementById('demo-pincode-input');
+    const pincodeResult = document.getElementById('demo-pincode-result');
+
+    const runPincodeCheck = () => {{
+      const code = pincodeInput.value.trim();
+      if (!/^\\d{{6}}$/.test(code)) {{
+        pincodeResult.style.color = '#D9534F';
+        pincodeResult.textContent = 'Please enter a valid 6-digit Indian pincode.';
+        pincodeResult.style.display = 'block';
+        return;
+      }}
+      if (code.startsWith('411')) {{
+        pincodeResult.style.color = '#B69A70';
+        pincodeResult.innerHTML = '<strong>Pune Location:</strong> Same-day demonstration available at our showroom (354, Budhwar Peth, Near Pasodya Vithoba Temple). Dispatched in 24 hrs with technician installation.';
+      }} else {{
+        pincodeResult.style.color = '#178B4B';
+        pincodeResult.innerHTML = '<strong>Insured Fragile Delivery Available:</strong> Dispatched in reinforced wooden crate. Expected in 4-6 business days with zero-breakage transit guarantee.';
+      }}
+      pincodeResult.style.display = 'block';
+    }};
+
+    pincodeBtn.addEventListener('click', runPincodeCheck);
+    pincodeInput.addEventListener('keypress', (e) => {{ if (e.key === 'Enter') runPincodeCheck(); }});
+
+    // 6. Cart Drawer Logic
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const demoCartBtn = document.getElementById('demo-cart-btn');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const cartBadge = document.getElementById('cart-badge');
+    const cartDrawerCount = document.getElementById('cart-drawer-count');
+    const cartItemsContainer = document.getElementById('cart-items-container');
+
+    let cartCount = 1;
+
+    function openCart() {{
+      cartDrawer.classList.add('active');
+      cartOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }}
+
+    function closeCart() {{
+      cartDrawer.classList.remove('active');
+      cartOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }}
+
+    demoCartBtn.addEventListener('click', openCart);
+    closeCartBtn.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    document.querySelectorAll('.demo-add-btn').forEach(btn => {{
+      btn.addEventListener('click', () => {{
+        const title = btn.dataset.name || 'Crystal Loop Drop Chandelier';
+        const price = btn.dataset.price || '₹34,500';
+        const img = btn.dataset.img || 'assets/Il_CH_005_01_White_Background.jpg';
+
+        cartCount++;
+        cartBadge.textContent = cartCount;
+        cartDrawerCount.textContent = cartCount;
+
+        const itemHtml = `
+          <div style="display: flex; gap: 16px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border);">
+            <img src="${{img}}" alt="${{title}}" width="75" height="90" style="width: 75px; height: 90px; object-fit: cover; border-radius: 3px;">
+            <div style="flex-grow: 1;">
+              <h4 style="font-size: 15px; margin-bottom: 4px;">${{title}}</h4>
+              <div style="font-size: 12px; color: var(--color-muted); margin-bottom: 6px;">Curated Selection</div>
+              <div style="font-weight: 600; font-size: 14px;">${{price}}</div>
+            </div>
+          </div>
+        `;
+        cartItemsContainer.insertAdjacentHTML('afterbegin', itemHtml);
+        openCart();
+      }});
+    }});
+
+    // 7. Sticky Header
+    window.addEventListener('scroll', () => {{
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 40) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }}, {{ passive: true }});
+
+    // 8. Mobile Navigation Drawer
+    const mobileToggle = document.querySelector('[data-mobile-menu-toggle]');
+    const mobileDrawer = document.querySelector('.mobile-nav-drawer');
+    const mobileOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileCloseBtns = document.querySelectorAll('[data-mobile-menu-close]');
+    const mobileAccToggles = document.querySelectorAll('.mobile-accordion-toggle');
+
+    if (mobileToggle && mobileDrawer) {{
+      mobileToggle.addEventListener('click', () => {{
+        mobileDrawer.classList.add('active');
+        if (mobileOverlay) mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }});
+
+      const closeMobileDrawer = () => {{
+        mobileDrawer.classList.remove('active');
+        if (mobileOverlay) mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }};
+
+      mobileCloseBtns.forEach(b => b.addEventListener('click', closeMobileDrawer));
+      if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileDrawer);
+
+      mobileAccToggles.forEach(toggle => {{
+        toggle.addEventListener('click', () => {{
+          const parent = toggle.closest('.mobile-nav-accordion');
+          if (parent) parent.classList.toggle('active');
+        }});
+      }});
+    }}
+  </script>
+</body>
+</html>
+"""
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+
+with open('preview_theme_showcase.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+
+print("SUCCESS: index.html and preview_theme_showcase.html updated!")

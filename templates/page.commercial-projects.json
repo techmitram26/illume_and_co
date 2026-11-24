@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "commercial_hero": {
+      "type": "commercial-b2b",
+      "settings": {}
+    },
+    "trade_form": {
+      "type": "trade-inquiry-form",
+      "settings": {}
+    },
+    "projects": {
+      "type": "project-gallery",
+      "settings": {}
+    }
+  },
+  "order": [
+    "commercial_hero",
+    "trade_form",
+    "projects"
+  ]
+}

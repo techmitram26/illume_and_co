@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "cart_main": {
+      "type": "bestsellers-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "cart_main"
+  ]
+}

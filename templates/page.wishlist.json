@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-wishlist",
+      "settings": {}
+    },
+    "featured": {
+      "type": "bestsellers-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "featured"
+  ]
+}

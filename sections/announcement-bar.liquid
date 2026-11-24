@@ -1,0 +1,40 @@
+<div class="announcement-bar">
+  <div class="container announcement-inner">
+    <div class="announcement-left">
+      <span class="announcement-item">
+        {% render 'icon', name: 'truck' %}
+        <span>Insured Fragile Delivery Across India &bull; Free on Orders Over ₹5,000</span>
+      </span>
+    </div>
+    <div class="announcement-right">
+      <span class="announcement-item">
+        {% render 'icon', name: 'pin' %}
+        <span>Visit our Pune showroom: 354, Budhwar Peth</span>
+      </span>
+      <span class="announcement-item">
+        {% render 'icon', name: 'phone' %}
+        <a href="tel:{{ settings.store_phone | default: '+918983404458' }}">{{ settings.store_phone | default: '+91 89834 04458' }}</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message_shipping",
+      "label": "Shipping Message",
+      "default": "Insured Fragile Delivery Across India • Free on Orders Over ₹5,000"
+    },
+    {
+      "type": "text",
+      "id": "message_showroom",
+      "label": "Showroom Message",
+      "default": "Visit Our Pune Showroom: 354 Budhwar Peth"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+<section class="section" style="padding: 70px 0 90px; min-height: 55vh; background: var(--color-surface, #F3EFE6);">
+  <div class="container">
+    <div style="max-width: 680px; margin: 0 auto 40px; text-align: center;">
+      <span class="eyebrow" style="color: var(--color-primary-hover, #B69A70); letter-spacing: 0.15em; font-size: 11px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 8px;">Private Curation</span>
+      <h1 class="section-title" style="font-family: var(--font-serif); font-size: 38px; color: #292929; margin: 0 0 14px;">Your Saved Fixtures</h1>
+      <p style="color: var(--color-muted, #8A8175); font-size: 14.5px; line-height: 1.6; margin: 0;">Curate your bespoke lighting selection for residential or architectural BoQ planning.</p>
+    </div>
+
+    <div style="background: #FFF; border: 1px solid var(--color-border, #DFD8CC); border-radius: 6px; padding: 60px 24px; text-align: center; max-width: 640px; margin: 0 auto 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+      <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(182, 154, 112, 0.14); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #B69A70;">
+        {% render 'icon', name: 'wishlist' %}
+      </div>
+      <h3 style="font-family: var(--font-serif); font-size: 20px; margin: 0 0 10px; color: #292929;">Your Wishlist is Empty</h3>
+      <p style="color: var(--color-muted, #8A8175); font-size: 13.5px; line-height: 1.6; margin: 0 0 24px;">Explore our artisanal chandeliers, modern pendants, and wall sconces to save your favorite designs.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="/collections/all" class="btn btn-primary" style="padding: 12px 28px; font-size: 11.5px;">Explore Catalogue</a>
+        <a href="https://wa.me/918983404458?text=Hello%20Illume%20%26%20Co,%20I%20would%20like%20assistance%20curating%20lighting%20fixtures%20for%20my%20project." target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold" style="padding: 12px 24px; font-size: 11.5px;">Consult Concierge</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Wishlist",
+  "settings": []
+}
+{% endschema %}

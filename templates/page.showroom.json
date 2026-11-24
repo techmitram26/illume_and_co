@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "showroom": {
+      "type": "showroom-booking",
+      "settings": {}
+    },
+    "services": {
+      "type": "services-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "showroom",
+    "services"
+  ]
+}

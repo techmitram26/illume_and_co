@@ -1,0 +1,21 @@
+{
+  "current": {
+    "color_primary": "#B69A70",
+    "color_primary_hover": "#9E835B",
+    "color_text_dark": "#292929",
+    "color_text_muted": "#8A8175",
+    "color_bg_cream": "#F3EFE6",
+    "color_bg_sand": "#E8E2D5",
+    "color_border": "#DFD8CC",
+    "color_dark_bg": "#292929",
+    "store_phone": "+91 89834 04458",
+    "store_phone_secondary": "+91 90824 88085",
+    "store_whatsapp": "918983404458",
+    "store_email": "enlighteningworld01@gmail.com",
+    "store_address": "354, Budhwar Peth, Near Pasodya Vithoba Temple, Pune, Maharashtra - 411 002",
+    "instagram_handle": "@illumeandcopune",
+    "enable_pincode_checker": true,
+    "free_shipping_threshold": "5000",
+    "enable_whatsapp_floating": true
+  }
+}

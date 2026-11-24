@@ -1,0 +1,17 @@
+{% comment %}
+  Floating WhatsApp Concierge Snippet
+{% endcomment %}
+
+{%- assign phone = settings.store_whatsapp | default: '918983404458' -%}
+
+<a 
+  href="https://wa.me/{{ phone }}?text=Hello%20Illume%20%26%20Co,%20I%20am%20exploring%20your%20luxury%20lighting%20collection%20and%20would%20like%20expert%20assistance." 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="whatsapp-floating"
+  aria-label="Chat with Illume & Co Lighting Consultant on WhatsApp"
+>
+  <span class="whatsapp-pulse-dot"></span>
+  {% render 'icon', name: 'whatsapp' %}
+  <span>Lighting Concierge</span>
+</a>

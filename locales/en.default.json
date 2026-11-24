@@ -1,0 +1,42 @@
+{
+  "general": {
+    "search": "Search luxury chandeliers, wall lights, profiles...",
+    "cart": "Shopping Bag",
+    "view_cart": "View Bag",
+    "checkout": "Proceed to Checkout",
+    "close": "Close",
+    "loading": "Loading...",
+    "empty_cart": "Your shopping bag is currently empty.",
+    "continue_shopping": "Explore Catalogue"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Bag",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "on_sale": "Special Offer",
+      "light_on": "Light ON",
+      "light_off": "Light OFF",
+      "toggle_illumination": "Toggle Illumination",
+      "specs": "Technical Specifications",
+      "finish": "Finish & Material",
+      "color_temp": "Light Temperature (CCT)",
+      "dimensions": "Dimensions & Drop Height",
+      "inquire_whatsapp": "Enquire on WhatsApp",
+      "free_shipping": "Safe insured fragile delivery across India",
+      "breakage_guarantee": "100% Transit Breakage Replacement Guarantee"
+    }
+  },
+  "pincode": {
+    "title": "Check Delivery & Installation",
+    "placeholder": "Enter 6-digit Pincode (e.g. 411002)",
+    "check_btn": "Check",
+    "available": "Delivery available to your location. Expected in 4-7 business days.",
+    "pune_special": "Pune location: Same-day showroom pickup & expert installation support available.",
+    "invalid": "Please enter a valid 6-digit Indian pincode."
+  },
+  "b2b": {
+    "trade_program": "Architect & Interior Designer Trade Program",
+    "submit_rfq": "Submit Project Drawings & BoQ"
+  }
+}

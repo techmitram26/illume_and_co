@@ -1,0 +1,24 @@
+{% comment %}
+  Indian Pincode Delivery & Showroom Installation Checker
+{% endcomment %}
+
+<div class="pincode-service-box">
+  <div class="pincode-header">
+    {% render 'icon', name: 'pin' %}
+    <span>Check Delivery & Showroom Installation</span>
+  </div>
+  <div class="pincode-input-group">
+    <input 
+      type="text" 
+      id="pincode-input" 
+      class="pincode-input" 
+      placeholder="Enter 6-digit Pincode (e.g. 411002)" 
+      maxlength="6"
+      pattern="\d{6}"
+    >
+    <button type="button" id="pincode-check-btn" class="btn btn-dark" style="padding: 10px 18px; font-size: 11px;">
+      Check
+    </button>
+  </div>
+  <div id="pincode-result" class="pincode-result"></div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "bestsellers_related": {
+      "type": "bestsellers-grid",
+      "settings": {}
+    },
+    "showroom": {
+      "type": "showroom-booking",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "bestsellers_related",
+    "showroom"
+  ]
+}

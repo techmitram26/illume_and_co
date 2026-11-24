@@ -1,0 +1,53 @@
+{% comment %}
+  Technical Specifications Table for Ambika Lights PDP
+  Renders either metafield data or sensible default architectural lighting specs
+{% endcomment %}
+
+<table class="specs-table">
+  <tbody>
+    <tr>
+      <td>Product Category</td>
+      <td>{{ product.type | default: 'Decorative Chandelier' }}</td>
+    </tr>
+    <tr>
+      <td>Primary Material & Finish</td>
+      <td>{{ product.metafields.custom.finish | default: 'Precision Brass Frame & Handcrafted K9 Crystal' }}</td>
+    </tr>
+    <tr>
+      <td>Wattage / Consumption</td>
+      <td>{{ product.metafields.custom.wattage | default: '48W Integrated High-Efficiency LED' }}</td>
+    </tr>
+    <tr>
+      <td>Color Temperature (CCT)</td>
+      <td>{{ product.metafields.custom.color_temperature | default: '3000K Warm White (Tri-color toggle available)' }}</td>
+    </tr>
+    <tr>
+      <td>Color Rendering Index (CRI)</td>
+      <td>{{ product.metafields.custom.cri | default: 'Ra ≥ 90 (True Interior Color Rendering)' }}</td>
+    </tr>
+    <tr>
+      <td>Luminous Flux (Lumens)</td>
+      <td>{{ product.metafields.custom.lumens | default: '4,320 Lumens' }}</td>
+    </tr>
+    <tr>
+      <td>Operating Voltage</td>
+      <td>{{ product.metafields.custom.voltage | default: '220V - 240V AC, 50Hz (Indian Standard)' }}</td>
+    </tr>
+    <tr>
+      <td>Dimmable Compatibility</td>
+      <td>{{ product.metafields.custom.dimmable | default: 'Yes — Compatible with Triac & Leading/Trailing Dimmer' }}</td>
+    </tr>
+    <tr>
+      <td>Dimensions (Diameter × H)</td>
+      <td>{{ product.metafields.custom.dimensions | default: 'Dia 800mm × H 450mm' }}</td>
+    </tr>
+    <tr>
+      <td>Suspension Drop Length</td>
+      <td>{{ product.metafields.custom.drop_length | default: '1500mm (Adjustable wire / modular rods included)' }}</td>
+    </tr>
+    <tr>
+      <td>Warranty</td>
+      <td>{{ product.metafields.custom.warranty | default: '2 Years Manufacturer Warranty + 5-Year LED Driver Coverage' }}</td>
+    </tr>
+  </tbody>
+</table>
