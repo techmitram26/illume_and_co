@@ -1,0 +1,87 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "product": "scroll-arm-crystal-chandelier-il_ch_001",
+            "sku": "Il_CH_001"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "product": "gold-petal-chandelier-il_ch_002",
+            "sku": "Il_CH_002"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "product": "two-tier-gold-ring-chandelier-il_ch_015",
+            "sku": "Il_CH_015"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "eyebrow": "The Art of Illumination • 2026 Collection",
+        "title": "Light Up Your World With Timeless Elegance",
+        "subtitle": "Curated chandeliers, architectural lighting, and bespoke statement pieces for exceptional homes, villas, and commercial spaces.",
+        "btn_decorative": "Explore Decorative",
+        "link_decorative": "/collections/decorative-lights",
+        "btn_commercial": "Commercial Solutions",
+        "link_commercial": "/collections/commercial-lights"
+      }
+    },
+    "shop_by_category": {
+      "type": "shop-by-category",
+      "settings": {}
+    },
+    "shop_by_room": {
+      "type": "shop-by-room",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections",
+      "settings": {}
+    },
+    "bestsellers": {
+      "type": "bestsellers-grid",
+      "settings": {}
+    },
+    "commercial_b2b": {
+      "type": "commercial-b2b",
+      "settings": {}
+    },
+    "services": {
+      "type": "services-grid",
+      "settings": {}
+    },
+    "projects": {
+      "type": "project-gallery",
+      "settings": {}
+    },
+    "showroom_booking": {
+      "type": "showroom-booking",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "shop_by_category",
+    "shop_by_room",
+    "featured_collections",
+    "bestsellers",
+    "commercial_b2b",
+    "services",
+    "projects",
+    "showroom_booking"
+  ]
+}

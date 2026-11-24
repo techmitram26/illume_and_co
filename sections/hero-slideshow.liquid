@@ -1,0 +1,361 @@
+{%- assign first_slide_title = 'Scroll-Arm Crystal Chandelier' -%}
+{%- assign first_slide_price = '₹6,000' -%}
+{%- assign first_slide_url = '/products/scroll-arm-crystal-chandelier-il_ch_001' -%}
+{%- assign first_slide_sku = 'Featured: SKU Il_CH_001' -%}
+{%- assign first_slide_img = 'Il_CH_001_01_White_Background.jpg' | asset_url -%}
+
+{%- if section.blocks.size > 0 -%}
+  {%- assign first_block = section.blocks.first -%}
+  {%- assign first_prod = first_block.settings.product -%}
+  {%- if first_prod != blank -%}
+    {%- assign first_slide_title = first_block.settings.title | default: first_prod.title -%}
+    {%- assign first_slide_price = first_prod.price | money -%}
+    {%- assign first_slide_url = first_prod.url -%}
+    {%- assign first_slide_sku = first_block.settings.sku | default: first_prod.selected_or_first_available_variant.sku | prepend: 'Featured: SKU ' -%}
+    {%- assign first_slide_img = first_prod.featured_image | image_url: width: 120 | default: first_slide_img -%}
+  {%- elsif first_block.settings.title != blank -%}
+    {%- assign first_slide_title = first_block.settings.title -%}
+    {%- assign first_slide_sku = first_block.settings.sku | default: 'Featured: Bespoke Luminaire' -%}
+  {%- endif -%}
+{%- endif -%}
+
+<section class="cinematic-hero-section" id="hero-slider">
+  <!-- Slide Track with Real Architectural Lifestyle Rooms -->
+  <div class="cinematic-slide-track">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- assign prod = block.settings.product -%}
+        {%- assign slide_title = block.settings.title | default: prod.title | default: 'Bespoke Luxury Luminaire' -%}
+        {%- assign slide_price = prod.price | money | default: 'Contact for Pricing' -%}
+        {%- assign slide_url = prod.url | default: '/collections/all' -%}
+        {%- assign sku_val = block.settings.sku | default: prod.selected_or_first_available_variant.sku | default: 'Il_CH_001' -%}
+        {%- assign slide_thumb = prod.featured_image | image_url: width: 120 -%}
+        {%- if slide_thumb == blank -%}
+          {%- assign slide_thumb = 'Il_CH_001_01_White_Background.jpg' | asset_url -%}
+        {%- endif -%}
+
+        <div class="cinematic-slide {% if forloop.first %}active{% endif %}" id="hero-slide-{{ block.id }}" data-sku="{{ sku_val }}" data-name="{{ slide_title }}" data-price="{{ slide_price }}" data-url="{{ slide_url }}" data-img="{{ slide_thumb }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img 
+              src="{{ block.settings.image | image_url: width: 2400 }}" 
+              alt="{{ block.settings.image.alt | default: slide_title | escape }}" 
+              class="cinematic-bg-img"
+              width="2400"
+              height="1350"
+              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            >
+          {%- elsif prod.featured_image != blank -%}
+            <img 
+              src="{{ prod.featured_image | image_url: width: 2400 }}" 
+              alt="{{ prod.title | escape }}" 
+              class="cinematic-bg-img"
+              width="2400"
+              height="1350"
+              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            >
+          {%- else -%}
+            {%- assign fallback_img = 'Il_CH_001_03_Wide_Use_Case.jpg' | asset_url -%}
+            {%- if forloop.index == 2 -%}{%- assign fallback_img = 'Il_CH_002_03_Wide_Use_Case.jpg' | asset_url -%}{%- endif -%}
+            {%- if forloop.index == 3 -%}{%- assign fallback_img = 'Il_CH_015_03_Wide_Use_Case.jpg' | asset_url -%}{%- endif -%}
+            <img 
+              src="{{ fallback_img }}" 
+              alt="{{ slide_title | escape }}" 
+              class="cinematic-bg-img"
+              width="1200"
+              height="800"
+              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            >
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <!-- Default 3 Slides if no blocks configured yet -->
+      <div class="cinematic-slide active" id="hero-slide-1" data-sku="Il_CH_001" data-name="Scroll-Arm Crystal Chandelier" data-price="₹6,000" data-url="/products/scroll-arm-crystal-chandelier-il_ch_001" data-img="{{ 'Il_CH_001_01_White_Background.jpg' | asset_url }}">
+        <img src="{{ 'Il_CH_001_03_Wide_Use_Case.jpg' | asset_url }}" alt="Illume &amp; Co Grand Living Salon" class="cinematic-bg-img" width="1200" height="1200" loading="eager">
+      </div>
+      <div class="cinematic-slide" id="hero-slide-2" data-sku="Il_CH_002" data-name="Gold Petal Chandelier" data-price="₹7,500" data-url="/products/gold-petal-chandelier-il_ch_002" data-img="{{ 'Il_CH_002_01_White_Background.jpg' | asset_url }}">
+        <img src="{{ 'Il_CH_002_03_Wide_Use_Case.jpg' | asset_url }}" alt="Illume &amp; Co Dining Gallery" class="cinematic-bg-img" width="1200" height="1200" loading="lazy">
+      </div>
+      <div class="cinematic-slide" id="hero-slide-3" data-sku="Il_CH_015" data-name="Two-Tier Gold Ring Chandelier" data-price="₹16,700" data-url="/products/two-tier-gold-ring-chandelier-il_ch_015" data-img="{{ 'Il_CH_015_01_White_Background.jpg' | asset_url }}">
+        <img src="{{ 'Il_CH_015_03_Wide_Use_Case.jpg' | asset_url }}" alt="Illume &amp; Co Double-Height Foyer" class="cinematic-bg-img" width="1200" height="1200" loading="lazy">
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- Ambient Luxury Overlay & Gold Warm Glow -->
+  <div class="cinematic-hero-overlay"></div>
+  <div class="cinematic-hero-glow"></div>
+
+  <!-- Content Layer -->
+  <div class="container cinematic-hero-container">
+    <div class="cinematic-hero-content">
+      <div class="cinematic-eyebrow-badge">
+        <span class="cinematic-eyebrow-dot"></span>
+        <span>{{ section.settings.eyebrow | default: 'The Art of Illumination &bull; 2026 Collection' }}</span>
+      </div>
+
+      <h1 class="cinematic-hero-title">
+        Light Up Your World With <em>Timeless Elegance</em>
+      </h1>
+
+      <p class="cinematic-hero-subtitle">
+        {{ section.settings.subtitle | default: 'Curated chandeliers, architectural lighting, and bespoke statement pieces for exceptional homes, villas, and commercial spaces.' }}
+      </p>
+
+      <div class="cinematic-hero-buttons">
+        <a href="{{ section.settings.link_decorative | default: '/collections/all' }}" class="btn btn-primary" style="padding: 16px 32px; font-size: 12px; letter-spacing: 0.12em;">
+          {{ section.settings.btn_decorative | default: 'Explore 2026 Collection' }}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <a href="{{ section.settings.link_showroom | default: '/#showroom' }}" class="btn btn-outline-white" style="padding: 16px 28px; font-size: 12px; letter-spacing: 0.12em;">
+          {{ section.settings.btn_showroom | default: 'Visit Pune Showroom' }}
+        </a>
+      </div>
+
+      <!-- Trust Metrics -->
+      <div class="cinematic-metrics-row">
+        <div class="cinematic-metric-item">
+          <span class="cinematic-metric-val">170+</span>
+          <span class="cinematic-metric-lbl">Artisanal Fixtures</span>
+        </div>
+        <div class="cinematic-metric-item">
+          <span class="cinematic-metric-val">3-in-1</span>
+          <span class="cinematic-metric-lbl">Bespoke CCT Temps</span>
+        </div>
+        <div class="cinematic-metric-item">
+          <span class="cinematic-metric-val">100%</span>
+          <span class="cinematic-metric-lbl">Insured Crate Transit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Glassmorphism Featured Fixture Badge -->
+  <a href="{{ first_slide_url }}" class="cinematic-floating-badge" id="hero-floating-badge" style="text-decoration: none;">
+    <img src="{{ first_slide_img }}" alt="{{ first_slide_title }}" class="cinematic-badge-thumb" id="hero-badge-img" width="64" height="64">
+    <div class="cinematic-badge-info">
+      <div class="badge-sku" id="hero-badge-sku">{{ first_slide_sku }}</div>
+      <h4 id="hero-badge-title">{{ first_slide_title }}</h4>
+      <div class="badge-price" id="hero-badge-price">{{ first_slide_price }}</div>
+    </div>
+  </a>
+
+  <!-- Interactive Slide Navigation Dots -->
+  <div class="cinematic-slide-nav" role="tablist">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <button type="button" class="cinematic-nav-dot {% if forloop.first %}active{% endif %}" aria-label="Slide {{ forloop.index }}" data-slide="{{ forloop.index0 }}"></button>
+      {%- endfor -%}
+    {%- else -%}
+      <button type="button" class="cinematic-nav-dot active" aria-label="Slide 1 - Living Room Salon" data-slide="0"></button>
+      <button type="button" class="cinematic-nav-dot" aria-label="Slide 2 - Dining Gallery" data-slide="1"></button>
+      <button type="button" class="cinematic-nav-dot" aria-label="Slide 3 - Double Height Foyer" data-slide="2"></button>
+    {%- endif -%}
+  </div>
+</section>
+
+<!-- Luxury 4-Item Assurance Strip -->
+<div class="luxury-assurance-strip">
+  <div class="container">
+    <div class="assurance-grid">
+      <div class="assurance-item">
+        <div class="assurance-icon">✦</div>
+        <div class="assurance-text">
+          <h4>170+ Curated Fixtures</h4>
+          <p>K9 crystal, cast brass &amp; blown glass</p>
+        </div>
+      </div>
+      <div class="assurance-item">
+        <div class="assurance-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </div>
+        <div class="assurance-text">
+          <h4>3-in-1 CCT Illumination</h4>
+          <p>3000K warm to 6000K architectural</p>
+        </div>
+      </div>
+      <div class="assurance-item">
+        <div class="assurance-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="assurance-text">
+          <h4>100% Insured Transit</h4>
+          <p>Custom wooden crate zero-breakage</p>
+        </div>
+      </div>
+      <div class="assurance-item">
+        <div class="assurance-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="assurance-text">
+          <h4>Pune Flagship Showroom</h4>
+          <p>354, Budhwar Peth &bull; Expert demo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var slides = document.querySelectorAll('.cinematic-slide');
+    var dots = document.querySelectorAll('.cinematic-nav-dot');
+    var badgeImg = document.getElementById('hero-badge-img');
+    var badgeSku = document.getElementById('hero-badge-sku');
+    var badgeTitle = document.getElementById('hero-badge-title');
+    var badgePrice = document.getElementById('hero-badge-price');
+    var currentSlide = 0;
+    var slideInterval = null;
+
+    function goToSlide(index) {
+      slides.forEach(function(s) { s.classList.remove('active'); });
+      dots.forEach(function(d) { d.classList.remove('active'); });
+
+      currentSlide = (index + slides.length) % slides.length;
+      var activeSlide = slides[currentSlide];
+      activeSlide.classList.add('active');
+      dots[currentSlide].classList.add('active');
+
+      var badgeLink = document.getElementById('hero-floating-badge');
+      if (badgeImg && badgeSku && badgeTitle && badgePrice) {
+        badgeImg.src = activeSlide.getAttribute('data-img');
+        badgeSku.textContent = 'Featured: SKU ' + activeSlide.getAttribute('data-sku');
+        badgeTitle.textContent = activeSlide.getAttribute('data-name');
+        badgePrice.textContent = activeSlide.getAttribute('data-price');
+        if (badgeLink && activeSlide.getAttribute('data-url')) {
+          badgeLink.href = activeSlide.getAttribute('data-url');
+        }
+      }
+    }
+
+    dots.forEach(function(dot, idx) {
+      dot.addEventListener('click', function() {
+        goToSlide(idx);
+        resetAutoSlide();
+      });
+    });
+
+    function startAutoSlide() {
+      slideInterval = setInterval(function() {
+        goToSlide(currentSlide + 1);
+      }, 5500);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(slideInterval);
+      startAutoSlide();
+    }
+
+    startAutoSlide();
+
+    // Theme Editor Live Slide Switching
+    document.addEventListener('shopify:block:select', function(event) {
+      var blockId = event.detail.blockId;
+      var targetSlide = document.getElementById('hero-slide-' + blockId);
+      if (targetSlide) {
+        var allSlides = Array.from(slides);
+        var idx = allSlides.indexOf(targetSlide);
+        if (idx !== -1) {
+          goToSlide(idx);
+          resetAutoSlide();
+        }
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Cinematic Hero Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "The Art of Illumination • 2026 Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Headline",
+      "default": "Light Up Your World With Timeless Elegance"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheadline",
+      "default": "Curated chandeliers, architectural lighting, and bespoke statement pieces for exceptional homes, villas, and commercial spaces."
+    },
+    {
+      "type": "text",
+      "id": "btn_decorative",
+      "label": "Primary Button Text",
+      "default": "Explore 2026 Collection"
+    },
+    {
+      "type": "url",
+      "id": "link_decorative",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "btn_showroom",
+      "label": "Secondary Button Text",
+      "default": "Visit Pune Showroom"
+    },
+    {
+      "type": "url",
+      "id": "link_showroom",
+      "label": "Secondary Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Hero Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Landscape Hero Background",
+          "info": "Upload custom 16:9 or 21:9 landscape hero image (1920x1080 or 2560x1440 recommended)"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Featured Product",
+          "info": "Select any product to dynamically link title, price, and thumbnail badge"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Slide Title (Optional)",
+          "info": "Overrides the product title if filled"
+        },
+        {
+          "type": "text",
+          "id": "sku",
+          "label": "Custom SKU / Badge Text (Optional)",
+          "info": "e.g. Il_CH_001. Overrides variant SKU if filled"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cinematic Hero Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,261 @@
+{%- comment -%}
+  Illume & Co Luxury Header & Navigation with Dynamic Fail-Safe Collection URLs
+{%- endcomment -%}
+
+{%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
+{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
+  {%- assign chandeliers_url = collections['chandeliers'].url -%}
+{%- endif -%}
+
+{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
+{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
+  {%- assign pendants_url = collections['pendants'].url -%}
+{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
+  {%- assign pendants_url = collections['pendant-lights'].url -%}
+{%- endif -%}
+
+{%- assign wall_lights_url = '/collections/all?filter.p.product_type=Wall+Lights' -%}
+{%- if collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights'].url -%}
+{%- elsif collections['wall-lights-sconces'] != blank and collections['wall-lights-sconces'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights-sconces'].url -%}
+{%- endif -%}
+
+{%- assign ceiling_lights_url = '/collections/all?filter.p.product_type=Ceiling+Lights' -%}
+{%- if collections['ceiling-lights'] != blank and collections['ceiling-lights'].url != blank -%}
+  {%- assign ceiling_lights_url = collections['ceiling-lights'].url -%}
+{%- endif -%}
+
+{%- assign commercial_url = '/#commercial' -%}
+{%- if collections['commercial-lights'] != blank and collections['commercial-lights'].products_count > 0 -%}
+  {%- assign commercial_url = collections['commercial-lights'].url -%}
+{%- endif -%}
+
+{%- assign trade_url = '/#trade' -%}
+{%- if pages['trade-program'] != blank -%}
+  {%- assign trade_url = pages['trade-program'].url -%}
+{%- endif -%}
+
+{%- assign showroom_url = '/#showroom' -%}
+{%- if pages['showroom'] != blank -%}
+  {%- assign showroom_url = pages['showroom'].url -%}
+{%- endif -%}
+
+<header class="site-header">
+  <div class="container header-container">
+    <!-- Mobile Hamburger Toggle -->
+    <button type="button" class="mobile-menu-btn" data-mobile-menu-toggle aria-label="Toggle Navigation">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+
+    <!-- Brand Logo -->
+    <a href="/" class="logo-wrapper">
+      <span class="brand-logo-text">Illume &amp; Co</span>
+      <span class="brand-logo-sub">The Art of Illumination</span>
+    </a>
+
+    <!-- Main Navigation with Mega-Menu -->
+    <nav class="main-nav" aria-label="Main Navigation">
+      <!-- 1. Decorative Lights (with Mega-Menu) -->
+      <div class="nav-item">
+        <a href="/collections/all" class="nav-link">Decorative Lights</a>
+        <div class="mega-menu">
+          <div class="mega-menu-grid">
+            <div>
+              <div class="mega-col-title">Chandeliers</div>
+              <ul class="mega-links-list">
+                <li><a href="{{ chandeliers_url }}">Crystal Chandeliers</a></li>
+                <li><a href="{{ chandeliers_url }}">Statement Grand Chandeliers</a></li>
+                <li><a href="{{ chandeliers_url }}">Double Height / Foyer</a></li>
+                <li><a href="{{ chandeliers_url }}">Modern Ring &amp; Halo</a></li>
+                <li><a href="{{ chandeliers_url }}">Antique Brass &amp; Baroque</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="mega-col-title">Pendant &amp; Ceiling</div>
+              <ul class="mega-links-list">
+                <li><a href="{{ pendants_url }}">Modern Pendant Sets</a></li>
+                <li><a href="{{ pendants_url }}">Linear Dining Lights</a></li>
+                <li><a href="{{ pendants_url }}">Hand-Blown Glass Pendants</a></li>
+                <li><a href="{{ ceiling_lights_url }}">Decorative Ceiling Fixtures</a></li>
+                <li><a href="{{ ceiling_lights_url }}">Designer Chandelier Fans</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="mega-col-title">Wall &amp; Accents</div>
+              <ul class="mega-links-list">
+                <li><a href="{{ wall_lights_url }}">Sculptural Wall Sconces</a></li>
+                <li><a href="{{ wall_lights_url }}">Vanity &amp; Mirror Lights</a></li>
+                <li><a href="{{ wall_lights_url }}">Brushed Gold Picture Lights</a></li>
+                <li><a href="{{ wall_lights_url }}">Table &amp; Floor Accent Lamps</a></li>
+                <li><a href="{{ wall_lights_url }}">Gate &amp; Outdoor Bollards</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="mega-col-title">By Finish</div>
+              <ul class="mega-links-list">
+                <li><a href="/collections/all?filter.finish=Brass">Brushed French Brass</a></li>
+                <li><a href="/collections/all?filter.finish=Chrome">Polished Chrome &amp; Nickel</a></li>
+                <li><a href="/collections/all?filter.finish=Black">Matte Architectural Black</a></li>
+                <li><a href="{{ chandeliers_url }}">K9 Prismatic Crystal</a></li>
+              </ul>
+            </div>
+            <div class="mega-promo-card">
+              {%- assign promo_img = 'Il_CH_001_03_Wide_Use_Case.jpg' | asset_url -%}
+              <img src="{{ promo_img }}" alt="2026 Signature Catalogue" width="280" height="140" class="mega-promo-img">
+              <div style="font-family: var(--font-serif); font-size: 17px; margin-bottom: 6px;">2026 Signature Catalogue</div>
+              <a href="{{ chandeliers_url }}" class="btn btn-outline-gold" style="padding: 8px 14px; font-size: 10px;">View Collection</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Commercial Lights -->
+      <div class="nav-item">
+        <a href="{{ commercial_url }}" class="nav-link">Commercial Lights</a>
+        <div class="mega-menu">
+          <div class="mega-menu-grid" style="grid-template-columns: repeat(3, 1fr) 300px;">
+            <div>
+              <div class="mega-col-title">Architectural Systems</div>
+              <ul class="mega-links-list">
+                <li><a href="{{ commercial_url }}">Magnetic Track Lights &amp; Chowk</a></li>
+                <li><a href="{{ commercial_url }}">Recessed &amp; Surface Tracks</a></li>
+                <li><a href="{{ commercial_url }}">Aluminium &amp; Flexible Profiles</a></li>
+                <li><a href="{{ commercial_url }}">High-CRI Architectural LED Strips</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="mega-col-title">Downlights &amp; Spotlights</div>
+              <ul class="mega-links-list">
+                <li><a href="{{ commercial_url }}">COB Deep Anti-Glare Downlights</a></li>
+                <li><a href="{{ commercial_url }}">Wall Washers &amp; Up-Down Fixtures</a></li>
+                <li><a href="{{ commercial_url }}">Ultra-Slim Office Panel Lights</a></li>
+                <li><a href="{{ commercial_url }}">Adjustable Focus Track Spots</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="mega-col-title">Applications</div>
+              <ul class="mega-links-list">
+                <li><a href="{{ commercial_url }}">Luxury Retail Showrooms</a></li>
+                <li><a href="{{ commercial_url }}">Boutique Hotels &amp; Restaurants</a></li>
+                <li><a href="{{ commercial_url }}">Modern Corporate Offices</a></li>
+                <li><a href="{{ commercial_url }}">High-End Residential Villas</a></li>
+              </ul>
+            </div>
+            <div class="mega-promo-card">
+              <div style="font-family: var(--font-serif); font-size: 18px; margin-bottom: 8px;">Trade &amp; Project Pricing</div>
+              <p style="font-size: 12px; color: var(--color-muted); margin-bottom: 14px;">Special tiered discounts for Architects, Interior Designers &amp; Builders.</p>
+              <a href="{{ trade_url }}" class="btn btn-dark" style="padding: 8px 14px; font-size: 10px;">Submit BoQ / Drawings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Shop by Room -->
+      <div class="nav-item">
+        <a href="#rooms" class="nav-link">Shop by Room</a>
+      </div>
+
+      <!-- 4. Trade / B2B -->
+      <div class="nav-item">
+        <a href="{{ trade_url }}" class="nav-link">Trade &amp; Architects</a>
+      </div>
+
+      <!-- 5. Showroom -->
+      <div class="nav-item">
+        <a href="{{ showroom_url }}" class="nav-link">Pune Showroom</a>
+      </div>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <a href="/search" class="header-action-btn" aria-label="Search">
+        {% render 'icon', name: 'search' %}
+      </a>
+      <a href="/pages/wishlist" class="header-action-btn" aria-label="Wishlist">
+        {% render 'icon', name: 'wishlist' %}
+      </a>
+      <button type="button" class="header-action-btn" data-open-cart aria-label="Shopping Bag">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count-badge">{{ cart.item_count | default: 0 }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Overlay & Drawer -->
+  <div class="mobile-nav-overlay" data-mobile-menu-close></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-header">
+      <div class="logo-wrapper">
+        <span class="brand-logo-text" style="font-size: 20px;">Illume &amp; Co</span>
+        <span class="brand-logo-sub" style="font-size: 7.5px;">The Art of Illumination &bull; Pune</span>
+      </div>
+      <button type="button" class="mobile-nav-close" data-mobile-menu-close aria-label="Close Navigation">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-accordion">
+        <button type="button" class="mobile-accordion-toggle">
+          <span>Decorative Lights</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-accordion-panel">
+          <ul class="mobile-sublinks">
+            <li><a href="{{ chandeliers_url }}">Crystal Chandeliers</a></li>
+            <li><a href="{{ chandeliers_url }}">Statement Grand Chandeliers</a></li>
+            <li><a href="{{ chandeliers_url }}">Double Height / Foyer</a></li>
+            <li><a href="{{ pendants_url }}">Modern Pendant Sets</a></li>
+            <li><a href="{{ pendants_url }}">Linear Dining Lights</a></li>
+            <li><a href="{{ wall_lights_url }}">Sculptural Wall Sconces</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mobile-nav-accordion">
+        <button type="button" class="mobile-accordion-toggle">
+          <span>Commercial Lights</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-accordion-panel">
+          <ul class="mobile-sublinks">
+            <li><a href="{{ commercial_url }}">Magnetic Track Systems</a></li>
+            <li><a href="{{ commercial_url }}">COB Anti-Glare Downlights</a></li>
+            <li><a href="{{ commercial_url }}">Architectural Profiles &amp; Strips</a></li>
+            <li><a href="{{ commercial_url }}">Commercial Solutions &amp; BoQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mobile-direct-link">
+        <a href="#rooms">Shop by Room</a>
+      </div>
+      <div class="mobile-direct-link">
+        <a href="{{ trade_url }}">Trade &amp; Architects (BoQ)</a>
+      </div>
+      <div class="mobile-direct-link">
+        <a href="{{ showroom_url }}">Visit Pune Showroom</a>
+      </div>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <div style="font-size: 12px; color: var(--color-muted); margin-bottom: 8px;">Concierge &amp; Inquiries:</div>
+      <a href="tel:+918983404458" style="font-weight: 600; display: block; margin-bottom: 4px; color: var(--color-ink);">+91 89834 04458</a>
+      <a href="https://wa.me/918983404458" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-size: 13px; font-weight: 500;">Chat on WhatsApp &rarr;</a>
+    </div>
+  </aside>
+</header>
+
+{% schema %}
+{
+  "name": "Luxury Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Custom Brand Logo"
+    }
+  ]
+}
+{% endschema %}

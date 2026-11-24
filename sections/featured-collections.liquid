@@ -1,0 +1,101 @@
+{%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
+{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
+  {%- assign chandeliers_url = collections['chandeliers'].url -%}
+{%- endif -%}
+
+{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
+{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
+  {%- assign pendants_url = collections['pendants'].url -%}
+{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
+  {%- assign pendants_url = collections['pendant-lights'].url -%}
+{%- endif -%}
+
+<section class="section curations-section" id="curations" style="padding: 95px 0; background-color: var(--color-white);">
+  <div class="container">
+    <div class="text-center" style="max-width: 720px; margin: 0 auto 48px;">
+      <span class="eyebrow">Signature Curations</span>
+      <h2 class="section-title">Featured Design Collections</h2>
+      <p class="section-subtitle">Exquisite design aesthetics translated across unified lighting suites for coherent architectural styling.</p>
+    </div>
+
+    <div class="curations-grid">
+      <!-- 1. Statement Chandeliers -->
+      <a href="{{ chandeliers_url }}" class="category-card">
+        <img 
+          src="{{ 'Il_CH_002_02_Use_Case.jpg' | asset_url }}" 
+          alt="Statement Chandeliers Collection" 
+          class="category-card-img"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+        <div class="category-card-overlay"></div>
+        <div class="category-card-info">
+          <span class="category-card-badge">2026 Haute Collection</span>
+          <h3 class="category-card-title">Statement Chandeliers</h3>
+          <p class="category-card-desc">Sculptural gold starbursts, floral brass, and organic fluted glass centerpieces.</p>
+          <span class="category-card-btn">
+            Explore Collection
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 2. Crystal Chandeliers -->
+      <a href="{{ chandeliers_url }}" class="category-card">
+        <img 
+          src="{{ 'Il_CH_005_02_Use_Case.jpg' | asset_url }}" 
+          alt="Crystal Chandeliers Collection" 
+          class="category-card-img"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+        <div class="category-card-overlay"></div>
+        <div class="category-card-info">
+          <span class="category-card-badge">K9 Prismatic Refraction</span>
+          <h3 class="category-card-title">Crystal Masterpieces</h3>
+          <p class="category-card-desc">Halo rings, interlocking crystal loops, and multi-tier double-height foyer luminaires.</p>
+          <span class="category-card-btn">
+            Explore Collection
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 3. Modern Pendant Sets -->
+      <a href="{{ pendants_url }}" class="category-card">
+        <img 
+          src="{{ 'Il_PL_001_02_Use_Case.jpg' | asset_url }}" 
+          alt="Modern Pendant Sets Collection" 
+          class="category-card-img"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+        <div class="category-card-overlay"></div>
+        <div class="category-card-info">
+          <span class="category-card-badge">Minimal &amp; Suspended</span>
+          <h3 class="category-card-title">Modern Pendant Sets</h3>
+          <p class="category-card-desc">Linear dining fixtures, mouth-blown amber glass drops, and kitchen island pendants.</p>
+          <span class="category-card-btn">
+            Explore Collection
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Featured Collections"
+    }
+  ]
+}
+{% endschema %}

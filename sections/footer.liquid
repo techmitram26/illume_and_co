@@ -1,0 +1,122 @@
+{%- comment -%}
+  Illume & Co Luxury Footer with Dynamic Fail-Safe URLs
+{%- endcomment -%}
+
+{%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
+{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
+  {%- assign chandeliers_url = collections['chandeliers'].url -%}
+{%- endif -%}
+
+{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
+{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
+  {%- assign pendants_url = collections['pendants'].url -%}
+{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
+  {%- assign pendants_url = collections['pendant-lights'].url -%}
+{%- endif -%}
+
+{%- assign wall_lights_url = '/collections/all?filter.p.product_type=Wall+Lights' -%}
+{%- if collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights'].url -%}
+{%- elsif collections['wall-lights-sconces'] != blank and collections['wall-lights-sconces'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights-sconces'].url -%}
+{%- endif -%}
+
+{%- assign ceiling_lights_url = '/collections/all?filter.p.product_type=Ceiling+Lights' -%}
+{%- if collections['ceiling-lights'] != blank and collections['ceiling-lights'].url != blank -%}
+  {%- assign ceiling_lights_url = collections['ceiling-lights'].url -%}
+{%- endif -%}
+
+{%- assign commercial_url = '/#commercial' -%}
+{%- if collections['commercial-lights'] != blank and collections['commercial-lights'].products_count > 0 -%}
+  {%- assign commercial_url = collections['commercial-lights'].url -%}
+{%- endif -%}
+
+{%- assign trade_url = '/#trade' -%}
+{%- if pages['trade-program'] != blank -%}
+  {%- assign trade_url = pages['trade-program'].url -%}
+{%- endif -%}
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand Info -->
+      <div>
+        <div style="font-family: var(--font-serif); font-size: 26px; color: #FFF; letter-spacing: 0.05em; margin-bottom: 6px;">Illume &amp; Co</div>
+        <div style="font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 18px;">The Art of Illumination</div>
+        <p style="font-size: 13.5px; line-height: 1.7; color: #AAA; max-width: 320px;">
+          Curated decorative and commercial lighting designed to bring warmth, architectural character, and timeless distinction to homes and commercial spaces.
+        </p>
+        <div style="margin-top: 18px; font-size: 13px; color: #BBB;">
+          <span>Follow us: </span>
+          <a href="https://instagram.com/illumeandcopune" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); font-weight: 500;">@illumeandcopune</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Decorative Lighting -->
+      <div>
+        <h4 class="footer-col-title">Decorative Lights</h4>
+        <ul class="footer-links">
+          <li><a href="{{ chandeliers_url }}">Crystal Chandeliers</a></li>
+          <li><a href="{{ chandeliers_url }}">Statement Chandeliers</a></li>
+          <li><a href="{{ pendants_url }}">Modern Pendant Sets</a></li>
+          <li><a href="{{ wall_lights_url }}">Sculptural Wall Sconces</a></li>
+          <li><a href="{{ ceiling_lights_url }}">Designer Chandelier Fans</a></li>
+          <li><a href="{{ wall_lights_url }}">Table &amp; Floor Accent Lamps</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Architectural & Commercial -->
+      <div>
+        <h4 class="footer-col-title">Commercial &amp; Trade</h4>
+        <ul class="footer-links">
+          <li><a href="{{ commercial_url }}">Magnetic Track Lights &amp; Chowk</a></li>
+          <li><a href="{{ commercial_url }}">COB Anti-Glare Downlights</a></li>
+          <li><a href="{{ commercial_url }}">Architectural LED Profiles</a></li>
+          <li><a href="{{ commercial_url }}">High-CRI LED Strips</a></li>
+          <li><a href="{{ trade_url }}">Architect &amp; Designer Program</a></li>
+          <li><a href="{{ trade_url }}">Submit Project BoQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Pune Showroom & Contact -->
+      <div>
+        <h4 class="footer-col-title">Pune Flagship Showroom</h4>
+        <div style="display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; color: #BBB;">
+          <div style="color: var(--color-primary); flex-shrink: 0; margin-top: 2px;">{% render 'icon', name: 'pin' %}</div>
+          <div>354, Budhwar Peth, Near Pasodya Vithoba Temple, Pune, Maharashtra - 411 002</div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #BBB; flex-wrap: wrap;">
+          <div style="color: var(--color-primary); flex-shrink: 0;">{% render 'icon', name: 'phone' %}</div>
+          <div>
+            <a href="tel:+918983404458" style="color: #FFF; font-weight: 500;">+91 89834 04458</a>
+            <span style="color: #666; margin: 0 4px;">&bull;</span>
+            <a href="tel:+919082488085" style="color: #FFF; font-weight: 500;">+91 90824 88085</a>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #BBB;">
+          <div style="color: var(--color-primary); flex-shrink: 0;">{% render 'icon', name: 'mail' %}</div>
+          <a href="mailto:enlighteningworld01@gmail.com" style="color: #FFF; font-weight: 500;">enlighteningworld01@gmail.com</a>
+        </div>
+
+        <div style="display: flex; gap: 10px; font-size: 13px; color: #BBB;">
+          <div style="color: #25D366; flex-shrink: 0;">{% render 'icon', name: 'chat' %}</div>
+          <a href="https://wa.me/918983404458" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 500;">WhatsApp: +91 89834 04458</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; {{ 'now' | date: '%Y' }} Illume &amp; Co, Pune. All Rights Reserved.</div>
+      <div style="color: #888;">The Art of Illumination &bull; 100% Insured Fragile Crate Transit Across India</div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Luxury Footer",
+  "settings": []
+}
+{% endschema %}

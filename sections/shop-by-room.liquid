@@ -1,0 +1,354 @@
+{%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
+{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
+  {%- assign chandeliers_url = collections['chandeliers'].url -%}
+{%- endif -%}
+
+{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
+{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
+  {%- assign pendants_url = collections['pendants'].url -%}
+{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
+  {%- assign pendants_url = collections['pendant-lights'].url -%}
+{%- endif -%}
+
+{%- assign wall_lights_url = '/collections/all?filter.p.product_type=Wall+Lights' -%}
+{%- if collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights'].url -%}
+{%- elsif collections['wall-lights-sconces'] != blank and collections['wall-lights-sconces'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights-sconces'].url -%}
+{%- endif -%}
+
+<section class="section spatial-lookbook-section" id="rooms" style="padding: 95px 0; background-color: var(--color-surface-tint);">
+  <div class="container">
+    <div class="text-center" style="max-width: 720px; margin: 0 auto 40px;">
+      <span class="eyebrow">{{ section.settings.eyebrow | default: 'Spatial Architecture' }}</span>
+      <h2 class="section-title">{{ section.settings.title | default: 'Shop by Space & Room' }}</h2>
+      <p class="section-subtitle">Every space commands a distinct scale, lumen density, and color temperature. Explore our curated architectural installations.</p>
+    </div>
+
+    <!-- Spatial Room Selector Pills -->
+    <div class="spatial-pills-nav" role="tablist">
+      <button type="button" class="spatial-pill active" data-room-target="living-room">Grand Living Room</button>
+      <button type="button" class="spatial-pill" data-room-target="dining-room">Dining Gallery</button>
+      <button type="button" class="spatial-pill" data-room-target="foyer">Double-Height Foyer</button>
+      <button type="button" class="spatial-pill" data-room-target="kitchen">Kitchen Island</button>
+      <button type="button" class="spatial-pill" data-room-target="bedroom">Master Suite</button>
+    </div>
+
+    <!-- Showcase Stage: 1. Grand Living Room -->
+    <div class="spatial-showcase-stage" id="room-living-room">
+      <div class="spatial-visual-frame">
+        <img 
+          src="{{ 'Il_CH_001_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Grand Living Room Architectural Setting" 
+          class="spatial-visual-img"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="spatial-info-panel">
+        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 01</span>
+        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Grand Living Salon</h3>
+        <p class="spatial-description">
+          The living room requires a multi-layered lighting plan combining a central heroic chandelier with perimeter wall sconces for dramatic evening warmth and zero glare.
+        </p>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 2700K–3000K Warm</span>
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Target: 250–350 Lux</span>
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">High Ceiling 11ft+</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
+          Curated Fixtures for this Room:
+        </div>
+
+        <div class="spatial-recommendations-list">
+          {%- assign r1_p1 = all_products['scroll-arm-crystal-chandelier-il_ch_001'] -%}
+          {%- assign r1_p2 = all_products['twin-crystal-disc-wall-light-il_wl_006'] -%}
+          {%- assign r1_fb1 = 'Il_CH_001_01_White_Background.jpg' | asset_url -%}
+          {%- assign r1_fb2 = 'Il_WL_006_01_White_Background.jpg' | asset_url -%}
+          <a href="{{ r1_p1.url | default: '/products/scroll-arm-crystal-chandelier-il_ch_001' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r1_p1.featured_image | image_url: width: 120 | default: r1_fb1 }}" alt="Scroll-Arm Chandelier" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r1_p1.title | default: 'Scroll-Arm Crystal Chandelier' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r1_p1.price | money | default: '₹6,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_001</span></div>
+            </div>
+          </a>
+          <a href="{{ r1_p2.url | default: '/products/twin-crystal-disc-wall-light-il_wl_006' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r1_p2.featured_image | image_url: width: 120 | default: r1_fb2 }}" alt="Twin Crystal Disc Sconce" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r1_p2.title | default: 'Twin Crystal Disc Wall Light' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r1_p2.price | money | default: '₹3,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_006</span></div>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="{{ chandeliers_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+            Explore Living Room Chandeliers
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase Stage: 2. Dining Gallery -->
+    <div class="spatial-showcase-stage" id="room-dining-room" style="display: none;">
+      <div class="spatial-visual-frame">
+        <img 
+          src="{{ 'Il_CH_002_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Dining Gallery Architectural Setting" 
+          class="spatial-visual-img"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="spatial-info-panel">
+        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 02</span>
+        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Dining Gallery</h3>
+        <p class="spatial-description">
+          Dining illumination should suspend 30–36 inches above the table surface, casting an inviting warm glow across dinnerware while preserving face-to-face sightlines.
+        </p>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 3000K Warm White</span>
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CRI: 95+ True Food Hue</span>
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Dimmable Driver</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
+          Curated Fixtures for this Room:
+        </div>
+
+        <div class="spatial-recommendations-list">
+          {%- assign r2_p1 = all_products['gold-petal-chandelier-il_ch_002'] -%}
+          {%- assign r2_p2 = all_products['amber-bowl-pendant-il_pl_001'] -%}
+          {%- assign r2_fb1 = 'Il_CH_002_01_White_Background.jpg' | asset_url -%}
+          {%- assign r2_fb2 = 'Il_PL_001_01_White_Background.jpg' | asset_url -%}
+          <a href="{{ r2_p1.url | default: '/products/gold-petal-chandelier-il_ch_002' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r2_p1.featured_image | image_url: width: 120 | default: r2_fb1 }}" alt="Gold Petal Chandelier" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r2_p1.title | default: 'Gold Petal Chandelier' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r2_p1.price | money | default: '₹7,500' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_002</span></div>
+            </div>
+          </a>
+          <a href="{{ r2_p2.url | default: '/products/amber-bowl-pendant-il_pl_001' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r2_p2.featured_image | image_url: width: 120 | default: r2_fb2 }}" alt="Amber Bowl Pendant" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r2_p2.title | default: 'Amber Bowl Suspension Pendant' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r2_p2.price | money | default: '₹4,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_PL_001</span></div>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="{{ pendants_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+            Explore Dining Fixtures &amp; Pendants
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase Stage: 3. Double-Height Foyer -->
+    <div class="spatial-showcase-stage" id="room-foyer" style="display: none;">
+      <div class="spatial-visual-frame">
+        <img 
+          src="{{ 'Il_CH_015_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Double-Height Foyer Setting" 
+          class="spatial-visual-img"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="spatial-info-panel">
+        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 03</span>
+        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Double-Height Foyer</h3>
+        <p class="spatial-description">
+          The entryway establishes your residence’s first impression. Double-height spaces command vertical scale and multi-tiered illumination that commands attention from both floor levels.
+        </p>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Drop: 2.5m–4.5m Adjustable</span>
+          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Atrium Scale</span>
+        </div>
+
+        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
+          Curated Fixtures for this Room:
+        </div>
+
+        <div class="spatial-recommendations-list">
+          {%- assign r3_p1 = all_products['two-tier-gold-ring-chandelier-il_ch_015'] -%}
+          {%- assign r3_p2 = all_products['crystal-halo-wall-light-il_wl_010'] -%}
+          {%- assign r3_fb1 = 'Il_CH_015_01_White_Background.jpg' | asset_url -%}
+          {%- assign r3_fb2 = 'Il_WL_010_01_White_Background.jpg' | asset_url -%}
+          <a href="{{ r3_p1.url | default: '/products/two-tier-gold-ring-chandelier-il_ch_015' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r3_p1.featured_image | image_url: width: 120 | default: r3_fb1 }}" alt="Two-Tier Gold Ring Chandelier" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r3_p1.title | default: 'Two-Tier Gold Ring Chandelier' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r3_p1.price | money | default: '₹16,700' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_015</span></div>
+            </div>
+          </a>
+          <a href="{{ r3_p2.url | default: '/products/crystal-halo-wall-light-il_wl_010' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r3_p2.featured_image | image_url: width: 120 | default: r3_fb2 }}" alt="Crystal Halo Wall Sconce" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r3_p2.title | default: 'Crystal Halo Wall Light' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r3_p2.price | money | default: '₹3,700' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_010</span></div>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="{{ chandeliers_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+            Explore Foyer & Atrium Chandeliers
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase Stage: 4. Kitchen Island -->
+    <div class="spatial-showcase-stage" id="room-kitchen" style="display: none;">
+      <div class="spatial-visual-frame">
+        <img 
+          src="{{ 'Il_PL_001_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Kitchen Island Architectural Setting" 
+          class="spatial-visual-img"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="spatial-info-panel">
+        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 04</span>
+        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Kitchen Island & Bar</h3>
+        <p class="spatial-description">
+          Combine downward focused task lighting on the countertop with warm translucent glass refraction to maintain an inviting social kitchen island ambiance.
+        </p>
+
+        <div class="spatial-recommendations-list">
+          {%- assign r4_p1 = all_products['glass-lantern-pendant-il_pl_002'] -%}
+          {%- assign r4_p2 = all_products['slim-gold-wall-bar-il_wl_004'] -%}
+          {%- assign r4_fb1 = 'Il_PL_002_01_White_Background.jpg' | asset_url -%}
+          {%- assign r4_fb2 = 'Il_WL_004_01_White_Background.jpg' | asset_url -%}
+          <a href="{{ r4_p1.url | default: '/products/glass-lantern-pendant-il_pl_002' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r4_p1.featured_image | image_url: width: 120 | default: r4_fb1 }}" alt="Glass Lantern Pendant" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r4_p1.title | default: 'Glass Lantern Pendant' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r4_p1.price | money | default: '₹3,500' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_PL_002</span></div>
+            </div>
+          </a>
+          <a href="{{ r4_p2.url | default: '/products/slim-gold-wall-bar-il_wl_004' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r4_p2.featured_image | image_url: width: 120 | default: r4_fb2 }}" alt="Slim Gold Wall Bar" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r4_p2.title | default: 'Slim Gold Wall Bar Sconce' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r4_p2.price | money | default: '₹3,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_004</span></div>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="{{ pendants_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+            Explore Island Pendants
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase Stage: 5. Master Suite -->
+    <div class="spatial-showcase-stage" id="room-bedroom" style="display: none;">
+      <div class="spatial-visual-frame">
+        <img 
+          src="{{ 'Il_CL_001_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Master Suite Architectural Setting" 
+          class="spatial-visual-img"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      </div>
+      <div class="spatial-info-panel">
+        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 05</span>
+        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Master Bedroom Suite</h3>
+        <p class="spatial-description">
+          A calm sanctuary where lighting must be soothing, indirect, and fully dimmable. Flush crystal ceiling luminaires paired with dual bedside wall sconces create hotel-suite serenity.
+        </p>
+
+        <div class="spatial-recommendations-list">
+          {%- assign r5_p1 = all_products['wood-tone-disc-ceiling-light-il_cl_001'] -%}
+          {%- assign r5_p2 = all_products['medallion-bar-wall-light-il_wl_001'] -%}
+          {%- assign r5_fb1 = 'Il_CL_001_01_White_Background.jpg' | asset_url -%}
+          {%- assign r5_fb2 = 'Il_WL_001_01_White_Background.jpg' | asset_url -%}
+          <a href="{{ r5_p1.url | default: '/products/wood-tone-disc-ceiling-light-il_cl_001' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r5_p1.featured_image | image_url: width: 120 | default: r5_fb1 }}" alt="Wood-Tone Disc Ceiling Light" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r5_p1.title | default: 'Wood-Tone Disc Ceiling Light' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r5_p1.price | money | default: '₹1,700' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CL_001</span></div>
+            </div>
+          </a>
+          <a href="{{ r5_p2.url | default: '/products/medallion-bar-wall-light-il_wl_001' }}" class="spatial-rec-item" style="text-decoration: none;">
+            <img src="{{ r5_p2.featured_image | image_url: width: 120 | default: r5_fb2 }}" alt="Medallion Bar Wall Light" class="spatial-rec-thumb" width="60" height="60">
+            <div>
+              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r5_p2.title | default: 'Medallion Bar Wall Light' }}</div>
+              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r5_p2.price | money | default: '₹1,800' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_001</span></div>
+            </div>
+          </a>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="{{ wall_lights_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
+            Explore Bedroom Wall Lights
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var pills = document.querySelectorAll('.spatial-pill');
+    var stages = document.querySelectorAll('.spatial-showcase-stage');
+
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+
+        var targetId = 'room-' + pill.getAttribute('data-room-target');
+        stages.forEach(function(stage) {
+          if (stage.id === targetId) {
+            stage.style.display = 'grid';
+          } else {
+            stage.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Spatial Room Lookbook",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Spatial Architecture"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "Shop by Space & Room"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spatial Room Lookbook"
+    }
+  ]
+}
+{% endschema %}

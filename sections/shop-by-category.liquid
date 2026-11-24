@@ -1,0 +1,158 @@
+{%- comment -%}
+  Shop by Category Bento Grid with Dynamic Fail-Safe Collection URLs
+{%- endcomment -%}
+
+{%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
+{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
+  {%- assign chandeliers_url = collections['chandeliers'].url -%}
+{%- endif -%}
+
+{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
+{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
+  {%- assign pendants_url = collections['pendants'].url -%}
+{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
+  {%- assign pendants_url = collections['pendant-lights'].url -%}
+{%- endif -%}
+
+{%- assign wall_lights_url = '/collections/all?filter.p.product_type=Wall+Lights' -%}
+{%- if collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights'].url -%}
+{%- elsif collections['wall-lights-sconces'] != blank and collections['wall-lights-sconces'].url != blank -%}
+  {%- assign wall_lights_url = collections['wall-lights-sconces'].url -%}
+{%- endif -%}
+
+{%- assign ceiling_lights_url = '/collections/all?filter.p.product_type=Ceiling+Lights' -%}
+{%- if collections['ceiling-lights'] != blank and collections['ceiling-lights'].url != blank -%}
+  {%- assign ceiling_lights_url = collections['ceiling-lights'].url -%}
+{%- endif -%}
+
+<section class="section bento-section" style="padding: 90px 0; background-color: var(--color-bg);">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span class="eyebrow">{{ section.settings.eyebrow | default: 'Artisanal Typologies' }}</span>
+        <h2 class="section-title" style="margin-bottom: 8px;">{{ section.settings.title | default: 'Curated Spectrum' }}</h2>
+        <p class="section-subtitle" style="margin-bottom: 0;">Architecturally engineered luminaires crafted from K9 prismatic crystal, hand-cast brass, and fluted mouth-blown glass.</p>
+      </div>
+      <a href="/collections/all" class="btn btn-outline-gold" style="padding: 10px 22px; font-size: 11px;">
+        View All Fixtures
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="bento-grid">
+      <!-- 1. Chandeliers (Featured Large Card) -->
+      <a href="{{ chandeliers_url }}" class="bento-card bento-item-featured">
+        <img 
+          src="{{ 'Il_CH_002_02_Use_Case.jpg' | asset_url }}" 
+          alt="Chandeliers & Double-Height Statements" 
+          class="bento-card-bg"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <span class="bento-tag">Grand Statements</span>
+          <h3 class="bento-title">Chandeliers &amp; Atrium Fixtures</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 13px; max-width: 480px; margin-bottom: 16px;">
+            Cascading crystals, organic starbursts, and baroque multi-tier centerpieces tailored for double-height foyers and living salons.
+          </p>
+          <span class="bento-link">
+            Explore Chandelier Designs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 2. Sculptural Wall Sconces -->
+      <a href="{{ wall_lights_url }}" class="bento-card">
+        <img 
+          src="{{ 'Il_WL_006_02_Use_Case.jpg' | asset_url }}" 
+          alt="Sculptural Wall Sconces" 
+          class="bento-card-bg"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <span class="bento-tag">Perimeter &amp; Mood</span>
+          <h3 class="bento-title">Wall Lights &amp; Sconces</h3>
+          <span class="bento-link">
+            Explore Wall Designs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 3. Suspended Pendant Sets -->
+      <a href="{{ pendants_url }}" class="bento-card">
+        <img 
+          src="{{ 'Il_PL_001_02_Use_Case.jpg' | asset_url }}" 
+          alt="Suspended Pendant Sets" 
+          class="bento-card-bg"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <span class="bento-tag">Islands &amp; Dining</span>
+          <h3 class="bento-title">Suspended Pendants</h3>
+          <span class="bento-link">
+            Explore Pendant Designs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 4. Ceiling Lights & Designer Fans -->
+      <a href="{{ ceiling_lights_url }}" class="bento-card">
+        <img 
+          src="{{ 'Il_FF_001_02_Use_Case.jpg' | asset_url }}" 
+          alt="Ceiling Fixtures & Designer Fans" 
+          class="bento-card-bg"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <span class="bento-tag">Climate &amp; Flush</span>
+          <h3 class="bento-title">Ceiling Fixtures &amp; Luxury Fans</h3>
+          <span class="bento-link">
+            Explore Ceiling Designs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bento Category Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Artisanal Typologies"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Curated Spectrum"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bento Category Grid"
+    }
+  ]
+}
+{% endschema %}
