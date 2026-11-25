@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -6,21 +15,27 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "product": "scroll-arm-crystal-chandelier-il_ch_001",
+            "image": "shopify://shop_images/Il_FF_009_01.png",
+            "product": "feather-cascade-fandelier-il_ff_009",
+            "title": "",
             "sku": "Il_CH_001"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
-            "product": "gold-petal-chandelier-il_ch_002",
+            "image": "shopify://shop_images/Il_WL_053_01.png",
+            "product": "faceted-disc-wall-light-il_wl_053",
+            "title": "",
             "sku": "Il_CH_002"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
-            "product": "two-tier-gold-ring-chandelier-il_ch_015",
+            "image": "shopify://shop_images/Il_CH_044_01.png",
+            "product": "white-multi-ring-chandelier-il_ch_044",
+            "title": "",
             "sku": "Il_CH_015"
           }
         }
@@ -36,17 +51,26 @@
         "subtitle": "Curated chandeliers, architectural lighting, and bespoke statement pieces for exceptional homes, villas, and commercial spaces.",
         "btn_decorative": "Explore Decorative",
         "link_decorative": "/collections/decorative-lights",
-        "btn_commercial": "Commercial Solutions",
-        "link_commercial": "/collections/commercial-lights"
+        "btn_showroom": "Visit Pune Showroom",
+        "link_showroom": ""
       }
     },
     "shop_by_category": {
       "type": "shop-by-category",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Artisanal Typologies",
+        "title": "Curated Spectrum"
+      }
     },
     "shop_by_room": {
       "type": "shop-by-room",
-      "settings": {}
+      "settings": {
+        "eyebrow": "✦ Shop by Space — Curated Collections",
+        "title": "Curated for the Room",
+        "subtitle": "Six spaces where light matters most — from bedside intimacy to entryway impressions.",
+        "all_spaces_text": "Shop all spaces",
+        "all_spaces_link": ""
+      }
     },
     "featured_collections": {
       "type": "featured-collections",
@@ -54,7 +78,11 @@
     },
     "bestsellers": {
       "type": "bestsellers-grid",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Signature Masterpieces",
+        "title": "Bestselling Lights",
+        "collection": ""
+      }
     },
     "commercial_b2b": {
       "type": "commercial-b2b",

@@ -9,7 +9,7 @@
   {%- assign first_prod = first_block.settings.product -%}
   {%- if first_prod != blank -%}
     {%- assign first_slide_title = first_block.settings.title | default: first_prod.title -%}
-    {%- assign first_slide_price = first_prod.price | money -%}
+    {%- assign first_slide_price = first_prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹6,000' -%}
     {%- assign first_slide_url = first_prod.url -%}
     {%- assign first_slide_sku = first_block.settings.sku | default: first_prod.selected_or_first_available_variant.sku | prepend: 'Featured: SKU ' -%}
     {%- assign first_slide_img = first_prod.featured_image | image_url: width: 120 | default: first_slide_img -%}
@@ -26,7 +26,7 @@
       {%- for block in section.blocks -%}
         {%- assign prod = block.settings.product -%}
         {%- assign slide_title = block.settings.title | default: prod.title | default: 'Bespoke Luxury Luminaire' -%}
-        {%- assign slide_price = prod.price | money | default: 'Contact for Pricing' -%}
+        {%- assign slide_price = prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: 'Contact for Pricing' -%}
         {%- assign slide_url = prod.url | default: '/collections/all' -%}
         {%- assign sku_val = block.settings.sku | default: prod.selected_or_first_available_variant.sku | default: 'Il_CH_001' -%}
         {%- assign slide_thumb = prod.featured_image | image_url: width: 120 -%}
@@ -221,7 +221,8 @@
         badgeImg.src = activeSlide.getAttribute('data-img');
         badgeSku.textContent = 'Featured: SKU ' + activeSlide.getAttribute('data-sku');
         badgeTitle.textContent = activeSlide.getAttribute('data-name');
-        badgePrice.textContent = activeSlide.getAttribute('data-price');
+        var rawPrice = activeSlide.getAttribute('data-price') || '';
+        badgePrice.textContent = rawPrice.replace(/Rs\.\s*/g, '₹').replace(/\s*INR/g, '').trim();
         if (badgeLink && activeSlide.getAttribute('data-url')) {
           badgeLink.href = activeSlide.getAttribute('data-url');
         }

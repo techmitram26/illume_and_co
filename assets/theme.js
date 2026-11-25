@@ -559,28 +559,49 @@ function initCuratedRoomTiles() {
 
 /* 10. CLEAN INDIAN RUPEE (₹) CURRENCY FORMATTER */
 function initCurrencySanitizer() {
-  const sanitize = () => {
-    const selectors = [
-      '.product-price',
-      '.product-compare-price',
-      '.pdp-price',
-      '.pdp-compare-price',
-      '.pdp-buy-button',
-      '.cart-drawer-subtotal',
-      '.sticky-bar-price',
-      '.room-product-price',
-      '[data-price]'
-    ];
-    document.querySelectorAll(selectors.join(', ')).forEach(el => {
-      if (el.textContent && (el.textContent.includes('Rs.') || el.textContent.includes('INR'))) {
-        el.textContent = el.textContent
+  const sanitizeNode = (node) => {
+    if (!node) return;
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.nodeValue && (node.nodeValue.includes('Rs.') || node.nodeValue.includes('INR'))) {
+        node.nodeValue = node.nodeValue
           .replace(/Rs\.\s*/g, '₹')
-          .replace(/\s*INR/g, '')
-          .trim();
+          .replace(/\s*INR/g, '');
       }
-    });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE' || node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') return;
+      node.childNodes.forEach(sanitizeNode);
+    }
   };
 
-  sanitize();
-  document.addEventListener('cart:updated', sanitize);
+  const sanitizeAll = () => {
+    if (document.body) {
+      sanitizeNode(document.body);
+    }
+  };
+
+  sanitizeAll();
+
+  // Watch for any dynamic slider, cart, or AJAX updates across the page
+  try {
+    const observer = new MutationObserver((mutations) => {
+      for (let i = 0; i < mutations.length; i++) {
+        const m = mutations[i];
+        if (m.type === 'characterData') {
+          sanitizeNode(m.target);
+        } else if (m.type === 'childList') {
+          m.addedNodes.forEach(sanitizeNode);
+        }
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  } catch (e) {
+    // Fallback if MutationObserver fails
+  }
+
+  document.addEventListener('cart:updated', sanitizeAll);
 }
