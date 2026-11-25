@@ -1954,23 +1954,34 @@ html = f"""<!DOCTYPE html>
 
     startHeroAutoSlide();
 
-    // 2. Spatial Room Lookbook Tabs
-    const pills = document.querySelectorAll('.spatial-pill');
-    const stages = document.querySelectorAll('.spatial-showcase-stage');
+    // 2. Curated for the Room Expanding Accordion & Real-time Product Sync
+    const roomTiles = document.querySelectorAll('.curated-room-tiles-strip .room-tile');
+    const roomPanels = document.querySelectorAll('.curated-room-showcase-container .room-showcase-panel');
 
-    pills.forEach(pill => {{
-      pill.addEventListener('click', () => {{
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
+    function setActiveRoom(roomKey) {{
+      roomTiles.forEach(tile => {{
+        const match = tile.getAttribute('data-room') === roomKey;
+        tile.classList.toggle('is-active', match);
+        tile.setAttribute('aria-selected', match ? 'true' : 'false');
+      }});
+      roomPanels.forEach(panel => {{
+        const match = panel.getAttribute('data-room-panel') === roomKey;
+        panel.classList.toggle('is-active', match);
+      }});
+    }}
 
-        const targetId = 'room-' + pill.dataset.roomTarget;
-        stages.forEach(stage => {{
-          if (stage.id === targetId) {{
-            stage.style.display = 'grid';
-          }} else {{
-            stage.style.display = 'none';
-          }}
-        }});
+    roomTiles.forEach(tile => {{
+      const roomKey = tile.getAttribute('data-room');
+      tile.addEventListener('mouseenter', () => setActiveRoom(roomKey));
+      tile.addEventListener('click', (e) => {{
+        if (e.target.closest('a')) return;
+        setActiveRoom(roomKey);
+      }});
+      tile.addEventListener('keydown', (e) => {{
+        if (e.key === 'Enter' || e.key === ' ') {{
+          e.preventDefault();
+          setActiveRoom(roomKey);
+        }}
       }});
     }});
 
