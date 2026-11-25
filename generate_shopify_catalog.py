@@ -158,6 +158,22 @@ for r in range(5, 176):
         elif 'natural white' in cct_lower or 'neutral white' in cct_lower:
             tag_list.append('Neutral White 4000K')
             
+    # Room and spatial placement tags from Excel Suggested Use Case
+    if use_case and str(use_case).strip() != '':
+        uc_lower = str(use_case).lower()
+        if 'bedroom' in uc_lower:
+            tag_list.append('Bedroom')
+        if 'dining' in uc_lower:
+            tag_list.append('Dining Room')
+        if 'living' in uc_lower:
+            tag_list.append('Living Room')
+        if 'kitchen' in uc_lower:
+            tag_list.append('Kitchen Island')
+        if 'foyer' in uc_lower or 'passage' in uc_lower or 'entrance' in uc_lower or 'stair' in uc_lower:
+            tag_list.append('Staircase & Foyer')
+        if 'mirror' in uc_lower or 'dressing' in uc_lower or 'vanity' in uc_lower or 'bath' in uc_lower:
+            tag_list.append('Vanity & Bathroom')
+            
     tags = ", ".join(tag_list)
     
     products.append({
