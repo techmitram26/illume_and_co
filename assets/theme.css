@@ -1784,6 +1784,7 @@ button, input, select, textarea {
   border-collapse: collapse;
   margin-top: 16px;
   font-size: 13px;
+  color: #292929;
 }
 
 .specs-table tr {
@@ -1792,17 +1793,22 @@ button, input, select, textarea {
 
 .specs-table td {
   padding: 10px 0;
+  color: #292929;
 }
 
-.specs-table td:first-child {
+.specs-table td:first-child,
+.accordion-panel .specs-table td:first-child,
+.product-specs-wrapper .specs-table td:first-child {
   font-weight: 500;
-  color: #8A8175;
+  color: #8A8175 !important;
   width: 42%;
 }
 
-.specs-table td:last-child {
+.specs-table td:last-child,
+.accordion-panel .specs-table td:last-child,
+.product-specs-wrapper .specs-table td:last-child {
   font-weight: 600;
-  color: #292929;
+  color: #292929 !important;
 }
 
 /* ==========================================================================

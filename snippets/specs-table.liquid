@@ -1,41 +1,76 @@
 {% comment %}
   Technical Specifications Table for Ambika Lights PDP
-  Renders either metafield data or sensible default architectural lighting specs
+  Renders clean specifications dynamically based on product tags and attributes.
+  Only displays rows that actually have valid data (never dummy or blank rows).
 {% endcomment %}
+
+{%- assign cct_val = '' -%}
+{%- for tag in product.tags -%}
+  {%- assign down_tag = tag | downcase -%}
+  {%- if down_tag contains '3 in 1' or down_tag contains '3iin 1' or down_tag contains '3-in-1' or down_tag contains 'tri-color' -%}
+    {%- assign cct_val = '3 in 1 Tri-Color Switchable (3000K / 4000K / 6000K)' -%}
+  {%- elsif down_tag contains 'warm white' -%}
+    {%- if cct_val == '' -%}{%- assign cct_val = '3000K Warm White (Atmospheric Illumination)' -%}{%- endif -%}
+  {%- elsif down_tag contains 'neutral white' or down_tag contains 'natural white' -%}
+    {%- if cct_val == '' -%}{%- assign cct_val = '4000K Neutral White (Balanced Architectural)' -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
 
 <table class="specs-table" style="width: 100%; border-collapse: collapse; font-size: 13px;">
   <tbody>
+    {%- if product.selected_or_first_available_variant.sku != blank -%}
+      <tr style="border-bottom: 1px solid var(--color-border);">
+        <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">SKU / Model</td>
+        <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.selected_or_first_available_variant.sku }}</td>
+      </tr>
+    {%- endif -%}
+    
     <tr style="border-bottom: 1px solid var(--color-border);">
-      <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Product Category</td>
-      <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.type | default: 'Decorative Chandelier' }}</td>
+      <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Category</td>
+      <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.type | default: 'Architectural Lighting' }}</td>
     </tr>
-    <tr style="border-bottom: 1px solid var(--color-border);">
-      <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Primary Material &amp; Finish</td>
-      <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.metafields.custom.finish | default: 'Precision Brass Frame & Handcrafted Optical Crystal' }}</td>
-    </tr>
-    <tr style="border-bottom: 1px solid var(--color-border);">
-      <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Wattage / Consumption</td>
-      <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.metafields.custom.wattage | default: 'High-Efficiency Architectural LED' }}</td>
-    </tr>
-    <tr style="border-bottom: 1px solid var(--color-border);">
-      <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Color Temperature (CCT)</td>
-      <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.metafields.custom.color_temperature | default: '3000K Warm White (Atmospheric Illumination)' }}</td>
-    </tr>
+
+    {%- if product.metafields.custom.finish != blank -%}
+      <tr style="border-bottom: 1px solid var(--color-border);">
+        <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Finish &amp; Colour</td>
+        <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.metafields.custom.finish }}</td>
+      </tr>
+    {%- endif -%}
+
+    {%- if product.metafields.custom.material != blank -%}
+      <tr style="border-bottom: 1px solid var(--color-border);">
+        <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Primary Material</td>
+        <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.metafields.custom.material }}</td>
+      </tr>
+    {%- endif -%}
+
+    {%- if cct_val != blank -%}
+      <tr style="border-bottom: 1px solid var(--color-border);">
+        <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Color Temperature (CCT)</td>
+        <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ cct_val }}</td>
+      </tr>
+    {%- endif -%}
+
+    {%- if product.metafields.custom.light_source != blank -%}
+      <tr style="border-bottom: 1px solid var(--color-border);">
+        <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Light Source</td>
+        <td style="padding: 10px 0; font-weight: 600; color: #292929;">{{ product.metafields.custom.light_source }}</td>
+      </tr>
+    {%- endif -%}
+
     <tr style="border-bottom: 1px solid var(--color-border);">
       <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Operating Voltage</td>
       <td style="padding: 10px 0; font-weight: 600; color: #292929;">220V - 240V AC, 50Hz (Indian Standard)</td>
     </tr>
-    <tr style="border-bottom: 1px solid var(--color-border);">
-      <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Recommended Placement</td>
-      <td style="padding: 10px 0; font-weight: 600; color: #292929;">Living Salons, Dining Galleries, Foyers</td>
-    </tr>
+
     <tr style="border-bottom: 1px solid var(--color-border);">
       <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">HSN Code (GST)</td>
       <td style="padding: 10px 0; font-weight: 600; color: #292929;">9405</td>
     </tr>
+
     <tr>
       <td style="font-weight: 500; padding: 10px 0; width: 42%; color: #8A8175;">Warranty Protection</td>
-      <td style="padding: 10px 0; font-weight: 600; color: #292929;">2 Years Comprehensive Fixture Coverage</td>
+      <td style="padding: 10px 0; font-weight: 600; color: #292929;">2-Year Comprehensive Fixture Coverage</td>
     </tr>
   </tbody>
 </table>
