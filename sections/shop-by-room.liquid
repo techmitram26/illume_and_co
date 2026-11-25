@@ -6,6 +6,12 @@
 {%- endcomment -%}
 
 {%- assign all_spaces_url = section.settings.all_spaces_link | default: routes.all_products_collection_url -%}
+{%- assign col_bedroom = collections[section.settings.collection_bedroom] -%}
+{%- assign col_dining = collections[section.settings.collection_dining] -%}
+{%- assign col_living = collections[section.settings.collection_living] -%}
+{%- assign col_kitchen = collections[section.settings.collection_kitchen] -%}
+{%- assign col_staircase = collections[section.settings.collection_staircase] -%}
+{%- assign col_vanity = collections[section.settings.collection_vanity] -%}
 
 <section class="section curated-room-section" id="curated-rooms" style="background-color: #0E0D0C; color: #FFFFFF; padding: 90px 0; overflow: hidden;">
   <div class="container">
@@ -66,7 +72,7 @@
         <div class="room-tile-expanded-content">
           <span class="room-tile-tag">Curated Pick</span>
           <h3 class="room-tile-heading">Bedroom</h3>
-          <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="btn room-tile-btn">Shop &rarr;</a>
+          <a href="{{ col_bedroom.url | default: all_spaces_url }}" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
 
@@ -99,7 +105,7 @@
         <div class="room-tile-expanded-content">
           <span class="room-tile-tag">Curated Pick</span>
           <h3 class="room-tile-heading">Dining Room</h3>
-          <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="btn room-tile-btn">Shop &rarr;</a>
+          <a href="{{ col_dining.url | default: all_spaces_url }}" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
 
@@ -132,7 +138,7 @@
         <div class="room-tile-expanded-content">
           <span class="room-tile-tag">Curated Pick</span>
           <h3 class="room-tile-heading">Living Room</h3>
-          <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="btn room-tile-btn">Shop &rarr;</a>
+          <a href="{{ col_living.url | default: all_spaces_url }}" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
 
@@ -165,7 +171,7 @@
         <div class="room-tile-expanded-content">
           <span class="room-tile-tag">Curated Pick</span>
           <h3 class="room-tile-heading">Kitchen Island</h3>
-          <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="btn room-tile-btn">Shop &rarr;</a>
+          <a href="{{ col_kitchen.url | default: all_spaces_url }}" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
 
@@ -198,7 +204,7 @@
         <div class="room-tile-expanded-content">
           <span class="room-tile-tag">Curated Pick</span>
           <h3 class="room-tile-heading">Staircase &amp; Entryway</h3>
-          <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="btn room-tile-btn">Shop &rarr;</a>
+          <a href="{{ col_staircase.url | default: all_spaces_url }}" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
 
@@ -231,7 +237,7 @@
         <div class="room-tile-expanded-content">
           <span class="room-tile-tag">Curated Pick</span>
           <h3 class="room-tile-heading">Vanity &amp; Bathroom</h3>
-          <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="btn room-tile-btn">Shop &rarr;</a>
+          <a href="{{ col_vanity.url | default: all_spaces_url }}" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
 
@@ -254,7 +260,7 @@
               <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Bedside Pendants</a>
               <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Reading Sconces</a>
             </div>
-            <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-explore-link">
+            <a href="{{ col_bedroom.url | default: all_spaces_url }}" class="room-explore-link">
               <span>Shop Bedroom Fixtures</span>
               <span>&rarr;</span>
             </a>
@@ -326,7 +332,7 @@
               <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Crystal Cascades</a>
               <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Low-Glare Pendants</a>
             </div>
-            <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-explore-link">
+            <a href="{{ col_dining.url | default: all_spaces_url }}" class="room-explore-link">
               <span>Shop Dining Fixtures</span>
               <span>&rarr;</span>
             </a>
@@ -397,7 +403,7 @@
               <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Perimeter Sconces</a>
               <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Royal Multitier</a>
             </div>
-            <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-explore-link">
+            <a href="{{ col_living.url | default: all_spaces_url }}" class="room-explore-link">
               <span>Shop Living Room Fixtures</span>
               <span>&rarr;</span>
             </a>
@@ -468,7 +474,7 @@
               <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Smoked Glass Globes</a>
               <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Halo Fixtures</a>
             </div>
-            <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-explore-link">
+            <a href="{{ col_kitchen.url | default: all_spaces_url }}" class="room-explore-link">
               <span>Shop Kitchen Pendants</span>
               <span>&rarr;</span>
             </a>
@@ -539,7 +545,7 @@
               <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Duplex Spiral Fixtures</a>
               <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Optical Crystal Halo</a>
             </div>
-            <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-explore-link">
+            <a href="{{ col_staircase.url | default: all_spaces_url }}" class="room-explore-link">
               <span>Shop Staircase Cascades</span>
               <span>&rarr;</span>
             </a>
@@ -610,7 +616,7 @@
               <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Linear Vanity Bars</a>
               <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">High-CRI Warm Sconces</a>
             </div>
-            <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-explore-link">
+            <a href="{{ col_vanity.url | default: all_spaces_url }}" class="room-explore-link">
               <span>Shop Vanity Sconces</span>
               <span>&rarr;</span>
             </a>
@@ -705,6 +711,40 @@
       "type": "url",
       "id": "all_spaces_link",
       "label": "Link Destination"
+    },
+    {
+      "type": "header",
+      "content": "Room Collections (Optional Customizer Override)"
+    },
+    {
+      "type": "collection",
+      "id": "collection_bedroom",
+      "label": "Bedroom Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_dining",
+      "label": "Dining Room Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_living",
+      "label": "Living Room Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_kitchen",
+      "label": "Kitchen Island Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_staircase",
+      "label": "Staircase & Entryway Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_vanity",
+      "label": "Vanity & Bathroom Collection"
     }
   ],
   "presets": [
