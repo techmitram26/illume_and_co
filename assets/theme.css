@@ -2484,3 +2484,446 @@ button, input, select, textarea {
   border-color: #B69A70 !important;
   box-shadow: 0 12px 30px rgba(182, 154, 112, 0.12) !important;
 }
+
+
+/* ==========================================================================
+   7. CURATED FOR THE ROOM (HORIZONTAL EXPANDING ACCORDION & SPATIAL SHOWCASE)
+   ========================================================================== */
+.curated-room-section {
+  background-color: #0E0D0C;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.curated-room-all-link:hover {
+  color: #E5C38E !important;
+  border-bottom-color: #E5C38E !important;
+}
+
+.curated-room-tiles-strip {
+  display: flex;
+  gap: 8px;
+  height: 500px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.room-tile {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #1A1816;
+  transition: flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.3s ease;
+  outline: none;
+}
+
+.room-tile:focus-visible {
+  box-shadow: 0 0 0 2px #E5C38E;
+}
+
+.room-tile.is-active {
+  flex: 3.7;
+}
+
+.room-tile-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+  filter: brightness(0.9);
+}
+
+.room-tile:hover .room-tile-bg,
+.room-tile.is-active .room-tile-bg {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
+.room-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 13, 12, 0.1) 0%, rgba(14, 13, 12, 0.35) 50%, rgba(14, 13, 12, 0.92) 100%);
+  transition: opacity 0.4s ease;
+}
+
+.room-tile-badge-circle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #E5C38E;
+  color: #161514;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 7.5px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.room-tile.is-active .room-tile-badge-circle {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.room-tile-collapsed-label {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.3s ease;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+}
+
+.room-tile.is-active .room-tile-collapsed-label {
+  opacity: 0;
+  transform: translateX(-50%) rotate(180deg) translateY(-10px);
+}
+
+.room-tile-expanded-content {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  right: 28px;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  transition: opacity 0.35s ease 0.15s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.room-tile.is-active .room-tile-expanded-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.room-tile-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: rgba(22, 21, 20, 0.8);
+  backdrop-filter: blur(8px);
+  color: #E5C38E;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(229, 195, 142, 0.3);
+}
+
+.room-tile-heading {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+  line-height: 1.15;
+}
+
+.room-tile-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: #E5C38E;
+  color: #161514;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.room-tile-btn:hover {
+  background: #F3DAB0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 195, 142, 0.3);
+  color: #161514;
+}
+
+/* Bottom Synchronized Showcase Panels */
+.curated-room-showcase-container {
+  position: relative;
+  min-height: 380px;
+}
+
+.room-showcase-panel {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(8px);
+}
+
+.room-showcase-panel.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: roomPanelFadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes roomPanelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.room-showcase-grid {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.room-editorial-col {
+  padding-right: 10px;
+}
+
+.room-editorial-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+
+.room-editorial-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #A8A196;
+  margin: 0 0 22px;
+}
+
+.room-pills-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 26px;
+}
+
+.room-sub-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #D5CEBE;
+  background: #181715;
+  border: 1px solid #2B2824;
+  padding: 8px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  width: fit-content;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.room-sub-pill:hover {
+  border-color: #E5C38E;
+  color: #FFFFFF;
+  background: #24221F;
+}
+
+.room-explore-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #E5C38E;
+  text-decoration: none;
+  transition: gap 0.25s ease, color 0.2s ease;
+}
+
+.room-explore-link:hover {
+  gap: 12px;
+  color: #F3DAB0;
+}
+
+.room-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.room-product-card {
+  background: #141312;
+  border: 1px solid #23211E;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-product-card:hover {
+  transform: translateY(-5px);
+  border-color: #554D40;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+}
+
+.room-product-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.room-product-media img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.room-product-card:hover .room-product-media img {
+  transform: scale(1.06);
+}
+
+.room-tag-pendant {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #E5C38E;
+  color: #161514;
+  font-size: 7.5px;
+  font-weight: 800;
+  line-height: 1.1;
+  padding: 6px 7px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.room-product-info {
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.room-product-sku {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8F887C;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.room-product-name {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 0 12px;
+}
+
+.room-product-name a {
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.room-product-name a:hover {
+  color: #E5C38E;
+}
+
+.room-product-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #E5C38E;
+  margin-top: auto;
+}
+
+/* Responsiveness for Curated Room */
+@media (max-width: 991px) {
+  .curated-room-tiles-strip {
+    height: 420px;
+    gap: 6px;
+  }
+  .room-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .room-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .room-pills-filter {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .curated-room-tiles-strip {
+    height: 340px;
+    gap: 4px;
+  }
+  .room-tile.is-active {
+    flex: 4;
+  }
+  .room-tile-collapsed-label {
+    font-size: 16px;
+    bottom: 16px;
+  }
+  .room-tile-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .room-tile-btn {
+    padding: 8px 16px;
+    font-size: 10.5px;
+  }
+  .room-products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

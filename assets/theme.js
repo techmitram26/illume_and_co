@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordions();
   initMobileNav();
   initStickyAddToCart();
+  initCuratedRoomTiles();
+  initCurrencySanitizer();
 });
 
 /* 1. STICKY HEADER SCROLL EFFECT */
@@ -506,4 +508,79 @@ function initStickyAddToCart() {
   }, { threshold: 0 });
 
   observer.observe(mainBuyBtn);
+}
+
+/* 9. CURATED FOR THE ROOM — EXPANDING TILES & REAL-TIME PRODUCT SYNC */
+function initCuratedRoomTiles() {
+  const tiles = document.querySelectorAll('.curated-room-tiles-strip .room-tile');
+  const panels = document.querySelectorAll('.curated-room-showcase-container .room-showcase-panel');
+
+  if (!tiles.length || !panels.length) return;
+
+  const setActiveRoom = (roomKey) => {
+    // 1. Update active tile
+    tiles.forEach(tile => {
+      const match = tile.getAttribute('data-room') === roomKey;
+      tile.classList.toggle('is-active', match);
+      tile.setAttribute('aria-selected', match ? 'true' : 'false');
+    });
+
+    // 2. Synchronize bottom showcase panel
+    panels.forEach(panel => {
+      const match = panel.getAttribute('data-room-panel') === roomKey;
+      panel.classList.toggle('is-active', match);
+    });
+  };
+
+  tiles.forEach(tile => {
+    const roomKey = tile.getAttribute('data-room');
+    if (!roomKey) return;
+
+    // Desktop mouse hover trigger
+    tile.addEventListener('mouseenter', () => {
+      setActiveRoom(roomKey);
+    });
+
+    // Touch / Click trigger
+    tile.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      setActiveRoom(roomKey);
+    });
+
+    // Keyboard accessibility
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveRoom(roomKey);
+      }
+    });
+  });
+}
+
+/* 10. CLEAN INDIAN RUPEE (₹) CURRENCY FORMATTER */
+function initCurrencySanitizer() {
+  const sanitize = () => {
+    const selectors = [
+      '.product-price',
+      '.product-compare-price',
+      '.pdp-price',
+      '.pdp-compare-price',
+      '.pdp-buy-button',
+      '.cart-drawer-subtotal',
+      '.sticky-bar-price',
+      '.room-product-price',
+      '[data-price]'
+    ];
+    document.querySelectorAll(selectors.join(', ')).forEach(el => {
+      if (el.textContent && (el.textContent.includes('Rs.') || el.textContent.includes('INR'))) {
+        el.textContent = el.textContent
+          .replace(/Rs\.\s*/g, '₹')
+          .replace(/\s*INR/g, '')
+          .trim();
+      }
+    });
+  };
+
+  sanitize();
+  document.addEventListener('cart:updated', sanitize);
 }

@@ -148,7 +148,7 @@
                     <span style="font-size: 12px; font-weight: 600; padding: 0 6px; min-width: 20px; text-align: center;">{{ item.quantity }}</span>
                     <button type="button" class="cart-qty-btn" data-change="1" data-key="{{ item.key }}" data-qty="{{ item.quantity }}" style="background: none; border: none; padding: 4px 10px; cursor: pointer; font-size: 14px; color: var(--color-ink);" aria-label="Increase quantity">+</button>
                   </div>
-                  <div style="font-weight: 600; font-size: 13.5px; color: var(--color-ink);">{{ item.line_price | money }}</div>
+                  <div style="font-weight: 600; font-size: 13.5px; color: var(--color-ink);">{{ item.line_price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
                 </div>
               </div>
               <button type="button" class="cart-item-remove" data-key="{{ item.key }}" title="Remove item" aria-label="Remove {{ item.title }}" style="background: none; border: none; color: var(--color-muted); cursor: pointer; font-size: 20px; line-height: 1; padding: 0 4px; margin-left: 4px;">&times;</button>
@@ -160,7 +160,7 @@
       <div class="cart-drawer-footer" id="cart-drawer-footer" {% if cart.item_count == 0 %}style="display: none;"{% endif %}>
         <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 600; margin-bottom: 16px;">
           <span>Subtotal</span>
-          <span class="cart-drawer-subtotal">{{ cart.total_price | money }}</span>
+          <span class="cart-drawer-subtotal">{{ cart.total_price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</span>
         </div>
         <p style="font-size: 11.5px; color: var(--color-muted); margin-bottom: 16px;">Taxes calculated at checkout. Free transit-insured delivery across India.</p>
         <a href="/checkout" class="btn btn-primary" style="width: 100%;">Proceed to Secure Checkout</a>

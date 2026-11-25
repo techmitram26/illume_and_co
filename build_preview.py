@@ -513,351 +513,534 @@ html = f"""<!DOCTYPE html>
     </div>
   </section>
 
-  <!-- 5. Spatial Room Lookbook -->
-  <section class="section spatial-lookbook-section" id="spatial-lookbook" style="padding: 95px 0; background-color: var(--color-surface-tint);">
+  <!-- 5. Curated for the Room (Expanding Horizontal Accordion & Spatial Showcase) -->
+  <section class="section curated-room-section" id="curated-rooms" style="background-color: #0E0D0C; color: #FFFFFF; padding: 90px 0; overflow: hidden;">
     <div class="container">
-      <div class="text-center" style="max-width: 720px; margin: 0 auto 40px;">
-        <span class="eyebrow">Spatial Architecture</span>
-        <h2 class="section-title">Shop by Space &amp; Room</h2>
-        <p class="section-subtitle">Every space commands a distinct scale, lumen density, and color temperature. Explore our curated architectural installations.</p>
-      </div>
-
-      <!-- Spatial Room Selector Pills -->
-      <div class="spatial-pills-nav" role="tablist">
-        <button type="button" class="spatial-pill active" data-room-target="living-room">Grand Living Room</button>
-        <button type="button" class="spatial-pill" data-room-target="dining-room">Dining Gallery</button>
-        <button type="button" class="spatial-pill" data-room-target="foyer">Double-Height Foyer</button>
-        <button type="button" class="spatial-pill" data-room-target="kitchen">Kitchen Island</button>
-        <button type="button" class="spatial-pill" data-room-target="bedroom">Master Suite</button>
-      </div>
-
-      <!-- Showcase Stage: 1. Grand Living Room -->
-      <div class="spatial-showcase-stage" id="room-living-room">
-        <div class="spatial-visual-frame">
-          <img 
-            src="assets/Il_CH_001_03_Wide_Use_Case.jpg" 
-            alt="Grand Living Room Architectural Setting" 
-            class="spatial-visual-img"
-            width="1200"
-            height="800"
-            loading="lazy"
-          >
-        </div>
-        <div class="spatial-info-panel">
-          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 01</span>
-          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Grand Living Salon</h3>
-          <p class="spatial-description">
-            The living room requires a multi-layered lighting plan combining a central heroic chandelier with perimeter wall sconces for dramatic evening warmth and zero glare.
+      
+      <!-- Section Header -->
+      <div class="curated-room-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="curated-room-eyebrow" style="display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #C5A880; margin-bottom: 10px;">
+            ✦ Shop by Space — Curated Collections
+          </span>
+          <h2 class="curated-room-title" style="font-family: var(--font-serif, 'Playfair Display', Georgia, serif); font-size: clamp(32px, 4.5vw, 48px); font-weight: 400; color: #FFFFFF; margin: 0 0 10px; line-height: 1.15; letter-spacing: -0.01em;">
+            Curated for the Room
+          </h2>
+          <p class="curated-room-subtitle" style="font-size: 14.5px; color: #A8A196; margin: 0; max-width: 620px; line-height: 1.6;">
+            Six spaces where light matters most — from bedside intimacy to entryway impressions.
           </p>
+        </div>
 
-          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 2700K–3000K Warm</span>
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Target: 250–350 Lux</span>
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">High Ceiling 11ft+</span>
-          </div>
-
-          <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
-            Curated Fixtures for this Room:
-          </div>
-
-          <div class="spatial-recommendations-list">
-            <div class="spatial-rec-item">
-              <img src="assets/Il_CH_001_01_White_Background.jpg" alt="Scroll-Arm Chandelier" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Scroll-Arm Crystal Chandelier</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹6,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_001</span></div>
-              </div>
-            </div>
-            <div class="spatial-rec-item">
-              <img src="assets/Il_WL_026_01_White_Background.jpg" alt="Fluted Globe Sconce" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Fluted Globe & Branch Wall Sconce</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_006</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: 24px;">
-            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-              Explore Complete Living Room Curation
-            </a>
-          </div>
+        <div>
+          <a href="#bestsellers" class="curated-room-all-link" style="color: #FFFFFF; font-size: 13.5px; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 4px; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s ease, color 0.2s ease;">
+            <span>Shop all spaces</span>
+            <span style="font-size: 14px;">&#8599;</span>
+          </a>
         </div>
       </div>
 
-      <!-- Showcase Stage: 2. Dining Gallery -->
-      <div class="spatial-showcase-stage" id="room-dining-room" style="display: none;">
-        <div class="spatial-visual-frame">
-          <img 
-            src="assets/Il_CH_002_03_Wide_Use_Case.jpg" 
-            alt="Dining Gallery Architectural Setting" 
-            class="spatial-visual-img"
-            width="1200"
-            height="800"
-            loading="lazy"
-          >
-        </div>
-        <div class="spatial-info-panel">
-          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 02</span>
-          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Dining Gallery</h3>
-          <p class="spatial-description">
-            Dining illumination should suspend 30–36 inches above the table surface, casting an inviting warm glow across dinnerware while preserving face-to-face sightlines.
-          </p>
-
-          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 3000K Warm White</span>
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CRI: 95+ True Food Hue</span>
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Dimmable Driver</span>
+      <!-- 6 Expanding Horizontal Accordion Tiles -->
+      <div class="curated-room-tiles-strip" role="tablist" aria-label="Curated Room Collections">
+        
+        <!-- 1. Bedroom (Default Active) -->
+        <div class="room-tile is-active" data-room="bedroom" role="tab" aria-selected="true" aria-controls="panel-bedroom" tabindex="0">
+          <img src="assets/Il_CH_005_03_Wide_Use_Case.jpg" alt="Curated Lighting for Bedroom" class="room-tile-bg" loading="lazy" width="900" height="600">
+          <div class="room-tile-overlay"></div>
+          <div class="room-tile-badge-circle">
+            <span>UP TO</span>
+            <strong>30%</strong>
+            <span>OFF</span>
           </div>
-
-          <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
-            Curated Fixtures for this Room:
-          </div>
-
-          <div class="spatial-recommendations-list">
-            <div class="spatial-rec-item">
-              <img src="assets/Il_CH_002_01_White_Background.jpg" alt="Gold Petal Chandelier" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Gold Petal Statement Chandelier</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹7,500 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_002</span></div>
-              </div>
-            </div>
-            <div class="spatial-rec-item">
-              <img src="assets/Il_WL_006_01_White_Background.jpg" alt="Twin Crystal Disc Sconce" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Twin Crystal Disc Wall Sconce</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">Model A6616-2</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: 24px;">
-            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-              Explore Complete Dining Room Curation
-            </a>
+          <div class="room-tile-collapsed-label">Bedroom</div>
+          <div class="room-tile-expanded-content">
+            <span class="room-tile-tag">Curated Pick</span>
+            <h3 class="room-tile-heading">Bedroom</h3>
+            <a href="#bestsellers" class="btn room-tile-btn">Shop &rarr;</a>
           </div>
         </div>
+
+        <!-- 2. Dining Room -->
+        <div class="room-tile" data-room="dining" role="tab" aria-selected="false" aria-controls="panel-dining" tabindex="0">
+          <img src="assets/Il_CH_002_03_Wide_Use_Case.jpg" alt="Curated Lighting for Dining Room" class="room-tile-bg" loading="lazy" width="900" height="600">
+          <div class="room-tile-overlay"></div>
+          <div class="room-tile-badge-circle">
+            <span>UP TO</span>
+            <strong>30%</strong>
+            <span>OFF</span>
+          </div>
+          <div class="room-tile-collapsed-label">Dining Room</div>
+          <div class="room-tile-expanded-content">
+            <span class="room-tile-tag">Curated Pick</span>
+            <h3 class="room-tile-heading">Dining Room</h3>
+            <a href="#bestsellers" class="btn room-tile-btn">Shop &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 3. Living Room -->
+        <div class="room-tile" data-room="living" role="tab" aria-selected="false" aria-controls="panel-living" tabindex="0">
+          <img src="assets/Il_CH_001_03_Wide_Use_Case.jpg" alt="Curated Lighting for Living Room" class="room-tile-bg" loading="lazy" width="900" height="600">
+          <div class="room-tile-overlay"></div>
+          <div class="room-tile-badge-circle">
+            <span>UP TO</span>
+            <strong>30%</strong>
+            <span>OFF</span>
+          </div>
+          <div class="room-tile-collapsed-label">Living Room</div>
+          <div class="room-tile-expanded-content">
+            <span class="room-tile-tag">Curated Pick</span>
+            <h3 class="room-tile-heading">Living Room</h3>
+            <a href="#bestsellers" class="btn room-tile-btn">Shop &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 4. Kitchen Island -->
+        <div class="room-tile" data-room="kitchen" role="tab" aria-selected="false" aria-controls="panel-kitchen" tabindex="0">
+          <img src="assets/Il_PL_001_02_Use_Case.jpg" alt="Curated Lighting for Kitchen Island" class="room-tile-bg" loading="lazy" width="900" height="600">
+          <div class="room-tile-overlay"></div>
+          <div class="room-tile-badge-circle">
+            <span>UP TO</span>
+            <strong>30%</strong>
+            <span>OFF</span>
+          </div>
+          <div class="room-tile-collapsed-label">Kitchen Island</div>
+          <div class="room-tile-expanded-content">
+            <span class="room-tile-tag">Curated Pick</span>
+            <h3 class="room-tile-heading">Kitchen Island</h3>
+            <a href="#bestsellers" class="btn room-tile-btn">Shop &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 5. Staircase & Entryway -->
+        <div class="room-tile" data-room="staircase" role="tab" aria-selected="false" aria-controls="panel-staircase" tabindex="0">
+          <img src="assets/Il_CH_012_03_Wide_Use_Case.jpg" alt="Curated Lighting for Staircase and Entryway" class="room-tile-bg" loading="lazy" width="900" height="600">
+          <div class="room-tile-overlay"></div>
+          <div class="room-tile-badge-circle">
+            <span>UP TO</span>
+            <strong>30%</strong>
+            <span>OFF</span>
+          </div>
+          <div class="room-tile-collapsed-label">Staircase &amp; Entryway</div>
+          <div class="room-tile-expanded-content">
+            <span class="room-tile-tag">Curated Pick</span>
+            <h3 class="room-tile-heading">Staircase &amp; Entryway</h3>
+            <a href="#bestsellers" class="btn room-tile-btn">Shop &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 6. Vanity & Bathroom -->
+        <div class="room-tile" data-room="vanity" role="tab" aria-selected="false" aria-controls="panel-vanity" tabindex="0">
+          <img src="assets/Il_WL_006_03_Wide_Use_Case.jpg" alt="Curated Lighting for Vanity and Bathroom" class="room-tile-bg" loading="lazy" width="900" height="600">
+          <div class="room-tile-overlay"></div>
+          <div class="room-tile-badge-circle">
+            <span>UP TO</span>
+            <strong>30%</strong>
+            <span>OFF</span>
+          </div>
+          <div class="room-tile-collapsed-label">Vanity &amp; Bathroom</div>
+          <div class="room-tile-expanded-content">
+            <span class="room-tile-tag">Curated Pick</span>
+            <h3 class="room-tile-heading">Vanity &amp; Bathroom</h3>
+            <a href="#bestsellers" class="btn room-tile-btn">Shop &rarr;</a>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Showcase Stage: 3. Double-Height Foyer -->
-      <div class="spatial-showcase-stage" id="room-foyer" style="display: none;">
-        <div class="spatial-visual-frame">
-          <img 
-            src="assets/Il_CH_015_03_Wide_Use_Case.jpg" 
-            alt="Double-Height Foyer Setting" 
-            class="spatial-visual-img"
-            width="1200"
-            height="800"
-            loading="lazy"
-          >
-        </div>
-        <div class="spatial-info-panel">
-          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 03</span>
-          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Double-Height Foyer</h3>
-          <p class="spatial-description">
-            The entryway establishes your residence’s first impression. Double-height spaces command vertical scale and multi-tiered illumination that commands attention from both floor levels.
-          </p>
+      <!-- Synchronized Bottom Products Showcase Container -->
+      <div class="curated-room-showcase-container" style="margin-top: 50px;">
+        
+        <!-- Panel 1: Bedroom -->
+        <div class="room-showcase-panel is-active" id="panel-bedroom" data-room-panel="bedroom" role="tabpanel">
+          <div class="room-showcase-grid">
+            <div class="room-editorial-col">
+              <h3 class="room-editorial-title">Shop the Bedroom</h3>
+              <p class="room-editorial-desc">
+                Soft, low light for winding down &mdash; thoughtful fixtures engineered for restful rooms and warm evening ambiance.
+              </p>
+              <div class="room-pills-filter">
+                <a href="#bestsellers" class="room-sub-pill">Crystal Chandeliers</a>
+                <a href="#bestsellers" class="room-sub-pill">Bedside Pendants</a>
+                <a href="#bestsellers" class="room-sub-pill">Reading Sconces</a>
+              </div>
+              <a href="#bestsellers" class="room-explore-link">
+                <span>Shop Bedroom Fixtures</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
 
-          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Drop: 2.5m–4.5m Adjustable</span>
-            <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Atrium Scale</span>
-          </div>
+            <div class="room-products-grid">
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_005_01_White_Background.jpg" alt="Champagne Crystal Halo Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_005 &bull; Bedroom</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Champagne Crystal Halo Chandelier</a></h4>
+                  <div class="room-product-price">₹14,500.00</div>
+                </div>
+              </div>
 
-          <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
-            Curated Fixtures for this Room:
-          </div>
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_PL_001_01_White_Background.jpg" alt="Amber Bowl Bedside Pendant" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_PL_001 &bull; Bedroom</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Amber Bowl Bedside Pendant</a></h4>
+                  <div class="room-product-price">₹4,000.00</div>
+                </div>
+              </div>
 
-          <div class="spatial-recommendations-list">
-            <div class="spatial-rec-item">
-              <img src="assets/Il_CH_015_01_White_Background.jpg" alt="Two-Tier Gold Ring Chandelier" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Two-Tier Gold Ring Chandelier</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹16,700 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_015</span></div>
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_WL_004_01_White_Background.jpg" alt="Warm Halo Bedside Sconce" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_WL_004 &bull; Bedroom</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Warm Halo Bedside Sconce</a></h4>
+                  <div class="room-product-price">₹3,000.00</div>
+                </div>
               </div>
             </div>
-            <div class="spatial-rec-item">
-              <img src="assets/Il_WL_010_01_White_Background.jpg" alt="Crystal Halo Wall Light" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Crystal Halo Wall Sconce</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,700 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_010</span></div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Dining Room -->
+        <div class="room-showcase-panel" id="panel-dining" data-room-panel="dining" role="tabpanel">
+          <div class="room-showcase-grid">
+            <div class="room-editorial-col">
+              <h3 class="room-editorial-title">Shop the Dining Room</h3>
+              <p class="room-editorial-desc">
+                Statement centerpiece illumination engineered for glare-free dining intimacy, crystal shimmer, and hospitality entertaining.
+              </p>
+              <div class="room-pills-filter">
+                <a href="#bestsellers" class="room-sub-pill">Linear Chandeliers</a>
+                <a href="#bestsellers" class="room-sub-pill">Crystal Cascades</a>
+                <a href="#bestsellers" class="room-sub-pill">Low-Glare Pendants</a>
+              </div>
+              <a href="#bestsellers" class="room-explore-link">
+                <span>Shop Dining Fixtures</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            <div class="room-products-grid">
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_002_01_White_Background.jpg" alt="Faceted Crystal Halo Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_002 &bull; Dining</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Faceted Crystal Halo Chandelier</a></h4>
+                  <div class="room-product-price">₹7,500.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_PL_002_01_White_Background.jpg" alt="Golden Petal Dining Pendant" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_PL_002 &bull; Dining</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Golden Petal Dining Pendant</a></h4>
+                  <div class="room-product-price">₹3,500.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_018_01_Source_Reference.jpg" alt="Suspended Tiered Crystal Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_018 &bull; Dining</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Suspended Tiered Crystal Chandelier</a></h4>
+                  <div class="room-product-price">₹15,400.00</div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div style="margin-top: 24px;">
-            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-              Explore Foyer & Atrium Chandeliers
-            </a>
+        <!-- Panel 3: Living Room -->
+        <div class="room-showcase-panel" id="panel-living" data-room-panel="living" role="tabpanel">
+          <div class="room-showcase-grid">
+            <div class="room-editorial-col">
+              <h3 class="room-editorial-title">Shop the Living Room</h3>
+              <p class="room-editorial-desc">
+                Multi-layered ambient illumination for expansive salons, soaring ceilings, and relaxed social evenings with layered sconces.
+              </p>
+              <div class="room-pills-filter">
+                <a href="#bestsellers" class="room-sub-pill">Grand Chandeliers</a>
+                <a href="#bestsellers" class="room-sub-pill">Perimeter Sconces</a>
+                <a href="#bestsellers" class="room-sub-pill">Royal Multitier</a>
+              </div>
+              <a href="#bestsellers" class="room-explore-link">
+                <span>Shop Living Room Fixtures</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            <div class="room-products-grid">
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_001_01_White_Background.jpg" alt="Scroll-Arm Crystal Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_001 &bull; Living Room</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Scroll-Arm Crystal Chandelier</a></h4>
+                  <div class="room-product-price">₹6,000.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_WL_006_01_White_Background.jpg" alt="Twin Crystal Disc Wall Light" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_WL_006 &bull; Living Room</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Twin Crystal Disc Wall Light</a></h4>
+                  <div class="room-product-price">₹3,000.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_015_01_White_Background.jpg" alt="Multi-Tier Royal Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_015 &bull; Living Room</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Multi-Tier Royal Chandelier</a></h4>
+                  <div class="room-product-price">₹16,700.00</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Panel 4: Kitchen Island -->
+        <div class="room-showcase-panel" id="panel-kitchen" data-room-panel="kitchen" role="tabpanel">
+          <div class="room-showcase-grid">
+            <div class="room-editorial-col">
+              <h3 class="room-editorial-title">Shop Kitchen Island</h3>
+              <p class="room-editorial-desc">
+                Focused task brilliance with sculptural silhouettes positioned cleanly above marble islands and breakfast counters.
+              </p>
+              <div class="room-pills-filter">
+                <a href="#bestsellers" class="room-sub-pill">Linear Island Pendants</a>
+                <a href="#bestsellers" class="room-sub-pill">Smoked Glass Globes</a>
+                <a href="#bestsellers" class="room-sub-pill">Halo Fixtures</a>
+              </div>
+              <a href="#bestsellers" class="room-explore-link">
+                <span>Shop Kitchen Pendants</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            <div class="room-products-grid">
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_PL_003_01_White_Background.jpg" alt="Smoked Glass Island Pendant" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_PL_003 &bull; Kitchen</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Smoked Glass Island Pendant</a></h4>
+                  <div class="room-product-price">₹4,200.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_PL_005_01_White_Background.jpg" alt="Modern Brass Ring Pendant" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_PL_005 &bull; Kitchen</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Modern Brass Ring Pendant</a></h4>
+                  <div class="room-product-price">₹5,200.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_010_01_White_Background.jpg" alt="Architectural Ring Island Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_010 &bull; Kitchen</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Architectural Ring Island Chandelier</a></h4>
+                  <div class="room-product-price">₹11,500.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 5: Staircase & Entryway -->
+        <div class="room-showcase-panel" id="panel-staircase" data-room-panel="staircase" role="tabpanel">
+          <div class="room-showcase-grid">
+            <div class="room-editorial-col">
+              <h3 class="room-editorial-title">Shop Staircase &amp; Foyer</h3>
+              <p class="room-editorial-desc">
+                Vertical cascading grandeur designed to make unforgettable first impressions across double-height ceilings and duplex foyers.
+              </p>
+              <div class="room-pills-filter">
+                <a href="#bestsellers" class="room-sub-pill">Double-Height Cascades</a>
+                <a href="#bestsellers" class="room-sub-pill">Duplex Spiral Fixtures</a>
+                <a href="#bestsellers" class="room-sub-pill">Optical Crystal Halo</a>
+              </div>
+              <a href="#bestsellers" class="room-explore-link">
+                <span>Shop Staircase Cascades</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            <div class="room-products-grid">
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_012_01_White_Background.jpg" alt="Double-Height Waterfall Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_012 &bull; Foyer</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Double-Height Waterfall Chandelier</a></h4>
+                  <div class="room-product-price">₹28,500.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_048_01_Source_Reference.jpg" alt="Gold Crystal Cascade Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_048 &bull; Foyer</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Gold Crystal Cascade Chandelier</a></h4>
+                  <div class="room-product-price">₹14,500.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_CH_016_01_White_Background.jpg" alt="Grand Cascade Duplex Chandelier" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_CH_016 &bull; Foyer</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Grand Cascade Duplex Chandelier</a></h4>
+                  <div class="room-product-price">₹18,200.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 6: Vanity & Bathroom -->
+        <div class="room-showcase-panel" id="panel-vanity" data-room-panel="vanity" role="tabpanel">
+          <div class="room-showcase-grid">
+            <div class="room-editorial-col">
+              <h3 class="room-editorial-title">Shop Vanity &amp; Powder Room</h3>
+              <p class="room-editorial-desc">
+                Flattering, shadow-free illumination paired with high CRI optical clarity for powder rooms and master ensuites.
+              </p>
+              <div class="room-pills-filter">
+                <a href="#bestsellers" class="room-sub-pill">Mirror Sconces</a>
+                <a href="#bestsellers" class="room-sub-pill">Linear Vanity Bars</a>
+                <a href="#bestsellers" class="room-sub-pill">High-CRI Warm Sconces</a>
+              </div>
+              <a href="#bestsellers" class="room-explore-link">
+                <span>Shop Vanity Sconces</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            <div class="room-products-grid">
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_WL_001_01_White_Background.jpg" alt="Fluted Glass Vanity Sconce" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_WL_001 &bull; Vanity</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Fluted Glass Vanity Sconce</a></h4>
+                  <div class="room-product-price">₹1,800.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_WL_002_01_White_Background.jpg" alt="Dual Glow Brass Wall Sconce" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_WL_002 &bull; Vanity</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Dual Glow Brass Wall Sconce</a></h4>
+                  <div class="room-product-price">₹2,200.00</div>
+                </div>
+              </div>
+
+              <div class="room-product-card">
+                <div class="room-product-media">
+                  <a href="#interactive-pdp">
+                    <img src="assets/Il_WL_010_01_White_Background.jpg" alt="Architectural Slim Bathroom Sconce" width="400" height="400" loading="lazy">
+                  </a>
+                  <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                </div>
+                <div class="room-product-info">
+                  <div class="room-product-sku">SKU Il_WL_010 &bull; Vanity</div>
+                  <h4 class="room-product-name"><a href="#interactive-pdp">Architectural Slim Bathroom Sconce</a></h4>
+                  <div class="room-product-price">₹3,700.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Showcase Stage: 4. Kitchen Island -->
-      <div class="spatial-showcase-stage" id="room-kitchen" style="display: none;">
-        <div class="spatial-visual-frame">
-          <img 
-            src="assets/Il_PL_001_03_Wide_Use_Case.jpg" 
-            alt="Kitchen Island Architectural Setting" 
-            class="spatial-visual-img"
-            width="1200"
-            height="800"
-            loading="lazy"
-          >
-        </div>
-        <div class="spatial-info-panel">
-          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 04</span>
-          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Kitchen Island &amp; Bar</h3>
-          <p class="spatial-description">
-            Combine downward focused task lighting on the countertop with warm translucent glass refraction to maintain an inviting social kitchen island ambiance.
-          </p>
-
-          <div class="spatial-recommendations-list">
-            <div class="spatial-rec-item">
-              <img src="assets/Il_PL_001_01_White_Background.jpg" alt="Amber Bowl Pendant" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Amber Bowl Suspension Pendant</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹4,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_PL_001</span></div>
-              </div>
-            </div>
-            <div class="spatial-rec-item">
-              <img src="assets/Il_WL_004_01_White_Background.jpg" alt="Slim Gold Wall Bar" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Slim Gold Wall Bar Sconce</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹3,000 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_004</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: 24px;">
-            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-              Explore Island Pendants
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Showcase Stage: 5. Master Suite -->
-      <div class="spatial-showcase-stage" id="room-bedroom" style="display: none;">
-        <div class="spatial-visual-frame">
-          <img 
-            src="assets/Il_CL_001_03_Wide_Use_Case.jpg" 
-            alt="Master Suite Architectural Setting" 
-            class="spatial-visual-img"
-            width="1200"
-            height="800"
-            loading="lazy"
-          >
-        </div>
-        <div class="spatial-info-panel">
-          <span class="eyebrow" style="color: var(--color-primary);">Room Concept 05</span>
-          <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Master Bedroom Suite</h3>
-          <p class="spatial-description">
-            A calm sanctuary where lighting must be soothing, indirect, and fully dimmable. Flush crystal ceiling luminaires paired with dual bedside wall sconces create hotel-suite serenity.
-          </p>
-
-          <div class="spatial-recommendations-list">
-            <div class="spatial-rec-item">
-              <img src="assets/Il_CL_001_01_White_Background.jpg" alt="Flush Crystal Fixture" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Flush Crystal Ambient Luminaire</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹1,700 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CL_001</span></div>
-              </div>
-            </div>
-            <div class="spatial-rec-item">
-              <img src="assets/Il_WL_012_01_White_Background.jpg" alt="Smoked Cup Sconce" class="spatial-rec-thumb" width="60" height="60">
-              <div>
-                <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">Smoked Glass Bedside Sconce</div>
-                <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">₹1,800 &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_001</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: 24px;">
-            <a href="#bestsellers" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-              Explore Master Suite Curation
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5b. Signature Curations (Featured Design Collections) -->
-  <section class="section curations-section" id="curations" style="padding: 95px 0; background-color: var(--color-white);">
-    <div class="container">
-      <div class="text-center" style="max-width: 720px; margin: 0 auto 48px;">
-        <span class="eyebrow">Signature Curations</span>
-        <h2 class="section-title">Featured Design Collections</h2>
-        <p class="section-subtitle">Exquisite design aesthetics translated across unified lighting suites for coherent architectural styling.</p>
-      </div>
-
-      <div class="curations-grid">
-        <!-- 1. Statement Chandeliers -->
-        <a href="#bestsellers" class="category-card">
-          <img 
-            src="assets/Il_CH_002_02_Use_Case.jpg" 
-            alt="Statement Chandeliers Collection" 
-            class="category-card-img"
-            width="1200"
-            height="1200"
-            loading="lazy"
-          >
-          <div class="category-card-overlay"></div>
-          <div class="category-card-info">
-            <span class="category-card-badge">2026 Haute Collection</span>
-            <h3 class="category-card-title">Statement Chandeliers</h3>
-            <p class="category-card-desc">Sculptural gold starbursts, floral brass, and organic fluted glass centerpieces.</p>
-            <span class="category-card-btn">
-              Explore Collection
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </span>
-          </div>
-        </a>
-
-        <!-- 2. Crystal Chandeliers -->
-        <a href="#bestsellers" class="category-card">
-          <img 
-            src="assets/Il_CH_005_02_Use_Case.jpg" 
-            alt="Crystal Chandeliers Collection" 
-            class="category-card-img"
-            width="1200"
-            height="1200"
-            loading="lazy"
-          >
-          <div class="category-card-overlay"></div>
-          <div class="category-card-info">
-            <span class="category-card-badge">K9 Prismatic Refraction</span>
-            <h3 class="category-card-title">Crystal Masterpieces</h3>
-            <p class="category-card-desc">Halo rings, interlocking crystal loops, and multi-tier double-height foyer luminaires.</p>
-            <span class="category-card-btn">
-              Explore Collection
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </span>
-          </div>
-        </a>
-
-        <!-- 3. Modern Pendant Sets -->
-        <a href="#bestsellers" class="category-card">
-          <img 
-            src="assets/Il_PL_001_02_Use_Case.jpg" 
-            alt="Modern Pendant Sets Collection" 
-            class="category-card-img"
-            width="1200"
-            height="1200"
-            loading="lazy"
-          >
-          <div class="category-card-overlay"></div>
-          <div class="category-card-info">
-            <span class="category-card-badge">Minimal &amp; Suspended</span>
-            <h3 class="category-card-title">Modern Pendant Sets</h3>
-            <p class="category-card-desc">Linear dining fixtures, mouth-blown amber glass drops, and kitchen island pendants.</p>
-            <span class="category-card-btn">
-              Explore Collection
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </span>
-          </div>
-        </a>
-      </div>
     </div>
   </section>
 

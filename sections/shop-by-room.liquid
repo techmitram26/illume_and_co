@@ -1,353 +1,716 @@
-{%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
-{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
-  {%- assign chandeliers_url = collections['chandeliers'].url -%}
-{%- endif -%}
+{%- comment -%}
+  Illume & Co / Ambika Lights - "Curated for the Room" Expanding Spatial Showcase
+  - 6 horizontal expanding room tiles with interactive hover & click extension
+  - Real-time synchronized bottom product showcase with room-specific narrative & curated fixtures
+  - Indian Rupee currency format (₹)
+{%- endcomment -%}
 
-{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
-{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
-  {%- assign pendants_url = collections['pendants'].url -%}
-{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
-  {%- assign pendants_url = collections['pendant-lights'].url -%}
-{%- endif -%}
+{%- assign all_spaces_url = section.settings.all_spaces_link | default: routes.all_products_collection_url -%}
 
-{%- assign wall_lights_url = '/collections/all?filter.p.product_type=Wall+Lights' -%}
-{%- if collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
-  {%- assign wall_lights_url = collections['wall-lights'].url -%}
-{%- elsif collections['wall-lights-sconces'] != blank and collections['wall-lights-sconces'].url != blank -%}
-  {%- assign wall_lights_url = collections['wall-lights-sconces'].url -%}
-{%- endif -%}
-
-<section class="section spatial-lookbook-section" id="rooms" style="padding: 95px 0; background-color: var(--color-surface-tint);">
+<section class="section curated-room-section" id="curated-rooms" style="background-color: #0E0D0C; color: #FFFFFF; padding: 90px 0; overflow: hidden;">
   <div class="container">
-    <div class="text-center" style="max-width: 720px; margin: 0 auto 40px;">
-      <span class="eyebrow">{{ section.settings.eyebrow | default: 'Spatial Architecture' }}</span>
-      <h2 class="section-title">{{ section.settings.title | default: 'Shop by Space & Room' }}</h2>
-      <p class="section-subtitle">Every space commands a distinct scale, lumen density, and color temperature. Explore our curated architectural installations.</p>
-    </div>
-
-    <!-- Spatial Room Selector Pills -->
-    <div class="spatial-pills-nav" role="tablist">
-      <button type="button" class="spatial-pill active" data-room-target="living-room">Grand Living Room</button>
-      <button type="button" class="spatial-pill" data-room-target="dining-room">Dining Gallery</button>
-      <button type="button" class="spatial-pill" data-room-target="foyer">Double-Height Foyer</button>
-      <button type="button" class="spatial-pill" data-room-target="kitchen">Kitchen Island</button>
-      <button type="button" class="spatial-pill" data-room-target="bedroom">Master Suite</button>
-    </div>
-
-    <!-- Showcase Stage: 1. Grand Living Room -->
-    <div class="spatial-showcase-stage" id="room-living-room">
-      <div class="spatial-visual-frame">
-        <img 
-          src="{{ 'Il_CH_001_03_Wide_Use_Case.jpg' | asset_url }}" 
-          alt="Grand Living Room Architectural Setting" 
-          class="spatial-visual-img"
-          width="1200"
-          height="800"
-          loading="lazy"
-        >
-      </div>
-      <div class="spatial-info-panel">
-        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 01</span>
-        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Grand Living Salon</h3>
-        <p class="spatial-description">
-          The living room requires a multi-layered lighting plan combining a central heroic chandelier with perimeter wall sconces for dramatic evening warmth and zero glare.
+    
+    <!-- Section Header -->
+    <div class="curated-room-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span class="curated-room-eyebrow" style="display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #C5A880; margin-bottom: 10px;">
+          {{ section.settings.eyebrow | default: '✦ Shop by Space — Curated Collections' }}
+        </span>
+        <h2 class="curated-room-title" style="font-family: var(--font-serif, 'Playfair Display', Georgia, serif); font-size: clamp(32px, 4.5vw, 48px); font-weight: 400; color: #FFFFFF; margin: 0 0 10px; line-height: 1.15; letter-spacing: -0.01em;">
+          {{ section.settings.title | default: 'Curated for the Room' }}
+        </h2>
+        <p class="curated-room-subtitle" style="font-size: 14.5px; color: #A8A196; margin: 0; max-width: 620px; line-height: 1.6;">
+          {{ section.settings.subtitle | default: 'Six spaces where light matters most — from bedside intimacy to entryway impressions.' }}
         </p>
+      </div>
 
-        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 2700K–3000K Warm</span>
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Target: 250–350 Lux</span>
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">High Ceiling 11ft+</span>
-        </div>
-
-        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
-          Curated Fixtures for this Room:
-        </div>
-
-        <div class="spatial-recommendations-list">
-          {%- assign r1_p1 = all_products['scroll-arm-crystal-chandelier-il_ch_001'] -%}
-          {%- assign r1_p2 = all_products['twin-crystal-disc-wall-light-il_wl_006'] -%}
-          {%- assign r1_fb1 = 'Il_CH_001_01_White_Background.jpg' | asset_url -%}
-          {%- assign r1_fb2 = 'Il_WL_006_01_White_Background.jpg' | asset_url -%}
-          <a href="{{ r1_p1.url | default: '/products/scroll-arm-crystal-chandelier-il_ch_001' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r1_p1.featured_image | image_url: width: 120 | default: r1_fb1 }}" alt="Scroll-Arm Chandelier" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r1_p1.title | default: 'Scroll-Arm Crystal Chandelier' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r1_p1.price | money | default: '₹6,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_001</span></div>
-            </div>
-          </a>
-          <a href="{{ r1_p2.url | default: '/products/twin-crystal-disc-wall-light-il_wl_006' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r1_p2.featured_image | image_url: width: 120 | default: r1_fb2 }}" alt="Twin Crystal Disc Sconce" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r1_p2.title | default: 'Twin Crystal Disc Wall Light' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r1_p2.price | money | default: '₹3,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_006</span></div>
-            </div>
-          </a>
-        </div>
-
-        <div style="margin-top: 24px;">
-          <a href="{{ chandeliers_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-            Explore Living Room Chandeliers
-          </a>
-        </div>
+      <div>
+        <a href="{{ all_spaces_url }}" class="curated-room-all-link" style="color: #FFFFFF; font-size: 13.5px; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 4px; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s ease, color 0.2s ease;">
+          <span>{{ section.settings.all_spaces_text | default: 'Shop all spaces' }}</span>
+          <span style="font-size: 14px;">&#8599;</span>
+        </a>
       </div>
     </div>
 
-    <!-- Showcase Stage: 2. Dining Gallery -->
-    <div class="spatial-showcase-stage" id="room-dining-room" style="display: none;">
-      <div class="spatial-visual-frame">
+    <!-- 6 Expanding Horizontal Accordion Tiles -->
+    <div class="curated-room-tiles-strip" role="tablist" aria-label="Curated Room Collections">
+      
+      <!-- 1. Bedroom (Default Active) -->
+      <div 
+        class="room-tile is-active" 
+        data-room="bedroom"
+        role="tab"
+        aria-selected="true"
+        aria-controls="panel-bedroom"
+        tabindex="0"
+      >
+        <img 
+          src="{{ 'Il_CH_005_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Curated Lighting for Bedroom" 
+          class="room-tile-bg"
+          loading="lazy"
+          width="900"
+          height="600"
+        >
+        <div class="room-tile-overlay"></div>
+        <div class="room-tile-badge-circle">
+          <span>UP TO</span>
+          <strong>30%</strong>
+          <span>OFF</span>
+        </div>
+
+        <!-- Collapsed vertical title -->
+        <div class="room-tile-collapsed-label">Bedroom</div>
+
+        <!-- Expanded content overlay -->
+        <div class="room-tile-expanded-content">
+          <span class="room-tile-tag">Curated Pick</span>
+          <h3 class="room-tile-heading">Bedroom</h3>
+          <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="btn room-tile-btn">Shop &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 2. Dining Room -->
+      <div 
+        class="room-tile" 
+        data-room="dining"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-dining"
+        tabindex="0"
+      >
         <img 
           src="{{ 'Il_CH_002_03_Wide_Use_Case.jpg' | asset_url }}" 
-          alt="Dining Gallery Architectural Setting" 
-          class="spatial-visual-img"
-          width="1200"
-          height="800"
+          alt="Curated Lighting for Dining Room" 
+          class="room-tile-bg"
           loading="lazy"
+          width="900"
+          height="600"
         >
-      </div>
-      <div class="spatial-info-panel">
-        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 02</span>
-        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Dining Gallery</h3>
-        <p class="spatial-description">
-          Dining illumination should suspend 30–36 inches above the table surface, casting an inviting warm glow across dinnerware while preserving face-to-face sightlines.
-        </p>
-
-        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CCT: 3000K Warm White</span>
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">CRI: 95+ True Food Hue</span>
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Dimmable Driver</span>
+        <div class="room-tile-overlay"></div>
+        <div class="room-tile-badge-circle">
+          <span>UP TO</span>
+          <strong>30%</strong>
+          <span>OFF</span>
         </div>
 
-        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
-          Curated Fixtures for this Room:
-        </div>
+        <div class="room-tile-collapsed-label">Dining Room</div>
 
-        <div class="spatial-recommendations-list">
-          {%- assign r2_p1 = all_products['gold-petal-chandelier-il_ch_002'] -%}
-          {%- assign r2_p2 = all_products['amber-bowl-pendant-il_pl_001'] -%}
-          {%- assign r2_fb1 = 'Il_CH_002_01_White_Background.jpg' | asset_url -%}
-          {%- assign r2_fb2 = 'Il_PL_001_01_White_Background.jpg' | asset_url -%}
-          <a href="{{ r2_p1.url | default: '/products/gold-petal-chandelier-il_ch_002' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r2_p1.featured_image | image_url: width: 120 | default: r2_fb1 }}" alt="Gold Petal Chandelier" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r2_p1.title | default: 'Gold Petal Chandelier' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r2_p1.price | money | default: '₹7,500' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_002</span></div>
-            </div>
-          </a>
-          <a href="{{ r2_p2.url | default: '/products/amber-bowl-pendant-il_pl_001' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r2_p2.featured_image | image_url: width: 120 | default: r2_fb2 }}" alt="Amber Bowl Pendant" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r2_p2.title | default: 'Amber Bowl Suspension Pendant' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r2_p2.price | money | default: '₹4,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_PL_001</span></div>
-            </div>
-          </a>
-        </div>
-
-        <div style="margin-top: 24px;">
-          <a href="{{ pendants_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-            Explore Dining Fixtures &amp; Pendants
-          </a>
+        <div class="room-tile-expanded-content">
+          <span class="room-tile-tag">Curated Pick</span>
+          <h3 class="room-tile-heading">Dining Room</h3>
+          <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
-    </div>
 
-    <!-- Showcase Stage: 3. Double-Height Foyer -->
-    <div class="spatial-showcase-stage" id="room-foyer" style="display: none;">
-      <div class="spatial-visual-frame">
+      <!-- 3. Living Room -->
+      <div 
+        class="room-tile" 
+        data-room="living"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-living"
+        tabindex="0"
+      >
         <img 
-          src="{{ 'Il_CH_015_03_Wide_Use_Case.jpg' | asset_url }}" 
-          alt="Double-Height Foyer Setting" 
-          class="spatial-visual-img"
-          width="1200"
-          height="800"
+          src="{{ 'Il_CH_001_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Curated Lighting for Living Room" 
+          class="room-tile-bg"
           loading="lazy"
+          width="900"
+          height="600"
         >
-      </div>
-      <div class="spatial-info-panel">
-        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 03</span>
-        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Double-Height Foyer</h3>
-        <p class="spatial-description">
-          The entryway establishes your residence’s first impression. Double-height spaces command vertical scale and multi-tiered illumination that commands attention from both floor levels.
-        </p>
-
-        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Drop: 2.5m–4.5m Adjustable</span>
-          <span style="font-size: 11px; font-weight: 600; background: #EFE9DE; padding: 4px 10px; border-radius: 4px; color: #4A453E;">Atrium Scale</span>
+        <div class="room-tile-overlay"></div>
+        <div class="room-tile-badge-circle">
+          <span>UP TO</span>
+          <strong>30%</strong>
+          <span>OFF</span>
         </div>
 
-        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); margin-bottom: 14px;">
-          Curated Fixtures for this Room:
-        </div>
+        <div class="room-tile-collapsed-label">Living Room</div>
 
-        <div class="spatial-recommendations-list">
-          {%- assign r3_p1 = all_products['two-tier-gold-ring-chandelier-il_ch_015'] -%}
-          {%- assign r3_p2 = all_products['crystal-halo-wall-light-il_wl_010'] -%}
-          {%- assign r3_fb1 = 'Il_CH_015_01_White_Background.jpg' | asset_url -%}
-          {%- assign r3_fb2 = 'Il_WL_010_01_White_Background.jpg' | asset_url -%}
-          <a href="{{ r3_p1.url | default: '/products/two-tier-gold-ring-chandelier-il_ch_015' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r3_p1.featured_image | image_url: width: 120 | default: r3_fb1 }}" alt="Two-Tier Gold Ring Chandelier" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r3_p1.title | default: 'Two-Tier Gold Ring Chandelier' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r3_p1.price | money | default: '₹16,700' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CH_015</span></div>
-            </div>
-          </a>
-          <a href="{{ r3_p2.url | default: '/products/crystal-halo-wall-light-il_wl_010' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r3_p2.featured_image | image_url: width: 120 | default: r3_fb2 }}" alt="Crystal Halo Wall Sconce" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r3_p2.title | default: 'Crystal Halo Wall Light' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r3_p2.price | money | default: '₹3,700' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_010</span></div>
-            </div>
-          </a>
-        </div>
-
-        <div style="margin-top: 24px;">
-          <a href="{{ chandeliers_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-            Explore Foyer & Atrium Chandeliers
-          </a>
+        <div class="room-tile-expanded-content">
+          <span class="room-tile-tag">Curated Pick</span>
+          <h3 class="room-tile-heading">Living Room</h3>
+          <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
-    </div>
 
-    <!-- Showcase Stage: 4. Kitchen Island -->
-    <div class="spatial-showcase-stage" id="room-kitchen" style="display: none;">
-      <div class="spatial-visual-frame">
+      <!-- 4. Kitchen Island -->
+      <div 
+        class="room-tile" 
+        data-room="kitchen"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-kitchen"
+        tabindex="0"
+      >
         <img 
-          src="{{ 'Il_PL_001_03_Wide_Use_Case.jpg' | asset_url }}" 
-          alt="Kitchen Island Architectural Setting" 
-          class="spatial-visual-img"
-          width="1200"
-          height="800"
+          src="{{ 'Il_PL_001_02_Use_Case.jpg' | asset_url }}" 
+          alt="Curated Lighting for Kitchen Island" 
+          class="room-tile-bg"
           loading="lazy"
+          width="900"
+          height="600"
         >
-      </div>
-      <div class="spatial-info-panel">
-        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 04</span>
-        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Kitchen Island & Bar</h3>
-        <p class="spatial-description">
-          Combine downward focused task lighting on the countertop with warm translucent glass refraction to maintain an inviting social kitchen island ambiance.
-        </p>
-
-        <div class="spatial-recommendations-list">
-          {%- assign r4_p1 = all_products['glass-lantern-pendant-il_pl_002'] -%}
-          {%- assign r4_p2 = all_products['slim-gold-wall-bar-il_wl_004'] -%}
-          {%- assign r4_fb1 = 'Il_PL_002_01_White_Background.jpg' | asset_url -%}
-          {%- assign r4_fb2 = 'Il_WL_004_01_White_Background.jpg' | asset_url -%}
-          <a href="{{ r4_p1.url | default: '/products/glass-lantern-pendant-il_pl_002' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r4_p1.featured_image | image_url: width: 120 | default: r4_fb1 }}" alt="Glass Lantern Pendant" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r4_p1.title | default: 'Glass Lantern Pendant' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r4_p1.price | money | default: '₹3,500' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_PL_002</span></div>
-            </div>
-          </a>
-          <a href="{{ r4_p2.url | default: '/products/slim-gold-wall-bar-il_wl_004' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r4_p2.featured_image | image_url: width: 120 | default: r4_fb2 }}" alt="Slim Gold Wall Bar" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r4_p2.title | default: 'Slim Gold Wall Bar Sconce' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r4_p2.price | money | default: '₹3,000' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_004</span></div>
-            </div>
-          </a>
+        <div class="room-tile-overlay"></div>
+        <div class="room-tile-badge-circle">
+          <span>UP TO</span>
+          <strong>30%</strong>
+          <span>OFF</span>
         </div>
 
-        <div style="margin-top: 24px;">
-          <a href="{{ pendants_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-            Explore Island Pendants
-          </a>
+        <div class="room-tile-collapsed-label">Kitchen Island</div>
+
+        <div class="room-tile-expanded-content">
+          <span class="room-tile-tag">Curated Pick</span>
+          <h3 class="room-tile-heading">Kitchen Island</h3>
+          <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
-    </div>
 
-    <!-- Showcase Stage: 5. Master Suite -->
-    <div class="spatial-showcase-stage" id="room-bedroom" style="display: none;">
-      <div class="spatial-visual-frame">
+      <!-- 5. Staircase & Entryway -->
+      <div 
+        class="room-tile" 
+        data-room="staircase"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-staircase"
+        tabindex="0"
+      >
         <img 
-          src="{{ 'Il_CL_001_03_Wide_Use_Case.jpg' | asset_url }}" 
-          alt="Master Suite Architectural Setting" 
-          class="spatial-visual-img"
-          width="1200"
-          height="800"
+          src="{{ 'Il_CH_012_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Curated Lighting for Staircase and Entryway" 
+          class="room-tile-bg"
           loading="lazy"
+          width="900"
+          height="600"
         >
-      </div>
-      <div class="spatial-info-panel">
-        <span class="eyebrow" style="color: var(--color-primary);">Room Concept 05</span>
-        <h3 style="font-family: var(--font-serif); font-size: 30px; margin-bottom: 12px; color: var(--color-ink);">Master Bedroom Suite</h3>
-        <p class="spatial-description">
-          A calm sanctuary where lighting must be soothing, indirect, and fully dimmable. Flush crystal ceiling luminaires paired with dual bedside wall sconces create hotel-suite serenity.
-        </p>
-
-        <div class="spatial-recommendations-list">
-          {%- assign r5_p1 = all_products['wood-tone-disc-ceiling-light-il_cl_001'] -%}
-          {%- assign r5_p2 = all_products['medallion-bar-wall-light-il_wl_001'] -%}
-          {%- assign r5_fb1 = 'Il_CL_001_01_White_Background.jpg' | asset_url -%}
-          {%- assign r5_fb2 = 'Il_WL_001_01_White_Background.jpg' | asset_url -%}
-          <a href="{{ r5_p1.url | default: '/products/wood-tone-disc-ceiling-light-il_cl_001' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r5_p1.featured_image | image_url: width: 120 | default: r5_fb1 }}" alt="Wood-Tone Disc Ceiling Light" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r5_p1.title | default: 'Wood-Tone Disc Ceiling Light' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r5_p1.price | money | default: '₹1,700' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_CL_001</span></div>
-            </div>
-          </a>
-          <a href="{{ r5_p2.url | default: '/products/medallion-bar-wall-light-il_wl_001' }}" class="spatial-rec-item" style="text-decoration: none;">
-            <img src="{{ r5_p2.featured_image | image_url: width: 120 | default: r5_fb2 }}" alt="Medallion Bar Wall Light" class="spatial-rec-thumb" width="60" height="60">
-            <div>
-              <div style="font-weight: 600; font-size: 13px; color: var(--color-ink);">{{ r5_p2.title | default: 'Medallion Bar Wall Light' }}</div>
-              <div style="font-size: 12px; color: var(--color-primary-hover); font-weight: 600;">{{ r5_p2.price | money | default: '₹1,800' }} &bull; <span style="color: var(--color-muted); font-weight: normal;">SKU Il_WL_001</span></div>
-            </div>
-          </a>
+        <div class="room-tile-overlay"></div>
+        <div class="room-tile-badge-circle">
+          <span>UP TO</span>
+          <strong>30%</strong>
+          <span>OFF</span>
         </div>
 
-        <div style="margin-top: 24px;">
-          <a href="{{ wall_lights_url }}" class="btn btn-outline-gold" style="width: 100%; text-align: center;">
-            Explore Bedroom Wall Lights
-          </a>
+        <div class="room-tile-collapsed-label">Staircase &amp; Entryway</div>
+
+        <div class="room-tile-expanded-content">
+          <span class="room-tile-tag">Curated Pick</span>
+          <h3 class="room-tile-heading">Staircase &amp; Entryway</h3>
+          <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="btn room-tile-btn">Shop &rarr;</a>
         </div>
       </div>
+
+      <!-- 6. Vanity & Bathroom -->
+      <div 
+        class="room-tile" 
+        data-room="vanity"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-vanity"
+        tabindex="0"
+      >
+        <img 
+          src="{{ 'Il_WL_006_03_Wide_Use_Case.jpg' | asset_url }}" 
+          alt="Curated Lighting for Vanity and Bathroom" 
+          class="room-tile-bg"
+          loading="lazy"
+          width="900"
+          height="600"
+        >
+        <div class="room-tile-overlay"></div>
+        <div class="room-tile-badge-circle">
+          <span>UP TO</span>
+          <strong>30%</strong>
+          <span>OFF</span>
+        </div>
+
+        <div class="room-tile-collapsed-label">Vanity &amp; Bathroom</div>
+
+        <div class="room-tile-expanded-content">
+          <span class="room-tile-tag">Curated Pick</span>
+          <h3 class="room-tile-heading">Vanity &amp; Bathroom</h3>
+          <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="btn room-tile-btn">Shop &rarr;</a>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Synchronized Bottom Products Showcase Container -->
+    <div class="curated-room-showcase-container" style="margin-top: 50px;">
+      
+      <!-- Panel 1: Bedroom -->
+      <div class="room-showcase-panel is-active" id="panel-bedroom" data-room-panel="bedroom" role="tabpanel">
+        <div class="room-showcase-grid">
+          <!-- Left Editorial Details -->
+          <div class="room-editorial-col">
+            <h3 class="room-editorial-title">Shop the Bedroom</h3>
+            <p class="room-editorial-desc">
+              Soft, low light for winding down &mdash; thoughtful fixtures engineered for restful rooms and warm evening ambiance.
+            </p>
+            <div class="room-pills-filter">
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Crystal Chandeliers</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Bedside Pendants</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Reading Sconces</a>
+            </div>
+            <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-explore-link">
+              <span>Shop Bedroom Fixtures</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <!-- Right 3 Curated Products -->
+          <div class="room-products-grid">
+            {%- assign b_p1 = all_products['champagne-crystal-halo-chandelier-il_ch_005'] -%}
+            {%- assign b_fb1 = 'Il_CH_005_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ b_p1.url | default: '/products/champagne-crystal-halo-chandelier-il_ch_005' }}">
+                  <img src="{{ b_p1.featured_image | image_url: width: 450 | default: b_fb1 }}" alt="Champagne Crystal Halo Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_005 &bull; Bedroom</div>
+                <h4 class="room-product-name"><a href="{{ b_p1.url | default: '/products/champagne-crystal-halo-chandelier-il_ch_005' }}">{{ b_p1.title | default: 'Champagne Crystal Halo Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ b_p1.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹14,500' }}</div>
+              </div>
+            </div>
+
+            {%- assign b_p2 = all_products['amber-bowl-pendant-il_pl_001'] -%}
+            {%- assign b_fb2 = 'Il_PL_001_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ b_p2.url | default: '/products/amber-bowl-pendant-il_pl_001' }}">
+                  <img src="{{ b_p2.featured_image | image_url: width: 450 | default: b_fb2 }}" alt="Amber Bowl Bedside Pendant" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_PL_001 &bull; Bedroom</div>
+                <h4 class="room-product-name"><a href="{{ b_p2.url | default: '/products/amber-bowl-pendant-il_pl_001' }}">{{ b_p2.title | default: 'Amber Bowl Bedside Pendant' }}</a></h4>
+                <div class="room-product-price">{{ b_p2.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹4,000' }}</div>
+              </div>
+            </div>
+
+            {%- assign b_p3 = all_products['minimalist-wall-sconce-il_wl_004'] -%}
+            {%- assign b_fb3 = 'Il_WL_004_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ b_p3.url | default: '/products/minimalist-wall-sconce-il_wl_004' }}">
+                  <img src="{{ b_p3.featured_image | image_url: width: 450 | default: b_fb3 }}" alt="Warm Halo Bedside Sconce" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_WL_004 &bull; Bedroom</div>
+                <h4 class="room-product-name"><a href="{{ b_p3.url | default: '/products/minimalist-wall-sconce-il_wl_004' }}">{{ b_p3.title | default: 'Warm Halo Bedside Sconce' }}</a></h4>
+                <div class="room-product-price">{{ b_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹3,000' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Dining Room -->
+      <div class="room-showcase-panel" id="panel-dining" data-room-panel="dining" role="tabpanel">
+        <div class="room-showcase-grid">
+          <div class="room-editorial-col">
+            <h3 class="room-editorial-title">Shop the Dining Room</h3>
+            <p class="room-editorial-desc">
+              Statement centerpiece illumination engineered for glare-free dining intimacy, crystal shimmer, and hospitality entertaining.
+            </p>
+            <div class="room-pills-filter">
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Linear Chandeliers</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Crystal Cascades</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Low-Glare Pendants</a>
+            </div>
+            <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-explore-link">
+              <span>Shop Dining Fixtures</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <div class="room-products-grid">
+            {%- assign d_p1 = all_products['faceted-crystal-halo-chandelier-il_ch_002'] -%}
+            {%- assign d_fb1 = 'Il_CH_002_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ d_p1.url | default: '/products/faceted-crystal-halo-chandelier-il_ch_002' }}">
+                  <img src="{{ d_p1.featured_image | image_url: width: 450 | default: d_fb1 }}" alt="Faceted Crystal Halo Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_002 &bull; Dining</div>
+                <h4 class="room-product-name"><a href="{{ d_p1.url | default: '/products/faceted-crystal-halo-chandelier-il_ch_002' }}">{{ d_p1.title | default: 'Faceted Crystal Halo Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ d_p1.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹7,500' }}</div>
+              </div>
+            </div>
+
+            {%- assign d_p2 = all_products['golden-petal-pendant-il_pl_002'] -%}
+            {%- assign d_fb2 = 'Il_PL_002_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ d_p2.url | default: '/products/golden-petal-pendant-il_pl_002' }}">
+                  <img src="{{ d_p2.featured_image | image_url: width: 450 | default: d_fb2 }}" alt="Golden Petal Dining Pendant" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_PL_002 &bull; Dining</div>
+                <h4 class="room-product-name"><a href="{{ d_p2.url | default: '/products/golden-petal-pendant-il_pl_002' }}">{{ d_p2.title | default: 'Golden Petal Dining Pendant' }}</a></h4>
+                <div class="room-product-price">{{ d_p2.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹3,500' }}</div>
+              </div>
+            </div>
+
+            {%- assign d_p3 = all_products['suspended-tiered-crystal-chandelier-il_ch_018'] -%}
+            {%- assign d_fb3 = 'Il_CH_018_01_Source_Reference.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ d_p3.url | default: '/products/suspended-tiered-crystal-chandelier-il_ch_018' }}">
+                  <img src="{{ d_p3.featured_image | image_url: width: 450 | default: d_fb3 }}" alt="Suspended Tiered Crystal Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_018 &bull; Dining</div>
+                <h4 class="room-product-name"><a href="{{ d_p3.url | default: '/products/suspended-tiered-crystal-chandelier-il_ch_018' }}">{{ d_p3.title | default: 'Suspended Tiered Crystal Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ d_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹15,400' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Living Room -->
+      <div class="room-showcase-panel" id="panel-living" data-room-panel="living" role="tabpanel">
+        <div class="room-showcase-grid">
+          <div class="room-editorial-col">
+            <h3 class="room-editorial-title">Shop the Living Room</h3>
+            <p class="room-editorial-desc">
+              Multi-layered ambient illumination for expansive salons, soaring ceilings, and relaxed social evenings with layered sconces.
+            </p>
+            <div class="room-pills-filter">
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Grand Chandeliers</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Perimeter Sconces</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Royal Multitier</a>
+            </div>
+            <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-explore-link">
+              <span>Shop Living Room Fixtures</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <div class="room-products-grid">
+            {%- assign l_p1 = all_products['scroll-arm-crystal-chandelier-il_ch_001'] -%}
+            {%- assign l_fb1 = 'Il_CH_001_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ l_p1.url | default: '/products/scroll-arm-crystal-chandelier-il_ch_001' }}">
+                  <img src="{{ l_p1.featured_image | image_url: width: 450 | default: l_fb1 }}" alt="Scroll-Arm Crystal Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_001 &bull; Living Room</div>
+                <h4 class="room-product-name"><a href="{{ l_p1.url | default: '/products/scroll-arm-crystal-chandelier-il_ch_001' }}">{{ l_p1.title | default: 'Scroll-Arm Crystal Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ l_p1.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹6,000' }}</div>
+              </div>
+            </div>
+
+            {%- assign l_p2 = all_products['twin-crystal-disc-wall-light-il_wl_006'] -%}
+            {%- assign l_fb2 = 'Il_WL_006_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ l_p2.url | default: '/products/twin-crystal-disc-wall-light-il_wl_006' }}">
+                  <img src="{{ l_p2.featured_image | image_url: width: 450 | default: l_fb2 }}" alt="Twin Crystal Disc Wall Light" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_WL_006 &bull; Living Room</div>
+                <h4 class="room-product-name"><a href="{{ l_p2.url | default: '/products/twin-crystal-disc-wall-light-il_wl_006' }}">{{ l_p2.title | default: 'Twin Crystal Disc Wall Light' }}</a></h4>
+                <div class="room-product-price">{{ l_p2.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹3,000' }}</div>
+              </div>
+            </div>
+
+            {%- assign l_p3 = all_products['multi-tier-royal-crystal-chandelier-il_ch_015'] -%}
+            {%- assign l_fb3 = 'Il_CH_015_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ l_p3.url | default: '/products/multi-tier-royal-crystal-chandelier-il_ch_015' }}">
+                  <img src="{{ l_p3.featured_image | image_url: width: 450 | default: l_fb3 }}" alt="Multi-Tier Royal Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_015 &bull; Living Room</div>
+                <h4 class="room-product-name"><a href="{{ l_p3.url | default: '/products/multi-tier-royal-crystal-chandelier-il_ch_015' }}">{{ l_p3.title | default: 'Multi-Tier Royal Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ l_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹16,700' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Kitchen Island -->
+      <div class="room-showcase-panel" id="panel-kitchen" data-room-panel="kitchen" role="tabpanel">
+        <div class="room-showcase-grid">
+          <div class="room-editorial-col">
+            <h3 class="room-editorial-title">Shop Kitchen Island</h3>
+            <p class="room-editorial-desc">
+              Focused task brilliance with sculptural silhouettes positioned cleanly above marble islands and breakfast counters.
+            </p>
+            <div class="room-pills-filter">
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Linear Island Pendants</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-sub-pill">Smoked Glass Globes</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Halo Fixtures</a>
+            </div>
+            <a href="{{ all_spaces_url }}?filter.p.product_type=Pendant+Lights" class="room-explore-link">
+              <span>Shop Kitchen Pendants</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <div class="room-products-grid">
+            {%- assign k_p1 = all_products['smoked-glass-fluted-pendant-il_pl_003'] -%}
+            {%- assign k_fb1 = 'Il_PL_003_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ k_p1.url | default: '/products/smoked-glass-fluted-pendant-il_pl_003' }}">
+                  <img src="{{ k_p1.featured_image | image_url: width: 450 | default: k_fb1 }}" alt="Smoked Glass Island Pendant" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_PL_003 &bull; Kitchen</div>
+                <h4 class="room-product-name"><a href="{{ k_p1.url | default: '/products/smoked-glass-fluted-pendant-il_pl_003' }}">{{ k_p1.title | default: 'Smoked Glass Island Pendant' }}</a></h4>
+                <div class="room-product-price">{{ k_p1.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹4,200' }}</div>
+              </div>
+            </div>
+
+            {%- assign k_p2 = all_products['modern-ring-pendant-il_pl_005'] -%}
+            {%- assign k_fb2 = 'Il_PL_005_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ k_p2.url | default: '/products/modern-ring-pendant-il_pl_005' }}">
+                  <img src="{{ k_p2.featured_image | image_url: width: 450 | default: k_fb2 }}" alt="Modern Brass Ring Pendant" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_PL_005 &bull; Kitchen</div>
+                <h4 class="room-product-name"><a href="{{ k_p2.url | default: '/products/modern-ring-pendant-il_pl_005' }}">{{ k_p2.title | default: 'Modern Brass Ring Pendant' }}</a></h4>
+                <div class="room-product-price">{{ k_p2.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹5,200' }}</div>
+              </div>
+            </div>
+
+            {%- assign k_p3 = all_products['modern-ring-halo-chandelier-il_ch_010'] -%}
+            {%- assign k_fb3 = 'Il_CH_010_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ k_p3.url | default: '/products/modern-ring-halo-chandelier-il_ch_010' }}">
+                  <img src="{{ k_p3.featured_image | image_url: width: 450 | default: k_fb3 }}" alt="Architectural Ring Island Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_010 &bull; Kitchen</div>
+                <h4 class="room-product-name"><a href="{{ k_p3.url | default: '/products/modern-ring-halo-chandelier-il_ch_010' }}">{{ k_p3.title | default: 'Architectural Ring Island Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ k_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹11,500' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 5: Staircase & Entryway -->
+      <div class="room-showcase-panel" id="panel-staircase" data-room-panel="staircase" role="tabpanel">
+        <div class="room-showcase-grid">
+          <div class="room-editorial-col">
+            <h3 class="room-editorial-title">Shop Staircase &amp; Foyer</h3>
+            <p class="room-editorial-desc">
+              Vertical cascading grandeur designed to make unforgettable first impressions across double-height ceilings and duplex foyers.
+            </p>
+            <div class="room-pills-filter">
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Double-Height Cascades</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Duplex Spiral Fixtures</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-sub-pill">Optical Crystal Halo</a>
+            </div>
+            <a href="{{ all_spaces_url }}?filter.p.product_type=Chandeliers" class="room-explore-link">
+              <span>Shop Staircase Cascades</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <div class="room-products-grid">
+            {%- assign s_p1 = all_products['double-height-waterfall-crystal-chandelier-il_ch_012'] -%}
+            {%- assign s_fb1 = 'Il_CH_012_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ s_p1.url | default: '/products/double-height-waterfall-crystal-chandelier-il_ch_012' }}">
+                  <img src="{{ s_p1.featured_image | image_url: width: 450 | default: s_fb1 }}" alt="Double-Height Waterfall Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_012 &bull; Foyer</div>
+                <h4 class="room-product-name"><a href="{{ s_p1.url | default: '/products/double-height-waterfall-crystal-chandelier-il_ch_012' }}">{{ s_p1.title | default: 'Double-Height Waterfall Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ s_p1.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹28,500' }}</div>
+              </div>
+            </div>
+
+            {%- assign s_p2 = all_products['gold-crystal-cascade-chandelier-il_ch_048'] -%}
+            {%- assign s_fb2 = 'Il_CH_048_01_Source_Reference.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ s_p2.url | default: '/products/gold-crystal-cascade-chandelier-il_ch_048' }}">
+                  <img src="{{ s_p2.featured_image | image_url: width: 450 | default: s_fb2 }}" alt="Gold Crystal Cascade Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_048 &bull; Foyer</div>
+                <h4 class="room-product-name"><a href="{{ s_p2.url | default: '/products/gold-crystal-cascade-chandelier-il_ch_048' }}">{{ s_p2.title | default: 'Gold Crystal Cascade Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ s_p2.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹14,500' }}</div>
+              </div>
+            </div>
+
+            {%- assign s_p3 = all_products['grand-cascade-crystal-chandelier-il_ch_016'] -%}
+            {%- assign s_fb3 = 'Il_CH_016_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ s_p3.url | default: '/products/grand-cascade-crystal-chandelier-il_ch_016' }}">
+                  <img src="{{ s_p3.featured_image | image_url: width: 450 | default: s_fb3 }}" alt="Grand Cascade Duplex Chandelier" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_CH_016 &bull; Foyer</div>
+                <h4 class="room-product-name"><a href="{{ s_p3.url | default: '/products/grand-cascade-crystal-chandelier-il_ch_016' }}">{{ s_p3.title | default: 'Grand Cascade Duplex Chandelier' }}</a></h4>
+                <div class="room-product-price">{{ s_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹18,200' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 6: Vanity & Bathroom -->
+      <div class="room-showcase-panel" id="panel-vanity" data-room-panel="vanity" role="tabpanel">
+        <div class="room-showcase-grid">
+          <div class="room-editorial-col">
+            <h3 class="room-editorial-title">Shop Vanity &amp; Powder Room</h3>
+            <p class="room-editorial-desc">
+              Flattering, shadow-free illumination paired with high CRI optical clarity for powder rooms and master ensuites.
+            </p>
+            <div class="room-pills-filter">
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Mirror Sconces</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">Linear Vanity Bars</a>
+              <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-sub-pill">High-CRI Warm Sconces</a>
+            </div>
+            <a href="{{ all_spaces_url }}?filter.p.product_type=Wall+Lights" class="room-explore-link">
+              <span>Shop Vanity Sconces</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <div class="room-products-grid">
+            {%- assign v_p1 = all_products['fluted-glass-vanity-sconce-il_wl_001'] -%}
+            {%- assign v_fb1 = 'Il_WL_001_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ v_p1.url | default: '/products/fluted-glass-vanity-sconce-il_wl_001' }}">
+                  <img src="{{ v_p1.featured_image | image_url: width: 450 | default: v_fb1 }}" alt="Fluted Glass Vanity Sconce" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_WL_001 &bull; Vanity</div>
+                <h4 class="room-product-name"><a href="{{ v_p1.url | default: '/products/fluted-glass-vanity-sconce-il_wl_001' }}">{{ v_p1.title | default: 'Fluted Glass Vanity Sconce' }}</a></h4>
+                <div class="room-product-price">{{ v_p1.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹1,800' }}</div>
+              </div>
+            </div>
+
+            {%- assign v_p2 = all_products['dual-glow-brass-wall-sconce-il_wl_002'] -%}
+            {%- assign v_fb2 = 'Il_WL_002_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ v_p2.url | default: '/products/dual-glow-brass-wall-sconce-il_wl_002' }}">
+                  <img src="{{ v_p2.featured_image | image_url: width: 450 | default: v_fb2 }}" alt="Dual Glow Brass Wall Sconce" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_WL_002 &bull; Vanity</div>
+                <h4 class="room-product-name"><a href="{{ v_p2.url | default: '/products/dual-glow-brass-wall-sconce-il_wl_002' }}">{{ v_p2.title | default: 'Dual Glow Brass Wall Sconce' }}</a></h4>
+                <div class="room-product-price">{{ v_p2.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹2,200' }}</div>
+              </div>
+            </div>
+
+            {%- assign v_p3 = all_products['architectural-slim-sconce-il_wl_010'] -%}
+            {%- assign v_fb3 = 'Il_WL_010_01_White_Background.jpg' | asset_url -%}
+            <div class="room-product-card">
+              <div class="room-product-media">
+                <a href="{{ v_p3.url | default: '/products/architectural-slim-sconce-il_wl_010' }}">
+                  <img src="{{ v_p3.featured_image | image_url: width: 450 | default: v_fb3 }}" alt="Architectural Slim Bathroom Sconce" width="400" height="400" loading="lazy">
+                </a>
+                <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+              </div>
+              <div class="room-product-info">
+                <div class="room-product-sku">SKU Il_WL_010 &bull; Vanity</div>
+                <h4 class="room-product-name"><a href="{{ v_p3.url | default: '/products/architectural-slim-sconce-il_wl_010' }}">{{ v_p3.title | default: 'Architectural Slim Bathroom Sconce' }}</a></h4>
+                <div class="room-product-price">{{ v_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹3,700' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var pills = document.querySelectorAll('.spatial-pill');
-    var stages = document.querySelectorAll('.spatial-showcase-stage');
-
-    pills.forEach(function(pill) {
-      pill.addEventListener('click', function() {
-        pills.forEach(function(p) { p.classList.remove('active'); });
-        pill.classList.add('active');
-
-        var targetId = 'room-' + pill.getAttribute('data-room-target');
-        stages.forEach(function(stage) {
-          if (stage.id === targetId) {
-            stage.style.display = 'grid';
-          } else {
-            stage.style.display = 'none';
-          }
-        });
-      });
-    });
-  });
-</script>
-
 {% schema %}
 {
-  "name": "Spatial Room Lookbook",
+  "name": "Curated for the Room",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow Text",
-      "default": "Spatial Architecture"
+      "label": "Eyebrow Badge",
+      "default": "✦ Shop by Space — Curated Collections"
     },
     {
       "type": "text",
       "id": "title",
-      "label": "Headline",
-      "default": "Shop by Space & Room"
+      "label": "Heading",
+      "default": "Curated for the Room"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Six spaces where light matters most — from bedside intimacy to entryway impressions."
+    },
+    {
+      "type": "text",
+      "id": "all_spaces_text",
+      "label": "Link Text",
+      "default": "Shop all spaces"
+    },
+    {
+      "type": "url",
+      "id": "all_spaces_link",
+      "label": "Link Destination"
     }
   ],
   "presets": [
     {
-      "name": "Spatial Room Lookbook"
+      "name": "Curated for the Room",
+      "category": "Spatial Lookbook"
     }
   ]
 }
