@@ -13,63 +13,69 @@
     <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: flex-start;" class="commercial-grid">
       
       <!-- LEFT COLUMN: INTERACTIVE GALLERY & LIGHT TOGGLE -->
-      <div>
+      <div class="pdp-gallery-wrapper">
         <!-- Light ON/OFF Switch -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
           {% render 'light-toggle' %}
           <span style="font-size: 11.5px; color: var(--color-muted); letter-spacing: 0.05em;">Click to view fixture illuminated</span>
         </div>
 
-        <!-- Main Product Gallery Box -->
-        <div class="product-hero-gallery" id="pdp-gallery-box">
-          {%- assign default_off_img = 'Il_CH_005_01_White_Background.jpg' | asset_url -%}
-          {%- assign default_on_img = 'Il_CH_005_02_Use_Case.jpg' | asset_url -%}
-          {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
-          {%- assign secondary_media = product.media[1] -%}
-          
-          {%- if featured_media.preview_image -%}
-            {%- assign main_off_src = featured_media.preview_image | image_url: width: 1000 -%}
-            {%- assign main_on_src = secondary_media.preview_image | default: featured_media.preview_image | image_url: width: 1000 -%}
-          {%- else -%}
-            {%- assign main_off_src = default_off_img -%}
-            {%- assign main_on_src = default_on_img -%}
-          {%- endif -%}
-
-          <img 
-            src="{{ main_off_src }}" 
-            data-light-off-src="{{ main_off_src }}"
-            data-light-on-src="{{ main_on_src }}"
-            alt="{{ product.title | default: 'Crystal Loop Drop Chandelier' | escape }}" 
-            width="1000"
-            height="1000"
-            class="pdp-main-image"
-            id="pdp-main-img"
-            style="width: 100%; height: auto; max-height: 640px; object-fit: contain; margin: 0 auto; transition: var(--transition);"
-          >
-        </div>
-
-        <!-- Thumbnails Row -->
-        <div class="pdp-thumbnails-row">
-          {% if product.media.size > 1 %}
-            {% for media in product.media %}
-              <div 
-                class="pdp-thumb {% if forloop.first %}active{% endif %}" 
-                data-index="{{ forloop.index0 }}"
-                data-full-src="{{ media.preview_image | image_url: width: 1000 }}"
-              >
-                <img src="{{ media.preview_image | image_url: width: 180 }}" alt="{{ product.title }} view {{ forloop.index }}" width="80" height="90" loading="lazy">
+        <!-- Vertical Gallery Layout: Multi-Image Thumbnails on Left, Main Preview on Right -->
+        <div class="pdp-gallery-grid">
+          <!-- Vertical Thumbnails Column -->
+          <div class="pdp-thumbnails-vertical" aria-label="Product Media Gallery">
+            {% if product.media.size > 1 %}
+              {% for media in product.media %}
+                <div 
+                  class="pdp-thumb {% if forloop.first %}active{% endif %}" 
+                  data-index="{{ forloop.index0 }}"
+                  data-full-src="{{ media.preview_image | image_url: width: 1000 }}"
+                  tabindex="0"
+                  role="button"
+                  aria-label="{{ product.title }} image {{ forloop.index }}"
+                >
+                  <img src="{{ media.preview_image | image_url: width: 180 }}" alt="{{ product.title }} view {{ forloop.index }}" width="80" height="92" loading="lazy">
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="pdp-thumb active" data-index="0" data-full-src="{{ main_off_src }}" tabindex="0" role="button">
+                <img src="{{ main_off_src }}" alt="{{ product.title }} Studio" width="80" height="92" loading="lazy">
               </div>
-            {% endfor %}
-          {% else %}
-            <div class="pdp-thumb active" data-index="0" data-full-src="{{ main_off_src }}">
-              <img src="{{ main_off_src }}" alt="{{ product.title }} Studio" width="80" height="90" loading="lazy">
-            </div>
-            {% if main_on_src != main_off_src %}
-              <div class="pdp-thumb" data-index="1" data-full-src="{{ main_on_src }}">
-                <img src="{{ main_on_src }}" alt="{{ product.title }} Illuminated" width="80" height="90" loading="lazy">
-              </div>
+              {% if main_on_src != main_off_src %}
+                <div class="pdp-thumb" data-index="1" data-full-src="{{ main_on_src }}" tabindex="0" role="button">
+                  <img src="{{ main_on_src }}" alt="{{ product.title }} Illuminated" width="80" height="92" loading="lazy">
+                </div>
+              {% endif %}
             {% endif %}
-          {% endif %}
+          </div>
+
+          <!-- Main Product Gallery Box -->
+          <div class="product-hero-gallery" id="pdp-gallery-box">
+            {%- assign default_off_img = 'Il_CH_005_01_White_Background.jpg' | asset_url -%}
+            {%- assign default_on_img = 'Il_CH_005_02_Use_Case.jpg' | asset_url -%}
+            {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+            {%- assign secondary_media = product.media[1] -%}
+            
+            {%- if featured_media.preview_image -%}
+              {%- assign main_off_src = featured_media.preview_image | image_url: width: 1000 -%}
+              {%- assign main_on_src = secondary_media.preview_image | default: featured_media.preview_image | image_url: width: 1000 -%}
+            {%- else -%}
+              {%- assign main_off_src = default_off_img -%}
+              {%- assign main_on_src = default_on_img -%}
+            {%- endif -%}
+
+            <img 
+              src="{{ main_off_src }}" 
+              data-light-off-src="{{ main_off_src }}"
+              data-light-on-src="{{ main_on_src }}"
+              alt="{{ product.title | default: 'Crystal Loop Drop Chandelier' | escape }}" 
+              width="1000"
+              height="1000"
+              class="pdp-main-image"
+              id="pdp-main-img"
+              style="width: 100%; height: auto; max-height: 580px; object-fit: contain; margin: 0 auto; transition: opacity 0.2s ease;"
+            >
+          </div>
         </div>
       </div>
 
@@ -211,13 +217,13 @@
           </div>
         </div>
 
-        <!-- Technical Specs & Accordions -->
-        <div style="margin-top: 28px;">
+        <!-- Technical Specs & Accordions (Single Open Mode to prevent whitespace) -->
+        <div class="pdp-accordions-group" data-accordion-group style="margin-top: 28px;">
           <!-- Accordion 1: Technical Specs -->
-          <div style="border-bottom: 1px solid var(--color-border);">
-            <button type="button" class="accordion-trigger active" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; cursor: pointer; color: var(--color-ink);">
+          <div class="accordion-item" style="border-bottom: 1px solid var(--color-border);">
+            <button type="button" class="accordion-trigger active" aria-expanded="true" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--color-ink);">
               <span>Technical Lighting Specifications</span>
-              <span>&plus;</span>
+              <span class="accordion-icon" style="font-size: 17px; font-weight: 400; line-height: 1;">&minus;</span>
             </button>
             <div class="accordion-panel" style="padding-bottom: 20px; display: block;">
               {% if pdp_specs_block != blank %}
@@ -229,27 +235,27 @@
           </div>
 
           <!-- Accordion 2: Dimensions & Drop Height -->
-          <div style="border-bottom: 1px solid var(--color-border);">
-            <button type="button" class="accordion-trigger" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; cursor: pointer;">
-              <span>Dimensions & Ceiling Suspension</span>
-              <span>&plus;</span>
+          <div class="accordion-item" style="border-bottom: 1px solid var(--color-border);">
+            <button type="button" class="accordion-trigger" aria-expanded="false" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--color-ink);">
+              <span>Dimensions &amp; Ceiling Suspension</span>
+              <span class="accordion-icon" style="font-size: 17px; font-weight: 400; line-height: 1;">&plus;</span>
             </button>
             <div class="accordion-panel" style="padding-bottom: 20px; display: none;">
-              <p style="font-size: 13px; color: var(--color-muted); line-height: 1.6;">
+              <p style="font-size: 13px; color: var(--color-muted); line-height: 1.6; margin: 0;">
                 Standard package includes an adjustable steel suspension wire kit allowing total drop heights from 500mm up to 2500mm. Custom suspension rods for double-height ceilings (up to 20 feet) are available upon request through our Pune showroom team.
               </p>
             </div>
           </div>
 
           <!-- Accordion 3: Safe Packaging & Return Policy -->
-          <div style="border-bottom: 1px solid var(--color-border);">
-            <button type="button" class="accordion-trigger" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; cursor: pointer;">
-              <span>Transit Protection & Breakage Guarantee</span>
-              <span>&plus;</span>
+          <div class="accordion-item" style="border-bottom: 1px solid var(--color-border);">
+            <button type="button" class="accordion-trigger" aria-expanded="false" style="width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--color-ink);">
+              <span>Transit Protection &amp; Breakage Guarantee</span>
+              <span class="accordion-icon" style="font-size: 17px; font-weight: 400; line-height: 1;">&plus;</span>
             </button>
             <div class="accordion-panel" style="padding-bottom: 20px; display: none;">
-              <p style="font-size: 13px; color: var(--color-muted); line-height: 1.6;">
-                Every chandelier is cushioned in multi-density custom foam and dispatched in reinforced wooden crates. In the rare event of transit damage, notify us within 48 hours for immediate replacement parts or complete unit replacement at no extra cost.
+              <p style="font-size: 13px; color: var(--color-muted); line-height: 1.6; margin: 0;">
+                Every fixture is cushioned in multi-density custom foam and dispatched in reinforced wooden crates. In the rare event of transit damage, notify us within 48 hours for immediate replacement parts or complete unit replacement at no extra cost.
               </p>
             </div>
           </div>

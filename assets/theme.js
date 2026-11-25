@@ -386,22 +386,63 @@ async function updateCartBadge() {
   }
 }
 
-/* 6. COLLAPSIBLE ACCORDIONS (PDP SPECS & FAQ) */
+/* 6. COLLAPSIBLE ACCORDIONS (ONE AT A TIME — ELIMINATES UNWANTED WHITE SPACE) */
 function initAccordions() {
-  const triggers = document.querySelectorAll('.accordion-trigger');
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const panel = trigger.nextElementSibling;
-      const isOpen = trigger.classList.contains('active');
+  const groups = document.querySelectorAll('.pdp-accordions-group, [data-accordion-group]');
+  
+  if (groups.length > 0) {
+    groups.forEach(group => {
+      const triggers = group.querySelectorAll('.accordion-trigger');
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const panel = trigger.nextElementSibling;
+          const isOpen = trigger.classList.contains('active');
 
-      if (isOpen) {
-        trigger.classList.remove('active');
-        if (panel) panel.style.display = 'none';
-      } else {
-        trigger.classList.add('active');
-        if (panel) panel.style.display = 'block';
-      }
+          // Close all other accordions in this group first
+          triggers.forEach(otherTrigger => {
+            otherTrigger.classList.remove('active');
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            const otherPanel = otherTrigger.nextElementSibling;
+            if (otherPanel) {
+              otherPanel.style.display = 'none';
+            }
+            const icon = otherTrigger.querySelector('.accordion-icon');
+            if (icon) icon.innerHTML = '&plus;';
+          });
+
+          // Toggle clicked accordion
+          if (!isOpen) {
+            trigger.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
+            if (panel) panel.style.display = 'block';
+            const icon = trigger.querySelector('.accordion-icon');
+            if (icon) icon.innerHTML = '&minus;';
+          }
+        });
+      });
     });
+  }
+
+  // Fallback for any standalone accordion triggers outside of groups
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    if (!trigger.closest('.pdp-accordions-group, [data-accordion-group]')) {
+      trigger.addEventListener('click', () => {
+        const panel = trigger.nextElementSibling;
+        const isOpen = trigger.classList.contains('active');
+        const icon = trigger.querySelector('.accordion-icon');
+        if (isOpen) {
+          trigger.classList.remove('active');
+          trigger.setAttribute('aria-expanded', 'false');
+          if (panel) panel.style.display = 'none';
+          if (icon) icon.innerHTML = '&plus;';
+        } else {
+          trigger.classList.add('active');
+          trigger.setAttribute('aria-expanded', 'true');
+          if (panel) panel.style.display = 'block';
+          if (icon) icon.innerHTML = '&minus;';
+        }
+      });
+    }
   });
 }
 
