@@ -1,29 +1,55 @@
 {%- comment -%}
-  Shop by Category Bento Grid with Dynamic Fail-Safe Collection URLs
+  Shop by Category Bento Grid with 6 Artisanal Typologies & Fail-Safe URLs
 {%- endcomment -%}
 
 {%- assign chandeliers_url = '/collections/all?filter.p.product_type=Chandeliers' -%}
-{%- if collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
+{%- if section.settings.collection_chandeliers != blank -%}
+  {%- assign chandeliers_url = collections[section.settings.collection_chandeliers].url | default: section.settings.collection_chandeliers.url -%}
+{%- elsif collections['chandeliers'] != blank and collections['chandeliers'].url != blank -%}
   {%- assign chandeliers_url = collections['chandeliers'].url -%}
 {%- endif -%}
 
-{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
-{%- if collections['pendants'] != blank and collections['pendants'].url != blank -%}
-  {%- assign pendants_url = collections['pendants'].url -%}
-{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
-  {%- assign pendants_url = collections['pendant-lights'].url -%}
-{%- endif -%}
-
 {%- assign wall_lights_url = '/collections/all?filter.p.product_type=Wall+Lights' -%}
-{%- if collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
+{%- if section.settings.collection_wall_lights != blank -%}
+  {%- assign wall_lights_url = collections[section.settings.collection_wall_lights].url | default: section.settings.collection_wall_lights.url -%}
+{%- elsif collections['wall-lights'] != blank and collections['wall-lights'].url != blank -%}
   {%- assign wall_lights_url = collections['wall-lights'].url -%}
 {%- elsif collections['wall-lights-sconces'] != blank and collections['wall-lights-sconces'].url != blank -%}
   {%- assign wall_lights_url = collections['wall-lights-sconces'].url -%}
 {%- endif -%}
 
+{%- assign pendants_url = '/collections/all?filter.p.product_type=Pendant+Lights' -%}
+{%- if section.settings.collection_pendants != blank -%}
+  {%- assign pendants_url = collections[section.settings.collection_pendants].url | default: section.settings.collection_pendants.url -%}
+{%- elsif collections['pendants'] != blank and collections['pendants'].url != blank -%}
+  {%- assign pendants_url = collections['pendants'].url -%}
+{%- elsif collections['pendant-lights'] != blank and collections['pendant-lights'].url != blank -%}
+  {%- assign pendants_url = collections['pendant-lights'].url -%}
+{%- endif -%}
+
 {%- assign ceiling_lights_url = '/collections/all?filter.p.product_type=Ceiling+Lights' -%}
-{%- if collections['ceiling-lights'] != blank and collections['ceiling-lights'].url != blank -%}
+{%- if section.settings.collection_ceiling_lights != blank -%}
+  {%- assign ceiling_lights_url = collections[section.settings.collection_ceiling_lights].url | default: section.settings.collection_ceiling_lights.url -%}
+{%- elsif collections['ceiling-lights'] != blank and collections['ceiling-lights'].url != blank -%}
   {%- assign ceiling_lights_url = collections['ceiling-lights'].url -%}
+{%- endif -%}
+
+{%- assign fans_url = '/collections/all?filter.p.product_type=Fandelier' -%}
+{%- if section.settings.collection_fans != blank -%}
+  {%- assign fans_url = collections[section.settings.collection_fans].url | default: section.settings.collection_fans.url -%}
+{%- elsif collections['fans'] != blank and collections['fans'].url != blank -%}
+  {%- assign fans_url = collections['fans'].url -%}
+{%- elsif collections['fans-fan-lights'] != blank and collections['fans-fan-lights'].url != blank -%}
+  {%- assign fans_url = collections['fans-fan-lights'].url -%}
+{%- elsif collections['fans-and-fan-lights'] != blank and collections['fans-and-fan-lights'].url != blank -%}
+  {%- assign fans_url = collections['fans-and-fan-lights'].url -%}
+{%- endif -%}
+
+{%- assign table_lamps_url = '/collections/all?filter.p.product_type=Table+Lamps' -%}
+{%- if section.settings.collection_table_lamps != blank -%}
+  {%- assign table_lamps_url = collections[section.settings.collection_table_lamps].url | default: section.settings.collection_table_lamps.url -%}
+{%- elsif collections['table-lamps'] != blank and collections['table-lamps'].url != blank -%}
+  {%- assign table_lamps_url = collections['table-lamps'].url -%}
 {%- endif -%}
 
 <section class="section bento-section" style="padding: 90px 0; background-color: var(--color-bg);">
@@ -34,33 +60,30 @@
         <h2 class="section-title" style="margin-bottom: 8px;">{{ section.settings.title | default: 'Curated Spectrum' }}</h2>
         <p class="section-subtitle" style="margin-bottom: 0;">Architecturally engineered luminaires crafted from K9 prismatic crystal, hand-cast brass, and fluted mouth-blown glass.</p>
       </div>
-      <a href="/collections/all" class="btn btn-outline-gold" style="padding: 10px 22px; font-size: 11px;">
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn-outline-gold" style="padding: 10px 22px; font-size: 11px;">
         View All Fixtures
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
     </div>
 
-    <!-- Bento Grid -->
+    <!-- 6-Category Grid: Fully Balanced & Filled -->
     <div class="bento-grid">
-      <!-- 1. Chandeliers (Featured Large Card) -->
-      <a href="{{ chandeliers_url }}" class="bento-card bento-item-featured">
+      <!-- 1. Chandeliers -->
+      <a href="{{ chandeliers_url }}" class="bento-card">
         <img 
           src="{{ 'Il_CH_002_02_Use_Case.jpg' | asset_url }}" 
-          alt="Chandeliers & Double-Height Statements" 
+          alt="Chandeliers & Atrium Fixtures" 
           class="bento-card-bg"
-          width="1200"
-          height="1200"
+          width="800"
+          height="800"
           loading="lazy"
         >
         <div class="bento-overlay"></div>
         <div class="bento-content">
           <span class="bento-tag">Grand Statements</span>
           <h3 class="bento-title">Chandeliers &amp; Atrium Fixtures</h3>
-          <p style="color: rgba(255,255,255,0.8); font-size: 13px; max-width: 480px; margin-bottom: 16px;">
-            Cascading crystals, organic starbursts, and baroque multi-tier centerpieces tailored for double-height foyers and living salons.
-          </p>
           <span class="bento-link">
-            Explore Chandelier Designs
+            Explore Chandeliers
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </span>
         </div>
@@ -81,7 +104,7 @@
           <span class="bento-tag">Perimeter &amp; Mood</span>
           <h3 class="bento-title">Wall Lights &amp; Sconces</h3>
           <span class="bento-link">
-            Explore Wall Designs
+            Explore Wall Sconces
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </span>
         </div>
@@ -102,17 +125,17 @@
           <span class="bento-tag">Islands &amp; Dining</span>
           <h3 class="bento-title">Suspended Pendants</h3>
           <span class="bento-link">
-            Explore Pendant Designs
+            Explore Pendants
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </span>
         </div>
       </a>
 
-      <!-- 4. Ceiling Lights & Designer Fans -->
+      <!-- 4. Ceiling Lights & Flush Mounts -->
       <a href="{{ ceiling_lights_url }}" class="bento-card">
         <img 
-          src="{{ 'Il_FF_001_02_Use_Case.jpg' | asset_url }}" 
-          alt="Ceiling Fixtures & Designer Fans" 
+          src="{{ 'Il_CL_001_02_Use_Case.jpg' | asset_url }}" 
+          alt="Ceiling Lights & Flush Mounts" 
           class="bento-card-bg"
           width="800"
           height="800"
@@ -120,10 +143,52 @@
         >
         <div class="bento-overlay"></div>
         <div class="bento-content">
-          <span class="bento-tag">Climate &amp; Flush</span>
-          <h3 class="bento-title">Ceiling Fixtures &amp; Luxury Fans</h3>
+          <span class="bento-tag">Architectural &amp; Flush</span>
+          <h3 class="bento-title">Ceiling Lights &amp; Mounts</h3>
           <span class="bento-link">
-            Explore Ceiling Designs
+            Explore Ceiling Fixtures
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 5. Luxury Fans & Fandeliers -->
+      <a href="{{ fans_url }}" class="bento-card">
+        <img 
+          src="{{ 'Il_FF_001_02_Use_Case.jpg' | asset_url }}" 
+          alt="Luxury Fans & Fandeliers" 
+          class="bento-card-bg"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <span class="bento-tag">Climate &amp; Statement</span>
+          <h3 class="bento-title">Fans &amp; Luxury Fandeliers</h3>
+          <span class="bento-link">
+            Explore Luxury Fans
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 6. Table Lamps & Accent Fixtures (Fills the 6th slot!) -->
+      <a href="{{ table_lamps_url }}" class="bento-card">
+        <img 
+          src="{{ 'Il_TL_003_02_Use_Case.jpg' | asset_url }}" 
+          alt="Table Lamps & Accent Lighting" 
+          class="bento-card-bg"
+          width="800"
+          height="800"
+          loading="lazy"
+        >
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <span class="bento-tag">Bedside &amp; Console</span>
+          <h3 class="bento-title">Table Lamps &amp; Accents</h3>
+          <span class="bento-link">
+            Explore Table Lamps
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </span>
         </div>
@@ -134,7 +199,7 @@
 
 {% schema %}
 {
-  "name": "Bento Category Grid",
+  "name": "Curated Spectrum Grid",
   "settings": [
     {
       "type": "text",
@@ -147,11 +212,45 @@
       "id": "title",
       "label": "Heading",
       "default": "Curated Spectrum"
+    },
+    {
+      "type": "header",
+      "content": "Collection Overrides (Optional)"
+    },
+    {
+      "type": "collection",
+      "id": "collection_chandeliers",
+      "label": "Chandeliers Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_wall_lights",
+      "label": "Wall Lights Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_pendants",
+      "label": "Pendant Lights Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_ceiling_lights",
+      "label": "Ceiling Lights Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_fans",
+      "label": "Fans & Fandeliers Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection_table_lamps",
+      "label": "Table Lamps Collection"
     }
   ],
   "presets": [
     {
-      "name": "Bento Category Grid"
+      "name": "Curated Spectrum Grid"
     }
   ]
 }

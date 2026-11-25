@@ -69,7 +69,13 @@
         "title": "Curated for the Room",
         "subtitle": "Six spaces where light matters most — from bedside intimacy to entryway impressions.",
         "all_spaces_text": "Shop all spaces",
-        "all_spaces_link": ""
+        "all_spaces_link": "",
+        "collection_bedroom": "bedroom-lighting",
+        "collection_dining": "dining-room-lighting",
+        "collection_living": "living-room-lighting",
+        "collection_kitchen": "kitchen-island-lighting",
+        "collection_staircase": "staircase-foyer-lighting",
+        "collection_vanity": "vanity-bathroom-lighting"
       }
     },
     "featured_collections": {

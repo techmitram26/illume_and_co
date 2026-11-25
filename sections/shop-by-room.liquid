@@ -6,12 +6,30 @@
 {%- endcomment -%}
 
 {%- assign all_spaces_url = section.settings.all_spaces_link | default: routes.all_products_collection_url -%}
-{%- assign col_bedroom = collections[section.settings.collection_bedroom] -%}
-{%- assign col_dining = collections[section.settings.collection_dining] -%}
-{%- assign col_living = collections[section.settings.collection_living] -%}
-{%- assign col_kitchen = collections[section.settings.collection_kitchen] -%}
-{%- assign col_staircase = collections[section.settings.collection_staircase] -%}
-{%- assign col_vanity = collections[section.settings.collection_vanity] -%}
+{%- assign col_bedroom = section.settings.collection_bedroom -%}
+{%- if col_bedroom.title == blank and section.settings.collection_bedroom != blank -%}
+  {%- assign col_bedroom = collections[section.settings.collection_bedroom] -%}
+{%- endif -%}
+{%- assign col_dining = section.settings.collection_dining -%}
+{%- if col_dining.title == blank and section.settings.collection_dining != blank -%}
+  {%- assign col_dining = collections[section.settings.collection_dining] -%}
+{%- endif -%}
+{%- assign col_living = section.settings.collection_living -%}
+{%- if col_living.title == blank and section.settings.collection_living != blank -%}
+  {%- assign col_living = collections[section.settings.collection_living] -%}
+{%- endif -%}
+{%- assign col_kitchen = section.settings.collection_kitchen -%}
+{%- if col_kitchen.title == blank and section.settings.collection_kitchen != blank -%}
+  {%- assign col_kitchen = collections[section.settings.collection_kitchen] -%}
+{%- endif -%}
+{%- assign col_staircase = section.settings.collection_staircase -%}
+{%- if col_staircase.title == blank and section.settings.collection_staircase != blank -%}
+  {%- assign col_staircase = collections[section.settings.collection_staircase] -%}
+{%- endif -%}
+{%- assign col_vanity = section.settings.collection_vanity -%}
+{%- if col_vanity.title == blank and section.settings.collection_vanity != blank -%}
+  {%- assign col_vanity = collections[section.settings.collection_vanity] -%}
+{%- endif -%}
 
 <section class="section curated-room-section" id="curated-rooms" style="background-color: #0E0D0C; color: #FFFFFF; padding: 90px 0; overflow: hidden;">
   <div class="container">
@@ -268,7 +286,28 @@
 
           <!-- Right 3 Curated Products -->
           <div class="room-products-grid">
-            {%- assign b_p1 = all_products['champagne-crystal-halo-chandelier-il_ch_005'] -%}
+            {%- if col_bedroom != blank and col_bedroom.products.size > 0 -%}
+              {%- for prod in col_bedroom.products limit: 3 -%}
+                <div class="room-product-card">
+                  <div class="room-product-media">
+                    <a href="{{ prod.url }}">
+                      {%- if prod.featured_image -%}
+                        <img src="{{ prod.featured_image | image_url: width: 450 }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- else -%}
+                        <img src="{{ 'Il_CH_005_01_White_Background.jpg' | asset_url }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                  </div>
+                  <div class="room-product-info">
+                    <div class="room-product-sku">{% if prod.selected_or_first_available_variant.sku != blank %}SKU {{ prod.selected_or_first_available_variant.sku }}{% else %}{{ prod.type | default: 'Illume & Co' }}{% endif %} &bull; Bedroom</div>
+                    <h4 class="room-product-name"><a href="{{ prod.url }}">{{ prod.title }}</a></h4>
+                    <div class="room-product-price">{{ prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign b_p1 = all_products['champagne-crystal-halo-chandelier-il_ch_005'] -%}
             {%- assign b_fb1 = 'Il_CH_005_01_White_Background.jpg' | asset_url -%}
             <div class="room-product-card">
               <div class="room-product-media">
@@ -315,6 +354,7 @@
                 <div class="room-product-price">{{ b_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹3,000' }}</div>
               </div>
             </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -339,7 +379,28 @@
           </div>
 
           <div class="room-products-grid">
-            {%- assign d_p1 = all_products['faceted-crystal-halo-chandelier-il_ch_002'] -%}
+            {%- if col_dining != blank and col_dining.products.size > 0 -%}
+              {%- for prod in col_dining.products limit: 3 -%}
+                <div class="room-product-card">
+                  <div class="room-product-media">
+                    <a href="{{ prod.url }}">
+                      {%- if prod.featured_image -%}
+                        <img src="{{ prod.featured_image | image_url: width: 450 }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- else -%}
+                        <img src="{{ 'Il_CH_002_01_White_Background.jpg' | asset_url }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                  </div>
+                  <div class="room-product-info">
+                    <div class="room-product-sku">{% if prod.selected_or_first_available_variant.sku != blank %}SKU {{ prod.selected_or_first_available_variant.sku }}{% else %}{{ prod.type | default: 'Illume & Co' }}{% endif %} &bull; Dining</div>
+                    <h4 class="room-product-name"><a href="{{ prod.url }}">{{ prod.title }}</a></h4>
+                    <div class="room-product-price">{{ prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign d_p1 = all_products['faceted-crystal-halo-chandelier-il_ch_002'] -%}
             {%- assign d_fb1 = 'Il_CH_002_01_White_Background.jpg' | asset_url -%}
             <div class="room-product-card">
               <div class="room-product-media">
@@ -386,6 +447,7 @@
                 <div class="room-product-price">{{ d_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹15,400' }}</div>
               </div>
             </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -410,7 +472,28 @@
           </div>
 
           <div class="room-products-grid">
-            {%- assign l_p1 = all_products['scroll-arm-crystal-chandelier-il_ch_001'] -%}
+            {%- if col_living != blank and col_living.products.size > 0 -%}
+              {%- for prod in col_living.products limit: 3 -%}
+                <div class="room-product-card">
+                  <div class="room-product-media">
+                    <a href="{{ prod.url }}">
+                      {%- if prod.featured_image -%}
+                        <img src="{{ prod.featured_image | image_url: width: 450 }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- else -%}
+                        <img src="{{ 'Il_CH_001_01_White_Background.jpg' | asset_url }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                  </div>
+                  <div class="room-product-info">
+                    <div class="room-product-sku">{% if prod.selected_or_first_available_variant.sku != blank %}SKU {{ prod.selected_or_first_available_variant.sku }}{% else %}{{ prod.type | default: 'Illume & Co' }}{% endif %} &bull; Living Room</div>
+                    <h4 class="room-product-name"><a href="{{ prod.url }}">{{ prod.title }}</a></h4>
+                    <div class="room-product-price">{{ prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign l_p1 = all_products['scroll-arm-crystal-chandelier-il_ch_001'] -%}
             {%- assign l_fb1 = 'Il_CH_001_01_White_Background.jpg' | asset_url -%}
             <div class="room-product-card">
               <div class="room-product-media">
@@ -457,6 +540,7 @@
                 <div class="room-product-price">{{ l_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹16,700' }}</div>
               </div>
             </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -481,7 +565,28 @@
           </div>
 
           <div class="room-products-grid">
-            {%- assign k_p1 = all_products['smoked-glass-fluted-pendant-il_pl_003'] -%}
+            {%- if col_kitchen != blank and col_kitchen.products.size > 0 -%}
+              {%- for prod in col_kitchen.products limit: 3 -%}
+                <div class="room-product-card">
+                  <div class="room-product-media">
+                    <a href="{{ prod.url }}">
+                      {%- if prod.featured_image -%}
+                        <img src="{{ prod.featured_image | image_url: width: 450 }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- else -%}
+                        <img src="{{ 'Il_PL_003_01_White_Background.jpg' | asset_url }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                  </div>
+                  <div class="room-product-info">
+                    <div class="room-product-sku">{% if prod.selected_or_first_available_variant.sku != blank %}SKU {{ prod.selected_or_first_available_variant.sku }}{% else %}{{ prod.type | default: 'Illume & Co' }}{% endif %} &bull; Kitchen</div>
+                    <h4 class="room-product-name"><a href="{{ prod.url }}">{{ prod.title }}</a></h4>
+                    <div class="room-product-price">{{ prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign k_p1 = all_products['smoked-glass-fluted-pendant-il_pl_003'] -%}
             {%- assign k_fb1 = 'Il_PL_003_01_White_Background.jpg' | asset_url -%}
             <div class="room-product-card">
               <div class="room-product-media">
@@ -528,6 +633,7 @@
                 <div class="room-product-price">{{ k_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹11,500' }}</div>
               </div>
             </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -552,7 +658,28 @@
           </div>
 
           <div class="room-products-grid">
-            {%- assign s_p1 = all_products['double-height-waterfall-crystal-chandelier-il_ch_012'] -%}
+            {%- if col_staircase != blank and col_staircase.products.size > 0 -%}
+              {%- for prod in col_staircase.products limit: 3 -%}
+                <div class="room-product-card">
+                  <div class="room-product-media">
+                    <a href="{{ prod.url }}">
+                      {%- if prod.featured_image -%}
+                        <img src="{{ prod.featured_image | image_url: width: 450 }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- else -%}
+                        <img src="{{ 'Il_CH_012_01_White_Background.jpg' | asset_url }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                  </div>
+                  <div class="room-product-info">
+                    <div class="room-product-sku">{% if prod.selected_or_first_available_variant.sku != blank %}SKU {{ prod.selected_or_first_available_variant.sku }}{% else %}{{ prod.type | default: 'Illume & Co' }}{% endif %} &bull; Foyer</div>
+                    <h4 class="room-product-name"><a href="{{ prod.url }}">{{ prod.title }}</a></h4>
+                    <div class="room-product-price">{{ prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign s_p1 = all_products['double-height-waterfall-crystal-chandelier-il_ch_012'] -%}
             {%- assign s_fb1 = 'Il_CH_012_01_White_Background.jpg' | asset_url -%}
             <div class="room-product-card">
               <div class="room-product-media">
@@ -599,6 +726,7 @@
                 <div class="room-product-price">{{ s_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹18,200' }}</div>
               </div>
             </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -623,7 +751,28 @@
           </div>
 
           <div class="room-products-grid">
-            {%- assign v_p1 = all_products['fluted-glass-vanity-sconce-il_wl_001'] -%}
+            {%- if col_vanity != blank and col_vanity.products.size > 0 -%}
+              {%- for prod in col_vanity.products limit: 3 -%}
+                <div class="room-product-card">
+                  <div class="room-product-media">
+                    <a href="{{ prod.url }}">
+                      {%- if prod.featured_image -%}
+                        <img src="{{ prod.featured_image | image_url: width: 450 }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- else -%}
+                        <img src="{{ 'Il_WL_004_01_White_Background.jpg' | asset_url }}" alt="{{ prod.title | escape }}" width="400" height="400" loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    <div class="room-tag-pendant"><span>UP TO</span><strong>30%</strong><span>OFF</span></div>
+                  </div>
+                  <div class="room-product-info">
+                    <div class="room-product-sku">{% if prod.selected_or_first_available_variant.sku != blank %}SKU {{ prod.selected_or_first_available_variant.sku }}{% else %}{{ prod.type | default: 'Illume & Co' }}{% endif %} &bull; Vanity</div>
+                    <h4 class="room-product-name"><a href="{{ prod.url }}">{{ prod.title }}</a></h4>
+                    <div class="room-product-price">{{ prod.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign v_p1 = all_products['fluted-glass-vanity-sconce-il_wl_001'] -%}
             {%- assign v_fb1 = 'Il_WL_001_01_White_Background.jpg' | asset_url -%}
             <div class="room-product-card">
               <div class="room-product-media">
@@ -670,6 +819,7 @@
                 <div class="room-product-price">{{ v_p3.price | money | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'INR', '' | strip | default: '₹3,700' }}</div>
               </div>
             </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
