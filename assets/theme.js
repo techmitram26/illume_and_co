@@ -454,7 +454,6 @@ function initMobileNav() {
   const mobileNav = document.querySelector('.mobile-nav-drawer');
   const overlay = document.querySelector('.mobile-nav-overlay');
   const closeBtns = document.querySelectorAll('[data-mobile-menu-close]');
-  const accordions = document.querySelectorAll('.mobile-accordion-toggle');
 
   if (!mobileNav) return;
 
@@ -471,24 +470,49 @@ function initMobileNav() {
   };
 
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', openNav);
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openNav();
+    });
   }
 
   closeBtns.forEach(btn => {
-    btn.addEventListener('click', closeNav);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeNav();
+    });
   });
 
   if (overlay) {
     overlay.addEventListener('click', closeNav);
   }
 
-  accordions.forEach(acc => {
-    acc.addEventListener('click', () => {
-      const parent = acc.closest('.mobile-nav-accordion');
+  // Robust Mobile Accordion Toggle with Event Delegation
+  mobileNav.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.mobile-accordion-toggle');
+    if (toggle) {
+      e.preventDefault();
+      e.stopPropagation();
+      const parent = toggle.closest('.mobile-nav-accordion');
       if (parent) {
-        parent.classList.toggle('active');
+        const isCurrentlyActive = parent.classList.contains('active');
+        // Toggle current accordion
+        if (isCurrentlyActive) {
+          parent.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        } else {
+          parent.classList.add('active');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
       }
-    });
+      return;
+    }
+
+    // If an anchor link is clicked inside the drawer, close drawer
+    const link = e.target.closest('a');
+    if (link && !link.classList.contains('mobile-accordion-toggle')) {
+      closeNav();
+    }
   });
 }
 

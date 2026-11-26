@@ -26,6 +26,18 @@
   {%- assign ceiling_lights_url = collections['ceiling-lights'].url -%}
 {%- endif -%}
 
+{%- assign table_lamps_url = '/collections/all?filter.p.product_type=Table+Lamps' -%}
+{%- if collections['table-lamps'] != blank and collections['table-lamps'].url != blank -%}
+  {%- assign table_lamps_url = collections['table-lamps'].url -%}
+{%- endif -%}
+
+{%- assign fans_url = '/collections/all?filter.p.product_type=Fans+%26+Fan+Lights' -%}
+{%- if collections['fans-fan-lights'] != blank and collections['fans-fan-lights'].url != blank -%}
+  {%- assign fans_url = collections['fans-fan-lights'].url -%}
+{%- elsif collections['fans'] != blank and collections['fans'].url != blank -%}
+  {%- assign fans_url = collections['fans'].url -%}
+{%- endif -%}
+
 {%- assign commercial_url = '/#commercial' -%}
 {%- if collections['commercial-lights'] != blank and collections['commercial-lights'].products_count > 0 -%}
   {%- assign commercial_url = collections['commercial-lights'].url -%}
@@ -196,41 +208,62 @@
     </div>
     
     <div class="mobile-nav-content">
+      <!-- 1. Decorative Lights Accordion -->
       <div class="mobile-nav-accordion">
-        <button type="button" class="mobile-accordion-toggle">
+        <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
           <span>Decorative Lights</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
         <div class="mobile-accordion-panel">
           <ul class="mobile-sublinks">
-            <li><a href="{{ chandeliers_url }}">Crystal Chandeliers</a></li>
-            <li><a href="{{ chandeliers_url }}">Statement Grand Chandeliers</a></li>
-            <li><a href="{{ chandeliers_url }}">Double Height / Foyer</a></li>
-            <li><a href="{{ pendants_url }}">Modern Pendant Sets</a></li>
-            <li><a href="{{ pendants_url }}">Linear Dining Lights</a></li>
-            <li><a href="{{ wall_lights_url }}">Sculptural Wall Sconces</a></li>
+            <li><a href="{{ chandeliers_url }}">Chandeliers</a></li>
+            <li><a href="{{ pendants_url }}">Pendant Lights</a></li>
+            <li><a href="{{ ceiling_lights_url }}">Ceiling Lights</a></li>
+            <li><a href="{{ wall_lights_url }}">Wall Lights &amp; Sconces</a></li>
+            <li><a href="{{ table_lamps_url }}">Table Lamps &amp; Accents</a></li>
+            <li><a href="{{ fans_url }}">Fans &amp; Fan Lights</a></li>
+            <li><a href="/collections/all" style="font-weight: 600; color: var(--color-gold);">View All Decorative Lights &rarr;</a></li>
           </ul>
         </div>
       </div>
 
+      <!-- 2. Shop by Room Accordion -->
       <div class="mobile-nav-accordion">
-        <button type="button" class="mobile-accordion-toggle">
-          <span>Commercial Lights</span>
+        <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
+          <span>Shop by Room</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
         <div class="mobile-accordion-panel">
           <ul class="mobile-sublinks">
-            <li><a href="{{ commercial_url }}">Magnetic Track Systems</a></li>
-            <li><a href="{{ commercial_url }}">COB Anti-Glare Downlights</a></li>
-            <li><a href="{{ commercial_url }}">Architectural Profiles &amp; Strips</a></li>
-            <li><a href="{{ commercial_url }}">Commercial Solutions &amp; BoQ</a></li>
+            <li><a href="/collections/all?filter.p.tag=Living+Room">Living Room</a></li>
+            <li><a href="/collections/all?filter.p.tag=Dining+Room">Dining Room</a></li>
+            <li><a href="/collections/all?filter.p.tag=Bedroom">Bedroom Sanctuary</a></li>
+            <li><a href="/collections/all?filter.p.tag=Kitchen+Island">Kitchen Island &amp; Counter</a></li>
+            <li><a href="/collections/all?filter.p.tag=Staircase+%26+Entryway">Staircase &amp; Foyer Entryway</a></li>
+            <li><a href="/collections/all?filter.p.tag=Vanity+%26+Bathroom">Vanity &amp; Bathroom</a></li>
+            <li><a href="/#rooms" style="font-weight: 600; color: var(--color-gold);">Explore Curated Spaces &rarr;</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="mobile-direct-link">
-        <a href="#rooms">Shop by Room</a>
+      <!-- 3. Commercial Lights Accordion -->
+      <div class="mobile-nav-accordion">
+        <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
+          <span>Commercial &amp; Architectural</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-accordion-panel">
+          <ul class="mobile-sublinks">
+            <li><a href="{{ commercial_url }}">Magnetic Track Systems &amp; Chowk</a></li>
+            <li><a href="{{ commercial_url }}">COB Deep Anti-Glare Downlights</a></li>
+            <li><a href="{{ commercial_url }}">Architectural Profiles &amp; LED Strips</a></li>
+            <li><a href="{{ commercial_url }}">Office Panels &amp; Wall Washers</a></li>
+            <li><a href="{{ trade_url }}" style="font-weight: 600; color: var(--color-gold);">Submit BoQ / Trade Inquiries &rarr;</a></li>
+          </ul>
+        </div>
       </div>
+
+      <!-- Direct Navigation Links -->
       <div class="mobile-direct-link">
         <a href="{{ trade_url }}">Trade &amp; Architects (BoQ)</a>
       </div>

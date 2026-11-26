@@ -226,6 +226,42 @@ button, input, select, textarea {
   gap: 7px;
 }
 
+.announcement-text-mobile {
+  display: none;
+}
+.announcement-text-desktop {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .announcement-bar {
+    padding: 8px 14px !important;
+  }
+  .announcement-inner {
+    justify-content: center !important;
+  }
+  .announcement-left {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .announcement-right {
+    display: none !important;
+  }
+  .announcement-item {
+    font-size: 11px !important;
+    letter-spacing: 0.04em !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+  .announcement-text-desktop {
+    display: none !important;
+  }
+  .announcement-text-mobile {
+    display: inline !important;
+  }
+}
+
 /* Header & Brand Identity */
 .site-header {
   position: sticky;
@@ -559,10 +595,17 @@ button, input, select, textarea {
   letter-spacing: 0.1em;
   color: var(--color-ink);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.mobile-accordion-toggle * {
+  pointer-events: none;
 }
 
 .mobile-accordion-toggle svg {
   transition: transform 0.25s ease;
+  pointer-events: none;
 }
 
 .mobile-nav-accordion.active .mobile-accordion-toggle svg {
@@ -575,8 +618,8 @@ button, input, select, textarea {
   padding: 12px 24px 18px;
 }
 
-.mobile-nav-accordion.active .mobile-accordion-panel {
-  display: block;
+.mobile-nav-accordion.active > .mobile-accordion-panel {
+  display: block !important;
 }
 
 .mobile-sublinks {
@@ -925,9 +968,34 @@ button, input, select, textarea {
   .assurance-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 }
 
+@media (max-width: 768px) {
+  .cinematic-hero-section {
+    min-height: 520px;
+    padding-top: 28px !important;
+  }
+  .cinematic-hero-container {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+  .cinematic-eyebrow-badge {
+    font-size: 9.5px !important;
+    letter-spacing: 0.08em !important;
+    padding: 5px 12px !important;
+    white-space: nowrap !important;
+    margin-bottom: 18px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .cinematic-eyebrow-text {
+    white-space: nowrap !important;
+    font-size: 9.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+}
+
 @media (max-width: 600px) {
-  .cinematic-hero-title { font-size: 34px; }
-  .cinematic-hero-subtitle { font-size: 14px; }
+  .cinematic-hero-title { font-size: 32px; }
+  .cinematic-hero-subtitle { font-size: 13.5px; }
   .assurance-grid { grid-template-columns: 1fr; gap: 12px; }
   .cinematic-metrics-row { gap: 18px; }
 }
@@ -3128,8 +3196,8 @@ html, body {
     font-size: clamp(26px, 6vw, 36px) !important;
   }
   .product-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
   .services-grid {
     grid-template-columns: 1fr !important;
@@ -3156,5 +3224,61 @@ html, body {
   .header-action-btn {
     width: 36px !important;
     height: 36px !important;
+  }
+}
+
+/* WhatsApp Floating Concierge Mobile Icon-Only & PDP Sticky Overlap Clearance */
+@media (max-width: 768px) {
+  .whatsapp-floating {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    bottom: 24px !important;
+    right: 18px !important;
+    z-index: 999 !important;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45) !important;
+  }
+  .whatsapp-floating .whatsapp-text,
+  .whatsapp-floating .whatsapp-pulse-dot {
+    display: none !important;
+  }
+  .whatsapp-floating svg {
+    width: 26px !important;
+    height: 26px !important;
+    margin: 0 !important;
+  }
+  body.template-product .whatsapp-floating,
+  body:has(.sticky-pdp-bar) .whatsapp-floating {
+    bottom: 84px !important;
+  }
+}
+
+/* Cart Drawer Checkout Button - Mobile Single Line */
+.mobile-checkout-text {
+  display: none;
+}
+.desktop-checkout-text {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .desktop-checkout-text {
+    display: none !important;
+  }
+  .mobile-checkout-text {
+    display: inline !important;
+  }
+  .cart-checkout-btn {
+    padding: 14px 20px !important;
+    font-size: 13.5px !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+    text-align: center !important;
   }
 }
