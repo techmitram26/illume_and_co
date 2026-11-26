@@ -33,7 +33,7 @@
 
       {% if search.results_count > 0 %}
         {% paginate search.results by 24 %}
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="category-grid">
+          <div class="product-grid">
             {% for item in search.results %}
               {% if item.object_type == 'product' %}
                 {% render 'product-card', product: item %}

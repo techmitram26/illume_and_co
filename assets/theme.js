@@ -512,25 +512,50 @@ function initStickyAddToCart() {
 
 /* 9. CURATED FOR THE ROOM — EXPANDING TILES & REAL-TIME PRODUCT SYNC */
 function initCuratedRoomTiles() {
-  const tiles = document.querySelectorAll('.curated-room-tiles-strip .room-tile');
-  const panels = document.querySelectorAll('.curated-room-showcase-container .room-showcase-panel');
+  const container = document.querySelector('.curated-room-section');
+  if (!container) return;
+
+  const tiles = container.querySelectorAll('.room-tile');
+  const panels = container.querySelectorAll('.room-showcase-panel');
+  const mobilePills = container.querySelectorAll('.room-mobile-pill');
+  const strip = container.querySelector('.curated-room-tiles-strip');
 
   if (!tiles.length || !panels.length) return;
 
-  const setActiveRoom = (roomKey) => {
+  const setActiveRoom = (roomKey, scrollTile = false) => {
     // 1. Update active tile
     tiles.forEach(tile => {
       const match = tile.getAttribute('data-room') === roomKey;
       tile.classList.toggle('is-active', match);
       tile.setAttribute('aria-selected', match ? 'true' : 'false');
+      if (match && scrollTile && strip && window.innerWidth <= 768) {
+        tile.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
     });
 
-    // 2. Synchronize bottom showcase panel
+    // 2. Update mobile pills
+    mobilePills.forEach(pill => {
+      const match = pill.getAttribute('data-room-pill') === roomKey;
+      pill.classList.toggle('is-active', match);
+      if (match && window.innerWidth <= 768) {
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+
+    // 3. Synchronize bottom showcase panel
     panels.forEach(panel => {
       const match = panel.getAttribute('data-room-panel') === roomKey;
       panel.classList.toggle('is-active', match);
     });
   };
+
+  // Mobile pills click listeners
+  mobilePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const roomKey = pill.getAttribute('data-room-pill');
+      if (roomKey) setActiveRoom(roomKey, true);
+    });
+  });
 
   tiles.forEach(tile => {
     const roomKey = tile.getAttribute('data-room');
@@ -538,20 +563,22 @@ function initCuratedRoomTiles() {
 
     // Desktop mouse hover trigger
     tile.addEventListener('mouseenter', () => {
-      setActiveRoom(roomKey);
+      if (window.innerWidth > 768) {
+        setActiveRoom(roomKey, false);
+      }
     });
 
     // Touch / Click trigger
     tile.addEventListener('click', (e) => {
       if (e.target.closest('a')) return;
-      setActiveRoom(roomKey);
+      setActiveRoom(roomKey, true);
     });
 
     // Keyboard accessibility
     tile.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        setActiveRoom(roomKey);
+        setActiveRoom(roomKey, true);
       }
     });
   });

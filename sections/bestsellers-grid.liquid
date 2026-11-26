@@ -13,7 +13,7 @@
     </div>
 
     <!-- Product Grid -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="category-grid">
+    <div class="product-grid">
       {%- assign featured_collection = collections[section.settings.collection] -%}
       {%- if featured_collection == blank or featured_collection.products.size == 0 -%}
         {%- assign featured_collection = collections['all'] -%}

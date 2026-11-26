@@ -60,7 +60,7 @@
 
     <!-- Products Grid -->
     {% paginate collection.products by 24 %}
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="category-grid">
+      <div class="product-grid">
         {% for product in collection.products %}
           {% render 'product-card', product: product %}
         {% else %}
