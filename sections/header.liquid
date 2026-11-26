@@ -41,16 +41,64 @@
 {%- assign commercial_url = '/#commercial' -%}
 {%- if collections['commercial-lights'] != blank and collections['commercial-lights'].products_count > 0 -%}
   {%- assign commercial_url = collections['commercial-lights'].url -%}
+{%- elsif pages['commercial-projects'] != blank -%}
+  {%- assign commercial_url = pages['commercial-projects'].url -%}
 {%- endif -%}
 
 {%- assign trade_url = '/#trade' -%}
-{%- if pages['trade-program'] != blank -%}
+{%- if pages['trade-commercial'] != blank -%}
+  {%- assign trade_url = pages['trade-commercial'].url -%}
+{%- elsif pages['trade-program'] != blank -%}
   {%- assign trade_url = pages['trade-program'].url -%}
 {%- endif -%}
 
 {%- assign showroom_url = '/#showroom' -%}
-{%- if pages['showroom'] != blank -%}
+{%- if pages['showroom-booking'] != blank -%}
+  {%- assign showroom_url = pages['showroom-booking'].url -%}
+{%- elsif pages['showroom'] != blank -%}
   {%- assign showroom_url = pages['showroom'].url -%}
+{%- endif -%}
+
+{%- assign room_living_url = '/collections/all?filter.p.tag=Living+Room' -%}
+{%- if collections['living-room-lighting'] != blank -%}
+  {%- assign room_living_url = collections['living-room-lighting'].url -%}
+{%- elsif collections['living-room'] != blank -%}
+  {%- assign room_living_url = collections['living-room'].url -%}
+{%- endif -%}
+
+{%- assign room_dining_url = '/collections/all?filter.p.tag=Dining+Room' -%}
+{%- if collections['dining-room-lighting'] != blank -%}
+  {%- assign room_dining_url = collections['dining-room-lighting'].url -%}
+{%- elsif collections['dining-room'] != blank -%}
+  {%- assign room_dining_url = collections['dining-room'].url -%}
+{%- endif -%}
+
+{%- assign room_bedroom_url = '/collections/all?filter.p.tag=Bedroom' -%}
+{%- if collections['bedroom-lighting'] != blank -%}
+  {%- assign room_bedroom_url = collections['bedroom-lighting'].url -%}
+{%- elsif collections['bedroom'] != blank -%}
+  {%- assign room_bedroom_url = collections['bedroom'].url -%}
+{%- endif -%}
+
+{%- assign room_kitchen_url = '/collections/all?filter.p.tag=Kitchen+Island' -%}
+{%- if collections['kitchen-island-lighting'] != blank -%}
+  {%- assign room_kitchen_url = collections['kitchen-island-lighting'].url -%}
+{%- elsif collections['kitchen-island'] != blank -%}
+  {%- assign room_kitchen_url = collections['kitchen-island'].url -%}
+{%- endif -%}
+
+{%- assign room_staircase_url = '/collections/all?filter.p.tag=Staircase+%26+Entryway' -%}
+{%- if collections['staircase-foyer-lighting'] != blank -%}
+  {%- assign room_staircase_url = collections['staircase-foyer-lighting'].url -%}
+{%- elsif collections['staircase-entryway'] != blank -%}
+  {%- assign room_staircase_url = collections['staircase-entryway'].url -%}
+{%- endif -%}
+
+{%- assign room_vanity_url = '/collections/all?filter.p.tag=Vanity+%26+Bathroom' -%}
+{%- if collections['vanity-bathroom-lighting'] != blank -%}
+  {%- assign room_vanity_url = collections['vanity-bathroom-lighting'].url -%}
+{%- elsif collections['bathroom'] != blank -%}
+  {%- assign room_vanity_url = collections['bathroom'].url -%}
 {%- endif -%}
 
 <header class="site-header">
@@ -90,7 +138,7 @@
                 <li><a href="{{ pendants_url }}">Linear Dining Lights</a></li>
                 <li><a href="{{ pendants_url }}">Hand-Blown Glass Pendants</a></li>
                 <li><a href="{{ ceiling_lights_url }}">Decorative Ceiling Fixtures</a></li>
-                <li><a href="{{ ceiling_lights_url }}">Designer Chandelier Fans</a></li>
+                <li><a href="{{ fans_url }}">Designer Chandelier Fans</a></li>
               </ul>
             </div>
             <div>
@@ -99,7 +147,7 @@
                 <li><a href="{{ wall_lights_url }}">Sculptural Wall Sconces</a></li>
                 <li><a href="{{ wall_lights_url }}">Vanity &amp; Mirror Lights</a></li>
                 <li><a href="{{ wall_lights_url }}">Brushed Gold Picture Lights</a></li>
-                <li><a href="{{ wall_lights_url }}">Table &amp; Floor Accent Lamps</a></li>
+                <li><a href="{{ table_lamps_url }}">Table &amp; Floor Accent Lamps</a></li>
                 <li><a href="{{ wall_lights_url }}">Gate &amp; Outdoor Bollards</a></li>
               </ul>
             </div>
@@ -164,8 +212,20 @@
       </div>
 
       <!-- 3. Shop by Room -->
-      <div class="nav-item">
-        <a href="#rooms" class="nav-link">Shop by Room</a>
+      <div class="nav-item has-dropdown">
+        <a href="/#rooms" class="nav-link">Shop by Room</a>
+        <div class="nav-dropdown">
+          <ul class="nav-dropdown-list">
+            <li><a href="{{ room_living_url }}">Living Room</a></li>
+            <li><a href="{{ room_dining_url }}">Dining Room</a></li>
+            <li><a href="{{ room_bedroom_url }}">Bedroom Sanctuary</a></li>
+            <li><a href="{{ room_kitchen_url }}">Kitchen Island &amp; Counter</a></li>
+            <li><a href="{{ room_staircase_url }}">Staircase &amp; Foyer Entryway</a></li>
+            <li><a href="{{ room_vanity_url }}">Vanity &amp; Bathroom</a></li>
+            <li class="nav-dropdown-divider"></li>
+            <li><a href="/#rooms" style="font-weight: 600; color: var(--color-gold);">Explore All Curated Spaces &rarr;</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- 4. Trade / B2B -->
@@ -236,12 +296,12 @@
         </button>
         <div class="mobile-accordion-panel">
           <ul class="mobile-sublinks">
-            <li><a href="/collections/all?filter.p.tag=Living+Room">Living Room</a></li>
-            <li><a href="/collections/all?filter.p.tag=Dining+Room">Dining Room</a></li>
-            <li><a href="/collections/all?filter.p.tag=Bedroom">Bedroom Sanctuary</a></li>
-            <li><a href="/collections/all?filter.p.tag=Kitchen+Island">Kitchen Island &amp; Counter</a></li>
-            <li><a href="/collections/all?filter.p.tag=Staircase+%26+Entryway">Staircase &amp; Foyer Entryway</a></li>
-            <li><a href="/collections/all?filter.p.tag=Vanity+%26+Bathroom">Vanity &amp; Bathroom</a></li>
+            <li><a href="{{ room_living_url }}">Living Room</a></li>
+            <li><a href="{{ room_dining_url }}">Dining Room</a></li>
+            <li><a href="{{ room_bedroom_url }}">Bedroom Sanctuary</a></li>
+            <li><a href="{{ room_kitchen_url }}">Kitchen Island &amp; Counter</a></li>
+            <li><a href="{{ room_staircase_url }}">Staircase &amp; Foyer Entryway</a></li>
+            <li><a href="{{ room_vanity_url }}">Vanity &amp; Bathroom</a></li>
             <li><a href="/#rooms" style="font-weight: 600; color: var(--color-gold);">Explore Curated Spaces &rarr;</a></li>
           </ul>
         </div>
